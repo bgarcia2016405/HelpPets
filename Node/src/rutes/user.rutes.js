@@ -9,4 +9,6 @@ var api = express.Router();
 
 api.post('/createUser', userController.createUser)
 
+api.post('/Login', userController.Login)
+
 module.exports = api;
