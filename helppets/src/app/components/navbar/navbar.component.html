@@ -2,7 +2,7 @@
 <div style="background-color: #EEEFEE;">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid" >
-    <a class="navbar-brand" href="/home"><img style="width:80px" src="../../../assets/HelpPets-removebg-preview (3).png" alt=""></a>
+    <a class="navbar-brand" href="/home"><img style="width:80px" src="../../../assets/HelpPetsLogo.png" routerLink="/home"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -15,7 +15,7 @@
           Large button
         </button>
         <ul class="dropdown-menu">
-          <li><button type="button" class="btn ">Iniciar Sesión</button></li>
+          <li><button type="button" class="btn "  data-bs-toggle="modal" data-bs-target="#LoginModal">Iniciar Sesión</button></li>
           <li><button type="button" class="btn ">Cerra Sesión</button></li>
         </ul>
 
@@ -28,4 +28,41 @@
     </div>
   </div>
 </nav>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade " id="LoginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="text-align:center">
+  <div class="modal-dialog modal-dialog-centered" >
+    <div class="modal-dialog"  >
+      <div class="modal-content" style=" width:220px; background-color: #85BB5C;">
+        <div class="modal-body"  >
+          <img src="../../../assets/DogSilueta.png" width="100%" ><br>
+
+
+
+
+          <form>
+            <br>
+            <div class="form-floating mb-3">
+              <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" style="border-radius:5%">
+              <label for="floatingInput">Usuario</label>
+            </div><br>
+            <div class="form-floating">
+              <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+              <label for="floatingPassword">Contraseña</label>
+            </div><br>
+            <div class="d-grid gap-2 col-6 mx-auto">
+              <button class="btn btn-outline-primary" type="button">Ingresar</button>
+            </div>
+          </form><br>
+
+          <p>¿No tienes cuenta? <a routerLink="/registrar" data-bs-dismiss="modal">Registrate</a></p>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
 </div>
