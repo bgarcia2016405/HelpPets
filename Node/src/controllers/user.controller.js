@@ -5,9 +5,9 @@ const bcrypt = require("bcrypt-nodejs");
 
 const userModel = require("../models/user.model");
 
-const usuario = 'Usuario';
-const Albergue = 'Albergador';
-const Veterinario = 'Veterinario';
+const usuario = 'dueño';
+const Albergue = 'albergue';
+const Veterinario = 'veterinaria';
 
 function Login(req,res){
     var params = req.body;
@@ -39,34 +39,44 @@ function Login(req,res){
 }
 
 function createUser(req,res){
+  var type = req.params.type;
+  var params = req.body;
+  var UserModel = new userModel();
 
-    var name = [
-        {nickName:"UsuarioDueño",type:usuario},
-        {nickName:"UsuarioVeterinaria",type:Albergue},
-        {nickName:"UsuarioAlbergue",type:Veterinario}
-    ]
-    var password = '123456'
-    bcrypt.hash(password, null, null, (err, encryptedPassword)=>{
-    for (let index = 0; index < name.length; index++) {
-        var UserModel = new userModel(); 
-        UserModel.nickName = name[index].nickName;
-        UserModel.type = name[index].type;
+  UserModel.nameUser = params.nameUser;
+  UserModel.lastNameUser = params.lastNameUser;
+  UserModel.nickName = params.nickName;
+  UserModel.ageUser = params.ageUser;
+  UserModel.email = params.email; 
+  UserModel.picture = params.picture;
+  UserModel.type = type;
 
 
-       
-            
-            
-           
-            UserModel.password = encryptedPassword;
-            UserModel.save((err,userSave)=>{
-                console.log(userSave)
-            })
-        
-        
-    }
-})
+  if(type != usuario){
+    UserModel.nameOrg = params.nameOrg;
+    UserModel.pictureOrg = params.pictureOrg;
+    UserModel.direction = params.direction;
+  }
 
-return res.status(200).send({report:'Listo'})
+  bcrypt.hash(params.password,null,null,(err, passewodEncriptada)=>{
+    if(err) return console.log("password request error");
+
+    UserModel.password = passewodEncriptada
+    
+ userModel.findOne({nickName:UserModel.nickName},(err,userFound)=>{
+    if(err) return res.status(404).send({report:'Erro in find User'});
+    if(userFound) return res.status(202).send({report:'User is exists'})
+
+    UserModel.save((err,userSaved)=>{
+      if(err) return res.status(404).send({report:'Erro in save User'});
+      return res.status(200).send(userSaved)
+    })
+  })
+
+  })
+
+ 
+
 }
 
 

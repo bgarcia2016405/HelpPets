@@ -12,12 +12,13 @@ var UserSchema = Schema({
     picture: String,
     password: String,
     type: String,
-    org: {
+    
         nameOrg: String,
         pictureOrg: String,
         direction: String,
         type:String
-    }
+    
+
 })
 
 module.exports = mongoose.model('User', UserSchema);
