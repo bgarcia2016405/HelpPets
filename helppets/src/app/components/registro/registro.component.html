@@ -1,0 +1,274 @@
+<div style="background-color: #388E3C;margin-top: 30px;text-align:center">
+
+  <div>
+
+      <a routerLink="/registrar/dueño" >
+        <img src="../../../assets/dueño.png" style="width:5%;margin-top:20px;margin-bottom: 20px;">
+      </a>
+
+      <a routerLink="/registrar/veterinaria">
+        <img src="../../../assets/Veterinaria.png" style="width:9%;margin-top:20px;margin-bottom: 20px;margin-left: 150px;margin-right: 150px">
+      </a>
+
+      <a routerLink="/registrar/albergue">
+        <img src="../../../assets/Albergue.png" style="width:10%;margin-top:20px;margin-bottom: 20px;">
+      </a>
+
+  </div>
+
+</div>
+
+
+<h1 style="text-align:center">{{state}}</h1>
+
+
+<div *ngIf="state=='dueño'" style="background-color: #85BB5C;margin-top: 30px;text-align:center">
+  <form class="row g-3 needs-validation" novalidate>
+    <div class="container"><br><br>
+      <div class="row" >
+        <div class="col">
+          <div class="form-floating">
+            <textarea style="background-color:#85BB5C"  class="form-control" placeholder="Leave a comment here" id="picture"
+            name="picture" #picture="ngModel" [(ngModel)]="userModel.picture">></textarea>
+            <label for="floatingTextarea">Picture</label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-floating mb-3">
+            <input style="background-color:#85BB5C" type="text" class="form-control" id="nameUser"
+            name="nameUser" #nameUser="ngModel" [(ngModel)]="userModel.nameUser">
+            <label for="floatingInput">Nombre</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input style="background-color:#85BB5C" type="text" class="form-control"  id="lastNameUser"
+            name="lastNameUser" #lastNameUser="ngModel" [(ngModel)]="userModel.lastNameUser">
+            <label for="floatingInput">Apellido</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input style="background-color:#85BB5C" type="text" class="form-control" id="nickName"
+            name="nickName" #nickName="ngModel" [(ngModel)]="userModel.nickName">
+            <label for="floatingInput">Usuario</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input style="background-color:#85BB5C" type="email" class="form-control" id="email"
+            name="email" #email="ngModel" [(ngModel)]="userModel.email">
+            <label for="floatingInput">Correo</label>
+          </div>
+
+        </div>
+        <div class="col">
+
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" name="ageUser"  #ageUser="ngModel" [(ngModel)]="userModel.ageUser">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker ></mat-datepicker>
+          </mat-form-field>
+
+          <div class="form-floating mb-3">
+            <input style="background-color:#85BB5C" type="password" class="form-control" id="password1"
+            name="password1" #password1="ngModel" [(ngModel)]="userModel.password1">
+            <label for="floatingInput">Contraseña</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input style="background-color:#85BB5C" type="password" class="form-control" id="password2"
+            name="password2" #password2="ngModel" [(ngModel)]="userModel.password2">
+            <label for="floatingInput">Confirmar Contraseña</label>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-12" style="color:white">
+
+      <button type="button" class="btn btn-outline-success" (click)="registrar()" >Registrar</button>
+    </div>
+    </form><br><br>
+</div>
+
+
+
+<div *ngIf="state=='veterinaria'" style="background-color: #85BB5C;margin-top: 30px;text-align:center">
+  <form class="row g-3 needs-validation" novalidate>
+    <div class="container"><br><br>
+      <div class="row" >
+        <div class="col">
+          <div class="form-floating">
+            <textarea style="background-color:#85BB5C"  class="form-control" placeholder="Leave a comment here" id="picture"
+            name="picture" #picture="ngModel" [(ngModel)]="userModel.picture">></textarea>
+            <label for="floatingTextarea">Picture</label>
+          </div><br>
+
+          <div class="form-floating mb-3">
+            <input style="background-color:#85BB5C" type="text" class="form-control"  id="nameUser"
+            name="nameUser" #nameUser="ngModel" [(ngModel)]="userModel.nameUser">
+            <label for="floatingInput">Nombre</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input style="background-color:#85BB5C" type="text" class="form-control"  id="lastNameUser"
+            name="lastNameUser" #lastNameUser="ngModel" [(ngModel)]="userModel.lastNameUser">
+            <label for="floatingInput">Apellido</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input style="background-color:#85BB5C" type="text" class="form-control"id="nickName"
+            name="nickName" #nickName="ngModel" [(ngModel)]="userModel.nickName">
+            <label for="floatingInput">Usuario</label>
+          </div>
+
+
+
+        </div>
+        <div class="col">
+          <div class="form-floating mb-3">
+            <input style="background-color:#85BB5C" type="email" class="form-control" id="email"
+            name="email" #email="ngModel" [(ngModel)]="userModel.email">
+            <label for="floatingInput">Correo</label>
+          </div>
+
+
+
+          <div class="form-floating mb-3">
+            <input style="background-color:#85BB5C" type="password" class="form-control" id="password1"
+            name="password1" #password1="ngModel" [(ngModel)]="userModel.password1">
+            <label for="floatingInput">Contraseña</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input style="background-color:#85BB5C" type="password" class="form-control"  id="password2"
+            name="password2" #password2="ngModel" [(ngModel)]="userModel.password2">
+            <label for="floatingInput">Confirmar Contraseña</label>
+          </div>
+
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" name="ageUser"  #ageUser="ngModel" [(ngModel)]="userModel.ageUser">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker ></mat-datepicker>
+          </mat-form-field>
+
+        </div>
+        <div class="col">
+
+          <div class="form-floating mb-3">
+            <input style="background-color:#85BB5C" type="text" class="form-control"  id="nameOrg"
+            name="nameOrg" #nameOrg="ngModel" [(ngModel)]="userModel.nameOrg">
+            <label for="floatingInput">Nombre de Establecimiento</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input style="background-color:#85BB5C" type="text" class="form-control" id="direction"
+            name="direction" #direction="ngModel" [(ngModel)]="userModel.direction">
+            <label for="floatingInput">Dirección de Establecimiento</label>
+          </div>
+
+          <div class="form-floating">
+            <textarea style="background-color:#85BB5C"  class="form-control"id="pictureOrg"
+            name="pictureOrg" #pictureOrg="ngModel" [(ngModel)]="userModel.pictureOrg"></textarea>
+            <label for="floatingTextarea">Foto de Establecimiento</label>
+          </div><br>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-12" style="color:white">
+
+      <button type="button" class="btn btn-outline-success" (click)="registrar()" >Registrar</button>
+    </div>
+    </form><br><br>
+
+</div>
+
+<div *ngIf="state=='albergue'" style="background-color: #85BB5C;margin-top: 30px;text-align:center">
+  <form class="row g-3 needs-validation" novalidate>
+    <div class="container"><br><br>
+      <div class="row" >
+        <div class="col">
+          <div class="form-floating">
+            <textarea style="background-color:#85BB5C"  class="form-control" placeholder="Leave a comment here" id="picture"
+            name="picture" #picture="ngModel" [(ngModel)]="userModel.picture">></textarea>
+            <label for="floatingTextarea">Picture</label>
+          </div><br>
+
+          <div class="form-floating mb-3">
+            <input style="background-color:#85BB5C" type="text" class="form-control"  id="nameUser"
+            name="nameUser" #nameUser="ngModel" [(ngModel)]="userModel.nameUser">
+            <label for="floatingInput">Nombre</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input style="background-color:#85BB5C" type="text" class="form-control"  id="lastNameUser"
+            name="lastNameUser" #lastNameUser="ngModel" [(ngModel)]="userModel.lastNameUser">
+            <label for="floatingInput">Apellido</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input style="background-color:#85BB5C" type="text" class="form-control"id="nickName"
+            name="nickName" #nickName="ngModel" [(ngModel)]="userModel.nickName">
+            <label for="floatingInput">Usuario</label>
+          </div>
+
+
+
+        </div>
+        <div class="col">
+          <div class="form-floating mb-3">
+            <input style="background-color:#85BB5C" type="email" class="form-control" id="email"
+            name="email" #email="ngModel" [(ngModel)]="userModel.email">
+            <label for="floatingInput">Correo</label>
+          </div>
+
+
+
+          <div class="form-floating mb-3">
+            <input style="background-color:#85BB5C" type="password" class="form-control" id="password1"
+            name="password1" #password1="ngModel" [(ngModel)]="userModel.password1">
+            <label for="floatingInput">Contraseña</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input style="background-color:#85BB5C" type="password" class="form-control"  id="password2"
+            name="password2" #password2="ngModel" [(ngModel)]="userModel.password2">
+            <label for="floatingInput">Confirmar Contraseña</label>
+          </div>
+
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" name="ageUser"  #ageUser="ngModel" [(ngModel)]="userModel.ageUser">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker ></mat-datepicker>
+          </mat-form-field>
+
+        </div>
+        <div class="col">
+
+          <div class="form-floating mb-3">
+            <input style="background-color:#85BB5C" type="text" class="form-control"  id="nameOrg"
+            name="nameOrg" #nameOrg="ngModel" [(ngModel)]="userModel.nameOrg">
+            <label for="floatingInput">Nombre de Establecimiento</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input style="background-color:#85BB5C" type="text" class="form-control" id="direction"
+            name="direction" #direction="ngModel" [(ngModel)]="userModel.direction">
+            <label for="floatingInput">Dirección de Establecimiento</label>
+          </div>
+
+          <div class="form-floating">
+            <textarea style="background-color:#85BB5C"  class="form-control"id="pictureOrg"
+            name="pictureOrg" #pictureOrg="ngModel" [(ngModel)]="userModel.pictureOrg"></textarea>
+            <label for="floatingTextarea">Foto de Establecimiento</label>
+          </div><br>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-12" style="color:white">
+
+      <button type="button" class="btn btn-outline-success" (click)="registrar()">Registrar</button>
+    </div>
+    </form><br><br>
+
+  </div>

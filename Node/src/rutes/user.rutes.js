@@ -7,7 +7,7 @@ const userController = require("../controllers/user.controller");
 
 var api = express.Router();
 
-api.post('/createUser', userController.createUser)
+api.post('/createUser/:type', userController.createUser)
 
 api.post('/Login', userController.Login)
 
