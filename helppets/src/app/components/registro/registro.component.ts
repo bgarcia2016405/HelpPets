@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { User } from 'src/app/models/user.model';
+import { UserService } from 'src/app/services/user.service';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-registro',
@@ -9,10 +12,19 @@ import { ActivatedRoute } from '@angular/router';
 export class RegistroComponent implements OnInit {
 
   public state
+  public userModel: User;
+  public token;
+  public identidad;
+
 
   constructor(
     public activate : ActivatedRoute,
-  ) { }
+    public userService: UserService
+  ) {
+    this.identidad = this.userService.getIdentidad();
+    this.userModel = new User("","","","","","","","","","","","","","");
+
+   }
 
   ngOnInit(): void {
     this.activate.paramMap.subscribe(dataRuta=>{
@@ -22,8 +34,31 @@ export class RegistroComponent implements OnInit {
   }
 
 
-  start(state) {
+ registrar(){
+   this.userModel.type = this.state;
+   if(this.userModel.password1==this.userModel.password2){
+    this.userModel.password = this.userModel.password1
+    this.userService.registro(this.userModel,this.state).subscribe(
+      response =>{
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Usuario Creado',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+    )
+   }else{
+    Swal.fire({
+      position: 'center',
+      icon: 'error',
+      title: 'Contraseña no coinciden',
+      showConfirmButton: false,
+      timer: 1500
+    })
+   }
 
-  }
+ }
 
 }
