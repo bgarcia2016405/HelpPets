@@ -4,7 +4,9 @@ const mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var NewSchema = Schema({
-    usuario: {type: Schema.Types.ObjectId, ref:'User'}
+    newsDescription: String,
+    pictures: String,
+    newCreator: {type: Schema.Types.ObjectId, ref:'User'}
 })
 
 module.exports = mongoose.model('New', NewSchema);
