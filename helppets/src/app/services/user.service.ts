@@ -31,6 +31,10 @@ export class UserService {
     return this.http.post(this.url + '/createUser/'+type, params,{headers: this.headers})
   }
 
+  mostrarAlbergue():Observable<any>{
+    return this.http.post(this.url + '/mostrarAlbergue', {headers: this.headers})
+  }
+
 
   getToken(){
     var token2 = localStorage.token;
