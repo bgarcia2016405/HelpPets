@@ -109,10 +109,12 @@
 
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModal" aria-hidden="true">
-  <div class="modal-dialog  modal-dialog-centered" >
+  <div class="modal-dialog  modal-dialog-centered" style="width: auto;height: auto;" >
 
 
-    <div class="container-fluid modal-content">
+
+
+      <div class="modal-content" style="width: auto;height: auto;">
       <div class="row main-content bg-success text-center">
         <div class="col-md-4 text-center company__info">
           <span class="company__logo"><span class="fa-android"><img src="../../../assets/DogSilueta.png" class="dog"> </span></span>
@@ -144,48 +146,56 @@
           </div>
         </div>
       </div>
+
+      </div>
+
+
     </div>
 
 
-  </div>
+
 </div>
 
 
 
 <div class="modal fade" id="perfilModal" tabindex="-1" aria-labelledby="perfilModal" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="card">
+    <div class="modal-content" style="width: auto;">
+
+      <div class="card">
+
       <div class="ds-top"></div>
+
+
+
       <div class="avatar-holder">
-        <img src={{identidad.picture}} alt="Albert Einstein">
+
+        <img src={{identidad.picture}}>
       </div>
       <div class="name">
-        <a href="https://codepen.io/AlbertFeynman/" target="_blank">{{identidad.nameUser}}</a><br>
-        <a href="https://codepen.io/AlbertFeynman/" target="_blank">{{identidad.lastNameUser}}</a>
+
+        <div class="col"><p>{{identidad.nickName}}</p> </div>
+        <div class="row row-cols-2">
+          <div class="col"><p>{{identidad.nameUser}}</p> </div>
+          <div class="col"><p>{{identidad.lastNameUser}}</p></div>
+        </div>
+        <div class="col"><p>{{identidad.email}}</p> </div>
+        <mat-form-field>
+
+            <input style="color:white" matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" name="ageUser" value={{identidad.ageUser}} disabled>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker ></mat-datepicker>
+
+
+        </mat-form-field>
+        <div class="col"><p>{{identidad.type}}</p> </div>
       </div>
 
-      <div class="ds-skill">
-        <h6>Skill <i class="fa fa-code" aria-hidden="true"></i></h6>
-        <div class="skill html">
-          <h6><i class="fab fa-html5"></i> HTML5 </h6>
-          <div class="bar bar-html">
-            <p>95%</p>
-          </div>
-        </div>
-        <div class="skill css">
-          <h6><i class="fab fa-css3-alt"></i> CSS3 </h6>
-          <div class="bar bar-css">
-            <p>90%</p>
-          </div>
-        </div>
-        <div class="skill javascript">
-          <h6><i class="fab fa-js"></i> JavaScript </h6>
-          <div class="bar bar-js">
-            <p>75%</p>
-          </div>
-        </div>
-      </div>
+
     </div>
+
+    </div>
+
 
   </div>
 </div>
