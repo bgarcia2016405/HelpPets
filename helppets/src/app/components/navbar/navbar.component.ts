@@ -65,6 +65,8 @@ export class NavbarComponent implements OnInit {
     )
   }
 
+
+
   refresh(): void{
     window.location.reload();
   }
@@ -76,5 +78,7 @@ export class NavbarComponent implements OnInit {
     localStorage.setItem('token', JSON.stringify(this.token));
     this.refresh()
   }
+
+
 
 }
