@@ -11,7 +11,7 @@ api.post('/createUser/:type', userController.createUser)
 
 api.post('/Login', userController.Login)
 
-api.get('/showAllUser' ,userController.showUser)
+api.post('/mostrarAlbergue', userController.mostrarAlbergue)
 
 api.post('/mostrarAlbergue', userController.mostrarAlbergue)
 

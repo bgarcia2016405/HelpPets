@@ -85,9 +85,20 @@ function showUser(req,res) {
 }
 
 
+function mostrarAlbergue(req, res){
+userModel.find({type: Albergue},(err, albergueFound)=>{
+  if(err) return res.status(500).send({ mensaje: 'Error en la petición' })
+  if(!albergueFound) return res.status(500).send({ mensaje: 'No se han encontrado albergues' })
+
+   return res.status(200).send(albergueFound)
+  })
+
+}
+
+
 
 module.exports ={
     createUser,
     Login,
-    showUser
+    mostrarAlbergue
 }

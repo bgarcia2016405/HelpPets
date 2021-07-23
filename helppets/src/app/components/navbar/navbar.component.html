@@ -83,11 +83,9 @@
 
 
     <li>
-      <a >Albergues</a>
+      <a [routerLink]="['/albergues']" routerLinkActive="router-link-active" >Albergues</a>
       <ul>
-        <li><a href="#0">Print Design</a></li>
-        <li><a href="#0">Web Design</a></li>
-        <li><a href="#0">Mobile App Development</a></li>
+        <li *ngIf="userService.getIdentidad() != null && identidad.type == 'albergue'" [routerLink]="['/alberguepersonal']" routerLinkActive="router-link-active" ><a href="#0">Mi Albergue</a></li>
       </ul>
     </li>
     <li><a href="#0">Veterinarias</a></li>
@@ -170,25 +168,25 @@
 
       <div class="avatar-holder">
 
-        <img src={{identidad.picture}}>
+        <img *ngIf="userService.getIdentidad() != null" src={{identidad.picture}}>
       </div>
       <div class="name">
 
-        <div class="col"><p>{{identidad.nickName}}</p> </div>
+        <div *ngIf="userService.getIdentidad() != null" class="col"><p>{{identidad.nickName}}</p> </div>
         <div class="row row-cols-2">
-          <div class="col"><p>{{identidad.nameUser}}</p> </div>
-          <div class="col"><p>{{identidad.lastNameUser}}</p></div>
+          <div *ngIf="userService.getIdentidad() != null" class="col"><p>{{identidad.nameUser}}</p> </div>
+          <div *ngIf="userService.getIdentidad() != null" class="col"><p>{{identidad.lastNameUser}}</p></div>
         </div>
-        <div class="col"><p>{{identidad.email}}</p> </div>
-        <mat-form-field>
+        <div *ngIf="userService.getIdentidad() != null" class="col"><p>{{identidad.email}}</p> </div>
+        <mat-form-field *ngIf="userService.getIdentidad() != null">
 
-            <input style="color:white" matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" name="ageUser" value={{identidad.ageUser}} disabled>
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker ></mat-datepicker>
+            <input *ngIf="userService.getIdentidad() != null" style="color:white" matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" name="ageUser" value={{identidad.ageUser}} disabled>
+          <mat-datepicker-toggle *ngIf="userService.getIdentidad() != null" matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker *ngIf="userService.getIdentidad() != null" #picker ></mat-datepicker>
 
 
         </mat-form-field>
-        <div class="col"><p>{{identidad.type}}</p> </div>
+        <div *ngIf="userService.getIdentidad() != null" class="col"><p>{{identidad.type}}</p> </div>
       </div>
 
 

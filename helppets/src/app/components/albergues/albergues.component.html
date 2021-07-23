@@ -1,0 +1,26 @@
+
+
+<br>
+<br>
+<br>
+
+<h1 class="heading heading--stroke-shadow">Albergues</h1>
+
+<br>
+<br>
+
+
+<div *ngFor="let item of usuario" class="blog-card" >
+  <div class="meta">
+    <div class="photo" style="background-image: url({{item.pictureOrg}})"></div>
+  </div>
+  <div class="description">
+    <h1>{{item.nameOrg}}</h1>
+    <p>{{item.direction}}</p>
+    <p class="read-more">
+      <a href="#">Ver más</a>
+    </p>
+  </div>
+</div>
+
+
