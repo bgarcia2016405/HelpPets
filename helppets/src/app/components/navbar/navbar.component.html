@@ -1,4 +1,4 @@
-<div style="background-color: #558B2F; height: 15px;"></div>
+<!-- <div style="background-color: #558B2F; height: 15px;"></div>
 <div style="background-color: #EEEFEE;">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid" >
@@ -37,7 +37,7 @@
 </div>
 
 
-<!-- Modal -->
+
 <div class="modal fade " id="LoginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="text-align:center">
   <div class="modal-dialog modal-dialog-centered" >
     <div class="modal-dialog"  >
@@ -73,4 +73,129 @@
     </div>
   </div>
 
+</div> -->
+
+<img src="../../../assets/HelpPetsLogo.png" width="100px">
+<nav>
+
+  <ul>
+    <li><a routerLink="home">Inicio</a></li>
+
+
+    <li>
+      <a >Albergues</a>
+      <ul>
+        <li><a href="#0">Print Design</a></li>
+        <li><a href="#0">Web Design</a></li>
+        <li><a href="#0">Mobile App Development</a></li>
+      </ul>
+    </li>
+    <li><a href="#0">Veterinarias</a></li>
+    <li>
+      <a *ngIf="userService.getIdentidad()== null" >Usuario</a>
+      <a *ngIf="userService.getIdentidad()!= null" >{{identidad.nickName}}</a>
+      <ul>
+        <li *ngIf="userService.getIdentidad() == null"><a  data-bs-toggle="modal" data-bs-target="#exampleModal">Iniciar Sesión</a></li>
+        <li *ngIf="userService.getIdentidad() != null"><a data-bs-toggle="modal" data-bs-target="#perfilModal">Mi Perfil</a></li>
+        <li *ngIf="userService.getIdentidad() != null"><a (click)="cerrarSesion()" routerLink="home">Cerrar Sesión</a></li>
+        <li *ngIf="userService.getIdentidad() == null"><a routerLink="registrar">Registro</a></li>
+      </ul>
+    </li>
+  </ul>
+
+</nav><br>
+
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModal" aria-hidden="true">
+  <div class="modal-dialog  modal-dialog-centered" style="width: auto;height: auto;" >
+
+
+
+
+      <div class="modal-content" style="width: auto;height: auto;">
+      <div class="row main-content bg-success text-center">
+        <div class="col-md-4 text-center company__info">
+          <span class="company__logo"><span class="fa-android"><img src="../../../assets/DogSilueta.png" class="dog"> </span></span>
+          <h4 class="company_title"></h4>
+        </div>
+        <div class="col-md-8 col-xs-12 col-sm-12 login_form ">
+          <div class="container-fluid">
+            <div class="row">
+              <h2>Iniciar Sesión</h2>
+            </div>
+            <div class="row">
+              <form  class="form-group">
+                <div class="row">
+                  <input type="text" id="nickName" class="form__input" placeholder="nickName" name="nickName"  #nickName="ngModel" [(ngModel)]="userModel.nickName" >
+                </div>
+                <div class="row">
+                  <!-- <span class="fa fa-lock"></span> -->
+                  <input type="password" name="password" id="password" class="form__input" placeholder="Contraseña"  #password="ngModel" [(ngModel)]="userModel.password">
+                </div>
+
+                <div class="row">
+                  <input type="submit" value="Iniciar" class="btn" data-bs-dismiss="modal" (click)="login()">
+                </div>
+              </form>
+            </div>
+            <div class="row">
+              <p>¿No tienes una cuenta? <a routerLink="registrar"  data-bs-dismiss="modal">Registrate</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      </div>
+
+
+    </div>
+
+
+
+</div>
+
+
+
+<div class="modal fade" id="perfilModal" tabindex="-1" aria-labelledby="perfilModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="width: auto;">
+
+      <div class="card">
+
+      <div class="ds-top"></div>
+
+
+
+      <div class="avatar-holder">
+
+        <img src={{identidad.picture}}>
+      </div>
+      <div class="name">
+
+        <div class="col"><p>{{identidad.nickName}}</p> </div>
+        <div class="row row-cols-2">
+          <div class="col"><p>{{identidad.nameUser}}</p> </div>
+          <div class="col"><p>{{identidad.lastNameUser}}</p></div>
+        </div>
+        <div class="col"><p>{{identidad.email}}</p> </div>
+        <mat-form-field>
+
+            <input style="color:white" matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" name="ageUser" value={{identidad.ageUser}} disabled>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker ></mat-datepicker>
+
+
+        </mat-form-field>
+        <div class="col"><p>{{identidad.type}}</p> </div>
+      </div>
+
+
+    </div>
+
+    </div>
+
+
+  </div>
 </div>

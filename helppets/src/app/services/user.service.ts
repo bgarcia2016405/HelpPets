@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+  import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http"
 import { GLOBAL } from './global.service';
 import { Observable } from 'rxjs';
@@ -23,6 +23,11 @@ export class UserService {
     let params = JSON.stringify(usuario)
 
     return this.http.post(this.url + '/Login', params, {headers: this.headers})
+  }
+
+  showUser():Observable<any>{
+
+    return this.http.get(this.url + '/showAllUser', {headers: this.headers})
   }
 
   registro(usuario: User, type):Observable<any>{
