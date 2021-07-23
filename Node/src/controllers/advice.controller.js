@@ -15,10 +15,12 @@ function createAdvice(req, res) {
         adviceModel.advice = params.advice;
         adviceModel.adviceCreator = req.user.sub;
         adviceModel.picture = params.picture;
+        adviceModel.title = params.title;
+        adviceModel.resume = params.resume;
 
         Advice.find({
             $and: [
-                { name: adviceModel.advice },
+                { name: adviceModel.title },
                 { user: adviceModel.adviceCreator }
             ]
         }).exec((err, adviceFound) => {

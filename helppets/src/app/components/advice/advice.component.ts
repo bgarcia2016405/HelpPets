@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Advice } from 'src/app/models/advice.model';
 import { AdviceService } from 'src/app/services/advice.service';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-advice',
@@ -16,17 +18,19 @@ export class AdviceComponent implements OnInit {
   public adviceModelCreate: Advice;
 
   constructor(
-    private _adviceService: AdviceService
+    public _adviceService: AdviceService,
+    public _userService: UserService,
+    private _router: Router
   ) {
-    //this.token = this.identidad.getToken();
-    this.adviceModelCreate = new Advice('', '', '', '')
-    this.adviceModelGetId = new Advice('', '', '', '')
-    //this.identidad = this.identidad.getIdentidad();
+    this.token = this._userService.getToken();
+    this.adviceModelCreate = new Advice('', '', '', '','','')
+    this.adviceModelGetId = new Advice('', '', '', '','','')
+    this.identidad = this._userService.getIdentidad();
   }
 
   ngOnInit(): void {
-   // this.getAdvices();
-   // console.log(this.identidad.type)
+   this.getAdvices();
+   console.log(this.identidad.type)
   }
 
   getAdvices() {
@@ -41,10 +45,10 @@ export class AdviceComponent implements OnInit {
     )
   }
 
-  getAdviceId(id) {
-    this._adviceService.getAdviceId(this.token, id).subscribe(
+  getAdviceId(idAdvice) {
+    this._adviceService.getAdviceId(this.token, idAdvice).subscribe(
       response => {
-        this.adviceModelGetId = response.AdviceFound;
+        this.adviceModelGetId = response.adviceFound;
         console.log(this.adviceModelGetId);
       },
       error => {
@@ -56,6 +60,8 @@ export class AdviceComponent implements OnInit {
   createAdvice() {
     this._adviceService.createAdvice(this.adviceModelCreate, this.token).subscribe(
       response=>{
+        this.adviceModelCreate.title = '';
+        this.adviceModelCreate.resume = '';
         this.adviceModelCreate.advice = '';
         this.adviceModelCreate.picture = '';
         console.log(response);
@@ -74,25 +80,40 @@ export class AdviceComponent implements OnInit {
     )
   }
 
-  editAdvice() {
-    this._adviceService.editAdvice(this.adviceModelGetId, this.adviceModelGetId._id).subscribe(
-      response=>{
-        this.adviceModelGetId = response.adviceEdited;
-        console.log(this.adviceModelGetId);
-        this.getAdvices();
-      },
-      error =>{
-        console.log(<any>error);
-        Swal.fire({
-          position: 'center',
-          icon: 'error',
-          title: 'Intenta con otros datos',
-          showConfirmButton: false,
-          timer: 1500
-        })
-      }
+  editAdvice(){
+    if(
+      this.adviceModelGetId.title===''||
+      this.adviceModelGetId.resume===''||
+      this.adviceModelGetId.advice===''||
+      this.adviceModelGetId.picture===''
     )
-  }
+    {
+      Swal.fire({
+        /*position: 'top',*/
+        icon: 'warning',
+        title: 'Llene todos los campos',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }else{
+
+  this._adviceService.editAdvice(this.adviceModelGetId).subscribe(
+    response=>{
+      console.log(response);
+
+      Swal.fire({
+        /*position: 'top',*/
+        icon: 'success',
+        title: 'Consejo editado y actualizado correctamente',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
+      this.getAdvices();
+    }
+  )
+}
+}
 
   deleteAdvice() {
     this._adviceService.deleteAdvice(this.adviceModelGetId._id).subscribe(
@@ -103,5 +124,10 @@ export class AdviceComponent implements OnInit {
     )
   }
 
+/*
+  navegarDetalleConsejo(idAdvice) {
+    this._router.navigate(['/detalleConsejo', idAdvice]);
+  }
+*/
 }
 

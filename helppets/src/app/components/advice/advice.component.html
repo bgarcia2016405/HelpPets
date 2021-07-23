@@ -1,46 +1,161 @@
-<div>
-  <div>
-    <div style="background-color: rgb(221, 217, 217)" id="carouselExampleControls" class="carousel carousel-dark slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HelpPets</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+</head>
+<body>
+<div  class="main">
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div style="text-align:center" class="col col-lg-5" >
+        <br>
+        <h1 style="background-color: white; border:black; ">Consejos</h1>
+      </div>
+      <div *ngIf="_adviceService.getIdentidad().type==='Administrador'" class="d-grid gap-2 d-md-block">
+        <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#mCreateAdvice">
+          <i class="bi bi-plus-square"></i> Agregar Consejo
+        </button>
+      </div>
+      <div class="d-grid gap-2 d-md-block">
+        <br>
+      </div>
+    </div>
+    <br>
 
-        <div class="carousel-item active">
-          <div class="contenedor">
-            <img src="../../../assets/Inicio1.png" />
-          </div>
+    <div class="row">
+      <div class="card mb-3" style="max-width: 440px;" *ngFor="let adv of adviceModelGet; let i = index">
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button  *ngIf="_adviceService.getIdentidad().type==='Administrador'" type="button" class="btn btn-success"
+           (click)="getAdviceId(adv._id)"
+           data-bs-toggle="modal" data-bs-target="#mEditAdvice">
+           <i class="bi bi-pencil-square"></i></button>
+          <button  *ngIf="_adviceService.getIdentidad().type==='Administrador'" type="button" class="btn btn-success"><i class="bi bi-trash-fill"></i></button>
+          <button type="button" class="btn btn-success"><i class="bi bi-arrows-move"></i></button>
         </div>
-        <div class="carousel-item">
-          <div class="contenedor">
-            <img src="../../../assets/Inicio2.png" />
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="../../../assets/imgAdvice.jpg" class="img-fluid rounded-start"/>
+            <!--
+              <img *ngIf="adv.picture == ''  " src="/assets/Inicio1.png" class="img-fluid rounded-start">
+              <img *ngIf="adv.picture " [src]="adv.picture" class="img-fluid rounded-start">
+            -->
           </div>
-        </div>
-        <div class="carousel-item">
-          <div class="contenedor">
-            <img src="../../../assets/Inicio3.png" />
+
+          <div class="col-md-8 bg-light">
+            <div class="card-body">
+              <h5 class="card-title">{{adv.title}}</h5>
+              <p class="card-text">{{adv.resume}}</p>
+            </div>
           </div>
         </div>
       </div>
-
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
+    </div>
+    </div>
   </div>
+</body>
+</html>
 
-<br>
-<div align="center">
-  <h1>Consejos</h1>
-</div>
-<br>
-
-<div class="card text-dark bg-light mb-3">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+ <!-- Modal Agregar Consejo -->
+<div class="modal fade" id="mCreateAdvice" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar Consejo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="inputNombre" class="form-label"><strong><i class="bi bi-phone-landscape"></i> Título:</strong></label>
+            <input type="text" class="form-control" id="inputNombre" name="title" #title="ngModel"
+              [(ngModel)]="adviceModelCreate.title">
+          </div>
+          <div class="mb-3">
+            <label for="inputResumen" class="form-label"><strong><i class="bi bi-card-text"></i> Resumen:</strong></label>
+            <textarea class="form-control" id="inputResumen" rows="3" name="resume" #resume="ngModel"
+              [(ngModel)]="adviceModelCreate.resume"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="inputDescripcion" class="form-label"><strong><i class="bi bi-card-text"></i> Descripción:</strong></label>
+            <textarea class="form-control" id="inputDescripcion" rows="3" name="descripcion" #descripcion="ngModel"
+              [(ngModel)]="adviceModelCreate.advice"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="inputPicture" class="form-label"><strong><i class="bi bi-card-text"></i> Link de la imágen:</strong></label>
+            <textarea class="form-control" id="inputPicture" rows="3" name="picture" #picture="ngModel"
+              [(ngModel)]="adviceModelCreate.picture"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-x-square"></i> Cerrar</button>
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+          (click)="createAdvice()"><i class="bi bi-plus-square"></i> Agregar</button>
+      </div>
+    </div>
   </div>
-  <img src="..." class="card-img-bottom" alt="...">
 </div>
+
+<!-- Modal Editar Consejo -->
+<div class="modal fade" id="mEditAdvice" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar Consejo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="inputTitle" class="form-label"><strong>Título:</strong></label>
+            <input type="text" class="form-control" id="inputTitle"
+            name="title" #title="ngModel" [(ngModel)]="adviceModelGetId.title">
+          </div>
+          <div class="mb-3">
+            <label for="inputResumen" class="form-label"><strong>Resumen:</strong></label>
+            <input type="text" class="form-control" id="inputResumen"
+            name="resume" #resume="ngModel" [(ngModel)]="adviceModelGetId.resume">
+          </div>
+          <div class="mb-3">
+            <label for="inputDescripción" class="form-label"><strong>Descripción:</strong></label>
+            <input type="text" class="form-control" id="inputDescripción"
+            name="adviceDesc" #adviceDesc="ngModel" [(ngModel)]="adviceModelGetId.advice">
+          </div>
+          <div class="mb-3">
+            <label for="inputLink" class="form-label"><strong>Link de la imágen:</strong></label>
+            <input type="text" class="form-control" id="inputLink"
+            name="linkPicture" #linkPicture="ngModel" [(ngModel)]="adviceModelGetId.picture">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-x-square"></i> Cerrar</button>
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="editAdvice()"><i class="bi bi-save"></i> Guardar cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Eliminar Hotel
+<div class="modal fade" id="modalEliminarHotel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Eliminar Consejo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ¿Esta seguro de que desea eliminar el Hotel, {{ adviceModelGetId.title }}?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-square"></i> No, cerrar</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+        (click)="deleteAdvice(adviceModelGetId._id)"><i class="bi bi-check-square"></i> Si, eliminar <i class="bi bi-trash"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+-->

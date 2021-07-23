@@ -11,6 +11,11 @@ export class AdviceService {
 
   public url: String;
   public headers = new HttpHeaders().set('Content-Type',  'application/json');
+  public identidad;
+  public headersVariable = new HttpHeaders().set(
+    'Content-Type',
+    'application/json'
+  );
   public token;
 
   constructor(public http: HttpClient) {
@@ -24,11 +29,11 @@ export class AdviceService {
     return this.http.post(this.url + '/createAdvice', params, {headers: headersToken})
   }
 
-  editAdvice(advice: Advice, id): Observable<any>{
+  editAdvice(advice: Advice):Observable<any>{
     let params = JSON.stringify(advice);
-    let headersToken = this.headers.set('Authorization', this.getToken())
+    let headersToken = this.headersVariable.set('Authorization', this.getToken())
 
-    return this.http.put(this.url + '/editAdvice/' + id, params, { headers: headersToken})
+    return this.http.put(this.url + '/editAdvice/' + advice._id, params, {headers: headersToken})
   }
 
   deleteAdvice(id){
@@ -58,5 +63,15 @@ export class AdviceService {
     }
     return this.token
   }
+
+  getIdentidad(){
+    var identidad2 = JSON.parse(localStorage.getItem("identidad"))
+    if(identidad2 != undefined){
+       this.identidad = identidad2;
+    }else{
+       this.identidad = null;
+    }
+    return this.identidad;
+ }
 }
 
