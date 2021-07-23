@@ -13,4 +13,6 @@ api.post('/Login', userController.Login)
 
 api.get('/showAllUser' ,userController.showUser)
 
+api.post('/mostrarAlbergue', userController.mostrarAlbergue)
+
 module.exports = api;
