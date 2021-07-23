@@ -74,15 +74,20 @@ function createUser(req,res){
   })
 
   })
-
- 
-
 }
 
+function showUser(req,res) {
+ 
+  userModel.find({},(err,UserFound)=>{
+    if(err) return res.status(404).send({report:'Erro in save User'});
+    return res.status(200).send(UserFound)
+  })
+}
 
 
 
 module.exports ={
     createUser,
-    Login
+    Login,
+    showUser
 }

@@ -11,4 +11,6 @@ api.post('/createUser/:type', userController.createUser)
 
 api.post('/Login', userController.Login)
 
+api.get('/showAllUser' ,userController.showUser)
+
 module.exports = api;
