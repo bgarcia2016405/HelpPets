@@ -107,12 +107,12 @@
 
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModal" aria-hidden="true">
-  <div class="modal-dialog  modal-dialog-centered" style="width: auto;height: auto;" >
+  <div class="modal-dialog  modal-dialog-centered"  >
 
 
 
 
-      <div class="modal-content" style="width: auto;height: auto;">
+      <div class="modal-content" >
       <div class="row main-content bg-success text-center">
         <div class="col-md-4 text-center company__info">
           <span class="company__logo"><span class="fa-android"><img src="../../../assets/DogSilueta.png" class="dog"> </span></span>
@@ -178,7 +178,7 @@
           <div *ngIf="userService.getIdentidad() != null" class="col"><p>{{identidad.lastNameUser}}</p></div>
         </div>
         <div *ngIf="userService.getIdentidad() != null" class="col"><p>{{identidad.email}}</p> </div>
-        <mat-form-field *ngIf="userService.getIdentidad() != null">
+        <mat-form-field *ngIf="userService.getIdentidad() != null && identidad.ageUser != null" >
 
             <input *ngIf="userService.getIdentidad() != null" style="color:white" matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" name="ageUser" value={{identidad.ageUser}} disabled>
           <mat-datepicker-toggle *ngIf="userService.getIdentidad() != null" matSuffix [for]="picker"></mat-datepicker-toggle>

@@ -98,15 +98,12 @@ ul {
 
 .main-content{
 	width: 100%;
-	border-radius: 20px;
+  height: 100%;
 	box-shadow: 0 5px 5px rgba(0,0,0,.4);
-	margin: 5em auto;
-	display: flex;
+
 }
 .company__info{
 	background-color: #008080;
-	border-top-left-radius: 20px;
-	border-bottom-left-radius: 20px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -121,8 +118,7 @@ ul {
 		display: none;
 	}
 	.login_form{
-		border-top-left-radius:20px;
-		border-bottom-left-radius:20px;
+
 	}
 }
 @media screen and (min-width: 642px) and (max-width:800px){
@@ -133,8 +129,6 @@ ul {
 }
 .login_form{
 	background-color: #fff;
-	border-top-right-radius:20px;
-	border-bottom-right-radius:20px;
 	border-top:1px solid #ccc;
 	border-right:1px solid #ccc;
 }
