@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt-nodejs");
 
 const userModel = require("../models/user.model");
 
+const administrador ='Administrador'
 const usuario = 'dueño';
 const Albergue = 'albergue';
 const Veterinario = 'veterinaria';
@@ -77,7 +78,9 @@ function createUser(req,res){
 }
 
 function showUser(req,res) {
- 
+  var type = req.user.type;
+
+ if(type != administrador) return res.status(404).send({report:'Usted no es administrador'})
   userModel.find({},(err,UserFound)=>{
     if(err) return res.status(404).send({report:'Erro in save User'});
     return res.status(200).send(UserFound)
@@ -100,5 +103,6 @@ userModel.find({type: Albergue},(err, albergueFound)=>{
 module.exports ={
     createUser,
     Login,
-    mostrarAlbergue
+    mostrarAlbergue,
+    showUser
 }

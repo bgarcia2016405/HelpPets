@@ -15,4 +15,6 @@ api.post('/mostrarAlbergue', userController.mostrarAlbergue)
 
 api.post('/mostrarAlbergue', userController.mostrarAlbergue)
 
+api.get('/mostrarUsuarios', authenticated.ensureAuth, userController.showUser)
+
 module.exports = api;

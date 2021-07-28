@@ -18,7 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AlberguesComponent } from './components/albergues/albergues.component';
 import { MascotasComponent } from './components/mascotas/mascotas.component';
 import { AlberguepersonalComponent } from './components/alberguepersonal/alberguepersonal.component';
-
+import { AdministracionComponent } from './components/administracion/administracion.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +28,8 @@ import { AlberguepersonalComponent } from './components/alberguepersonal/albergu
     RegistroComponent,
     AlberguesComponent,
     MascotasComponent,
-    AlberguepersonalComponent
+    AlberguepersonalComponent,
+    AdministracionComponent
   ],
   imports: [
     BrowserModule,

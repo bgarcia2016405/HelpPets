@@ -94,6 +94,7 @@
       <a *ngIf="userService.getIdentidad()!= null" >{{identidad.nickName}}</a>
       <ul>
         <li *ngIf="userService.getIdentidad() == null"><a  data-bs-toggle="modal" data-bs-target="#exampleModal">Iniciar Sesión</a></li>
+        <li *ngIf="userService.getIdentidad() != null && identidad.type == 'Administrador'"><a  routerLink="administrar">Administrar Usuario</a></li>
         <li *ngIf="userService.getIdentidad() != null"><a data-bs-toggle="modal" data-bs-target="#perfilModal">Mi Perfil</a></li>
         <li *ngIf="userService.getIdentidad() != null"><a (click)="cerrarSesion()" routerLink="home">Cerrar Sesión</a></li>
         <li *ngIf="userService.getIdentidad() == null"><a routerLink="registrar">Registro</a></li>
@@ -102,7 +103,6 @@
   </ul>
 
 </nav><br>
-
 
 
 
@@ -187,13 +187,27 @@
 
         </mat-form-field>
         <div *ngIf="userService.getIdentidad() != null" class="col"><p>{{identidad.type}}</p> </div>
+
+        <button type="button" class="btn btn-outline-primary"  data-bs-dismiss="modal"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Editar</button>
+
       </div>
 
 
-    </div>
 
     </div>
 
+    </div>
 
+
+  </div>
+</div>
+
+<div style="background: #121212   ;" class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasBottomLabel">Offcanvas bottom</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body small">
+    ...
   </div>
 </div>

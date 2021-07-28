@@ -40,6 +40,11 @@ export class UserService {
     return this.http.post(this.url + '/mostrarAlbergue', {headers: this.headers})
   }
 
+  mostrarUsuario():Observable<any>{
+    let headers = this.headers.set('Authorization',this.getToken())
+    return this.http.get(this.url + '/mostrarUsuarios', {headers:headers})
+  }
+
 
   getToken(){
     var token2 = localStorage.token;
