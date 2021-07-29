@@ -15,42 +15,44 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
+						<tr *ngFor="let user of usuario">
 							<td>
-								<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
-								<span class="user-subhead">Robert De Niro</span><br>
-								<span class="user-subhead">Admin</span>
+								<img *ngIf="user.picture == null" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                <img *ngIf="user.picture != null" src={{user.picture}} alt="">
+								<span class="user-subhead">{{user.nickName}}</span><br>
+                <span class="user-subhead">{{user.nameUser}} {{user.lastNameUser}}</span>
 							</td>
 							<td>
-								2013/08/08
+                <input *ngIf="user.ageUser != null" matInput [matDatepicker]="picker" value="{{user.ageUser}}" disabled>
+                <input *ngIf="user.ageUser == null" value="null " disabled>
 							</td>
 							<td class="text-center">
-								<span class="label label-default">Inactive</span>
+								<span class="label label-default"><span class="user-subhead">{{user.type}}</span></span>
 							</td>
 							<td>
-								<a href="#">mila@kunis.com</a>
+                <a *ngIf="user.email == null">null@gmail.com</a>
+								<a  *ngIf="user.email != null">{{user.email}}</a>
 							</td>
 							<td style="width: 20%;">
-								<a href="#" class="table-link">
+								<a class="table-link">
 									<span class="fa-stack">
 										<i class="fa fa-square fa-stack-2x"></i>
 										<i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
 									</span>
 								</a>
-								<a href="#" class="table-link">
-									<span class="fa-stack">
-										<i class="fa fa-square fa-stack-2x"></i>
-										<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-									</span>
-								</a>
-								<a href="#" class="table-link danger">
-									<span class="fa-stack">
+
+                <btn class="btn btn-primary" *ngIf="user.type != 'Administrador'"    data-bs-toggle="offcanvas" data-bs-target="#editarCanvas" aria-controls="editarCanvas" (click)="mostrarUsuarioId(user._id)">
+                  <i  data-bs-toggle="offcanvas" data-bs-target="#editarCanvas" aria-controls="editarCanvas" class="bi bi-pencil" (click)="mostrarUsuarioId(user._id)"></i>
+                </btn>
+								<a *ngIf="user.type != 'Administrador'"class="table-link danger" (click)="seguro(user._id)">
+									<span class="fa-stack" (click)="seguro(user._id)">
 										<i class="fa fa-square fa-stack-2x"></i>
 										<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
 									</span>
 								</a>
 							</td>
 						</tr>
+
 					</tbody>
 				</table>
 			</div>
@@ -67,3 +69,54 @@
     <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
   </div>
 </div>
+
+
+
+
+<div style="background: #121212   ;" class="offcanvas offcanvas-bottom" tabindex="-1" id="editarCanvas" aria-labelledby="offcanvasBottomLabel">
+  <div class="offcanvas-header">
+    <h1 class="offcanvas-title" id="offcanvasBottomLabel">Editar</h1>
+
+
+    <button type="button" class="btn btn-success" data-bs-dismiss="offcanvas" aria-label="Close" (click)="editarUsuario(editarUsuarioModel._id)"><i (click)="editarUsuario(editarUsuarioModel._id)" class="bi bi-pencil"></i></button>
+  </div>
+  <div class="offcanvas-body small">
+    <div >
+      <form>
+        <div class="container">
+
+          <div class="row">
+            <div class="col-4">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="nameUser" name="nameUser" #nameUser="ngModel" [(ngModel)]="editarUsuarioModel.nameUser" placeholder="name@example.com">
+                <label for="floatingInput">Nombre</label>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="lastNameUser"  name="lastNameUser" #lastNameUser="ngModel" [(ngModel)]="editarUsuarioModel.lastNameUser"  placeholder="name@example.com">
+                <label for="floatingInput">Apellido</label>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="email" name="email" #email="ngModel" [(ngModel)]="editarUsuarioModel.email" placeholder="name@example.com">
+                <label for="floatingInput">Email</label>
+              </div>
+
+            </div>
+            <div class="col-7">
+              <div class="form-floating mb-3">
+                <textarea type="email" class="form-control" id="picture" name="picture" #picture="ngModel" [(ngModel)]="editarUsuarioModel.picture" placeholder="name@example.com"></textarea>
+                <label for="floatingInput">Imagen</label>
+              </div>
+
+            </div>
+          </div>
+        </div>
+    </form>
+    </div>
+
+  </div>
+</div>
+

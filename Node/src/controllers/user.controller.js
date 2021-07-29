@@ -98,11 +98,51 @@ userModel.find({type: Albergue},(err, albergueFound)=>{
 
 }
 
+function editar(req,res){
+  var idUser = req.params.idUser
+  var params = req.body
+
+  userModel.findByIdAndUpdate(idUser,params,(err,userUpdate)=>{
+    if(err) return res.status(500).send({ report: 'Error en la petición' })
+    if(userUpdate == null) return res.status(500).send({ report: 'No se actualizo el usuario'})
+    console.log('hola')
+
+    return res.status(200).send(userUpdate)
+  })
+
+}
+
+function eliminar(req,res){
+  var idUser = req.params.idUser
+
+  userModel.findByIdAndDelete(idUser, (err,userDelete)=>{
+    if(err) return res.status(500).send({ report: 'Error en la petición' })
+    if(userDelete == null) return res.status(500).send({ report: 'No se borro el usuario'})
+
+    return res.status(200).send(userDelete)
+  })
+
+}
+
+function mostrarUsuarioId(req,res){
+  var idUser = req.params.idUser;
+
+  userModel.findById(idUser,(err,userFound)=>{
+    if(err) return res.status(500).send({ report: 'Error en la petición' })
+    if(!userFound) return res.status(500).send({ report: 'No se encontro el usuario'})
+
+    return res.status(200).send(userFound)
+  })
+}
+
 
 
 module.exports ={
     createUser,
     Login,
     mostrarAlbergue,
-    showUser
+    showUser,
+    editar,
+    eliminar,
+    mostrarUsuarioId
 }
