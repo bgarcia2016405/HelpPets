@@ -32,8 +32,13 @@
            (click)="getAdviceId(adv._id)"
            data-bs-toggle="modal" data-bs-target="#mEditAdvice">
            <i class="bi bi-pencil-square"></i></button>
-          <button  *ngIf="_adviceService.getIdentidad().type==='Administrador'" type="button" class="btn btn-success"><i class="bi bi-trash-fill"></i></button>
-          <button type="button" class="btn btn-success"><i class="bi bi-arrows-move"></i></button>
+          <button  *ngIf="_adviceService.getIdentidad().type==='Administrador'" type="button" class="btn btn-success"
+          (click)="getAdviceId(adv._id)"
+           data-bs-toggle="modal" data-bs-target="#mDeleteAdvice">
+          <i class="bi bi-trash-fill"></i></button>
+          <button type="button" class="btn btn-success" [routerLink]="['/detalleConsejo', adv._id]">
+            <i class="bi bi-arrows-move"></i>
+          </button>
         </div>
         <div class="row g-0">
           <div class="col-md-4">
@@ -84,13 +89,14 @@
               [(ngModel)]="adviceModelCreate.advice"></textarea>
           </div>
           <div class="mb-3">
-            <label for="inputPicture" class="form-label"><strong><i class="bi bi-card-text"></i> Link de la imágen:</strong></label>
+            <label for="inputPicture" class="form-label"><strong><i class="bi bi-link"></i> Link de la imágen:</strong></label>
             <textarea class="form-control" id="inputPicture" rows="3" name="picture" #picture="ngModel"
               [(ngModel)]="adviceModelCreate.picture"></textarea>
           </div>
         </form>
       </div>
       <div class="modal-footer">
+        <img src="../../../assets/HelpPetsLogo.png" style="max-width: 20%;" alt="...">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-x-square"></i> Cerrar</button>
         <button type="button" class="btn btn-success" data-bs-dismiss="modal"
           (click)="createAdvice()"><i class="bi bi-plus-square"></i> Agregar</button>
@@ -110,28 +116,38 @@
       <div class="modal-body">
         <form>
           <div class="mb-3">
-            <label for="inputTitle" class="form-label"><strong>Título:</strong></label>
+            <label for="inputTitle" class="form-label"><i class="bi bi-phone-landscape"></i><strong> Título:</strong></label>
             <input type="text" class="form-control" id="inputTitle"
             name="title" #title="ngModel" [(ngModel)]="adviceModelGetId.title">
           </div>
           <div class="mb-3">
-            <label for="inputResumen" class="form-label"><strong>Resumen:</strong></label>
-            <input type="text" class="form-control" id="inputResumen"
-            name="resume" #resume="ngModel" [(ngModel)]="adviceModelGetId.resume">
+            <label for="inputResumen" class="form-label"><i class="bi bi-card-text"></i> <strong> Resumen:</strong></label>
+              <textarea class="form-control" id="inputResumen" rows="3"
+                name="resume"
+                #resume="ngModel"
+                [(ngModel)]="adviceModelGetId.resume">
+              </textarea>
           </div>
           <div class="mb-3">
-            <label for="inputDescripción" class="form-label"><strong>Descripción:</strong></label>
-            <input type="text" class="form-control" id="inputDescripción"
-            name="adviceDesc" #adviceDesc="ngModel" [(ngModel)]="adviceModelGetId.advice">
+            <label for="inputDescripción" class="form-label"><i class="bi bi-card-text"></i> <strong> Descripción:</strong></label>
+              <textarea class="form-control" id="inputDescripción" rows="3"
+                  name="adviceDesc"
+                  #adviceDesc="ngModel"
+                  [(ngModel)]="adviceModelGetId.advice">
+              </textarea>
           </div>
           <div class="mb-3">
-            <label for="inputLink" class="form-label"><strong>Link de la imágen:</strong></label>
-            <input type="text" class="form-control" id="inputLink"
-            name="linkPicture" #linkPicture="ngModel" [(ngModel)]="adviceModelGetId.picture">
+            <label for="inputLink" class="form-label"><i class="bi bi-link"></i> <strong> Link de la imágen:</strong></label>
+            <textarea class="form-control" id="inputLink" rows="3"
+                  name="linkPicture"
+                  #linkPicture="ngModel"
+                  [(ngModel)]="adviceModelGetId.picture">
+              </textarea>
           </div>
         </form>
       </div>
       <div class="modal-footer">
+        <img src="../../../assets/HelpPetsLogo.png" style="max-width: 20%;" alt="...">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-x-square"></i> Cerrar</button>
         <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="editAdvice()"><i class="bi bi-save"></i> Guardar cambios</button>
       </div>
@@ -139,8 +155,8 @@
   </div>
 </div>
 
-<!-- Modal Eliminar Hotel
-<div class="modal fade" id="modalEliminarHotel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal Eliminar Consejos -->
+<div class="modal fade" id="mDeleteAdvice" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -148,9 +164,10 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ¿Esta seguro de que desea eliminar el Hotel, {{ adviceModelGetId.title }}?
+        ¿Esta seguro de que desea eliminar el consejo, {{ adviceModelGetId.title }}?
       </div>
       <div class="modal-footer">
+        <img src="../../../assets/HelpPetsLogo.png" style="max-width: 20%;" alt="...">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-square"></i> No, cerrar</button>
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
         (click)="deleteAdvice(adviceModelGetId._id)"><i class="bi bi-check-square"></i> Si, eliminar <i class="bi bi-trash"></i></button>
@@ -158,4 +175,4 @@
     </div>
   </div>
 </div>
--->
+

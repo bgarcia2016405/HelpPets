@@ -1,36 +1,46 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+
 import { Advice } from 'src/app/models/advice.model';
 import { AdviceService } from 'src/app/services/advice.service';
-import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-advice',
-  templateUrl: './advice.component.html',
-  styleUrls: ['./advice.component.scss']
+  selector: 'app-detalle-consejo',
+  templateUrl: './detalle-consejo.component.html',
+  styleUrls: ['./detalle-consejo.component.scss']
 })
-export class AdviceComponent implements OnInit {
+export class DetalleConsejoComponent implements OnInit {
+
   public token;
   public identidad
   public adviceModelGet: Advice;
   public adviceModelGetId: Advice;
   public adviceModelCreate: Advice;
 
+  public idAdviceRute: string;
+  public adviceModel;
+
   constructor(
     public _adviceService: AdviceService,
     public _userService: UserService,
-    private _router: Router
+    public _activatedRoute: ActivatedRoute,
+    public router:Router
   ) {
     this.token = this._userService.getToken();
-    this.adviceModelCreate = new Advice('', '', '', '','','')
-    this.adviceModelGetId = new Advice('', '', '', '','','')
+    this.adviceModelCreate = new Advice('', '', '', '','','');
+    this.adviceModelGetId = new Advice('', '', '', '','','');
+    this.adviceModel = new Advice('', '', '', '','','');
     this.identidad = this._userService.getIdentidad();
   }
 
   ngOnInit(): void {
-   this.getAdvices();
-   console.log(this.identidad.type)
+    this._activatedRoute.paramMap.subscribe((dataRuta) => {
+      this.idAdviceRute = dataRuta.get('idAdvice');
+    });
+    this.getAdviceId(this.idAdviceRute);
   }
 
   getAdvices() {
@@ -120,13 +130,9 @@ export class AdviceComponent implements OnInit {
       response=>{
         console.log(response);
         this.getAdvices();
+        this.router.navigate(['/consejos']);
+
       }
     )
   }
-
-  navegarDetalleConsejo(idAdvice) {
-    this._router.navigate(['/detalleConsejo', idAdvice]);
-  }
-
 }
-

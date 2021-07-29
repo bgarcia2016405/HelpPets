@@ -17,6 +17,7 @@ import { MatInputModule } from '@angular/material/input';
 import { AdviceComponent } from './components/advice/advice.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { DetalleConsejoComponent } from './components/detalle-consejo/detalle-consejo.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     FooterComponent,
     RegistroComponent,
-    AdviceComponent
+    AdviceComponent,
+    DetalleConsejoComponent
   ],
   imports: [
     HttpClientModule,

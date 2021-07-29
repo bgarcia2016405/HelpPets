@@ -36,10 +36,9 @@ export class AdviceService {
     return this.http.put(this.url + '/editAdvice/' + advice._id, params, {headers: headersToken})
   }
 
-  deleteAdvice(id){
-    let headersToken = this.headers.set('Authorization', this.getToken())
-
-    return this.http.delete(this.url + '/deleteAdvice/' + id, { headers: headersToken})
+  deleteAdvice(id:String): Observable<any>{
+    let headersToken = this.headersVariable.set('Authorization', this.getToken());
+    return this.http.delete(this.url + '/deleteAdvice/' + id, {headers: headersToken})
   }
 
   getAdvices(token): Observable<any> {
