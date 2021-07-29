@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'registrar', component : RegistroComponent},
   { path: 'registrar/:state', component : RegistroComponent},
   { path: 'albergues', component: AlberguesComponent },
-  { path: 'mascotas', component: MascotasComponent },
+  { path: 'mascotas/:idAlbergue', component: MascotasComponent },
   { path: 'alberguepersonal', component: AlberguepersonalComponent },
   { path: 'administrar', component: AdministracionComponent},
   { path: '**', component: HomeComponent }

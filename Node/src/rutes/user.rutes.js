@@ -11,7 +11,11 @@ api.post('/createUser/:type', userController.createUser)
 
 api.post('/Login', userController.Login)
 
-api.post('/mostrarAlbergue', userController.mostrarAlbergue)
+
+api.get('/mostrarAlbergue', userController.mostrarAlbergue)
+
+api.get('/miAlbergue',authenticated.ensureAuth , userController.miAlbergue)
+
 
 api.post('/mostrarAlbergue', userController.mostrarAlbergue)
 

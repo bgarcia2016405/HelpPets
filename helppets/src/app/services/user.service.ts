@@ -37,7 +37,7 @@ export class UserService {
   }
 
   mostrarAlbergue():Observable<any>{
-    return this.http.post(this.url + '/mostrarAlbergue', {headers: this.headers})
+    return this.http.get(this.url + '/mostrarAlbergue', {headers: this.headers})
   }
 
   mostrarUsuario():Observable<any>{
@@ -64,6 +64,12 @@ export class UserService {
   }
 
 
+  miAlbergue():Observable<any>{
+    let headers = this.headers.set('Authorization', this.getToken())
+
+    return this.http.get(this.url + '/miAlbergue', {headers: headers})
+  }
+
   getToken(){
     var token2 = localStorage.token;
     if(token2 != undefined){
@@ -83,6 +89,5 @@ export class UserService {
     }
     return this.identidad;
  }
-
 
 }

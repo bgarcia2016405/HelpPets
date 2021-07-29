@@ -1,1 +1,59 @@
 <h1 class="texto">Mi Albergue</h1>
+
+<br>
+  <br><br><br><br><br><br>
+    <div class="main-body">
+          <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+              <br><br><br><br>
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex flex-column align-items-center text-center">
+                    <img src="{{usuario.pictureOrg}}" alt="Admin" class="rounded-circle" width="150">
+                    <div class="mt-3">
+                      <input #nameOrg= "ngModel" [(ngModel)]="usuario.nameOrg"  type="text" name="txtName" class="form-control" placeholder="Nombre Aqui" disabled/>
+                      <br>
+                      <input #direction= "ngModel" [(ngModel)]="usuario.direction" type="text" name="txtEmail" class="form-control" placeholder="Direccion Aqui" disabled/>
+                      <hr>
+                      <button class="btn btn-primary">Editar</button>
+                      <button class="btn btn-outline-primary">Eliminar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="container">
+                <h2>Mis Mascotas</h2>
+                <ul class="responsive-table">
+                  <li class="table-header">
+                    <div class="col col-1">Número</div>
+                    <div class="col col-2">Nombre</div>
+                    <div class="col col-3">Especie</div>
+                  </li>
+                  <li class="table-row">
+                    <div class="col col-1" data-label="Numero">42235</div>
+                    <div class="col col-2" data-label="Nombre">John Doe</div>
+                    <div class="col col-3" data-label="Especie">$350</div>
+                  </li>
+                  <li class="table-row">
+                    <div class="col col-1" data-label="Job Id">42442</div>
+                    <div class="col col-2" data-label="Customer Name">Jennifer Smith</div>
+                    <div class="col col-3" data-label="Amount">$220</div>
+                  </li>
+                  <li class="table-row">
+                    <div class="col col-1" data-label="Job Id">42257</div>
+                    <div class="col col-2" data-label="Customer Name">John Smith</div>
+                    <div class="col col-3" data-label="Amount">$341</div>
+                  </li>
+                  <li class="table-row">
+                    <div class="col col-1" data-label="Job Id">42311</div>
+                    <div class="col col-2" data-label="Customer Name">John Carpenter</div>
+                    <div class="col col-3" data-label="Amount">$115</div>
+                  </li>
+                </ul>
+              </div>
+                </div>
+              </div>
+            </div>
+
