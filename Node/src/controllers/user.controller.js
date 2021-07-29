@@ -135,7 +135,16 @@ function mostrarUsuarioId(req,res){
   })
 }
 
+function miAlbergue(req, res){
+  var token = req.user.sub
 
+  userModel.findById(token, (err, albergueFound)=>{
+    if(err) return res.status(500).send({mensaje: 'Error en la petición'})
+    if(!albergueFound) return res.status(500).send({mensaje: 'No se han encontrado los datos'})
+
+    return res.status(200).send(albergueFound)
+  })
+}
 
 module.exports ={
     createUser,
@@ -144,6 +153,6 @@ module.exports ={
     showUser,
     editar,
     eliminar,
-    mostrarUsuarioId
+    mostrarUsuarioId,
     miAlbergue
 }
