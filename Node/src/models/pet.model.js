@@ -8,7 +8,9 @@ var PetSchema = Schema({
     especie: String,
     organizacion: {type: Schema.Types.ObjectId, ref:'User'},
     dueño: {type: Schema.Types.ObjectId, ref:'User'},
-    picture: String
+    picture: String,
+    state: String
+    
 })
 
 module.exports = mongoose.model('Pet', PetSchema);

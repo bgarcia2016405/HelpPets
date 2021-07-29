@@ -7,7 +7,8 @@ const bodyParser = require("body-parser")
 const cors = require("cors")
 
 
-
+const user_rutes = require("./src/rutes/user.rutes");
+const pet_rutes = require("./src/rutes/pet.rutes");
 
 
 
@@ -20,7 +21,7 @@ app.use(bodyParser.json())
 app.use(cors());
 
 // CARGA DE RUTAS
-
+app.use('/api', user_rutes, pet_rutes)
 
 
 module.exports = app;
