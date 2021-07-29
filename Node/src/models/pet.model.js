@@ -9,6 +9,7 @@ var PetSchema = Schema({
     organizacion: {type: Schema.Types.ObjectId, ref:'User'},
     dueño: {type: Schema.Types.ObjectId, ref:'User'},
     picture: String,
+    state: String
     
 })
 
