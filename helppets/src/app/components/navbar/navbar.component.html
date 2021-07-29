@@ -83,19 +83,19 @@
 
 
     <li>
-      <a >Albergues</a>
+      <a [routerLink]="['/albergues']" routerLinkActive="router-link-active" >Albergues</a>
       <ul>
-        <li><a href="#0">Print Design</a></li>
-        <li><a href="#0">Web Design</a></li>
-        <li><a href="#0">Mobile App Development</a></li>
+        <li *ngIf="userService.getIdentidad() != null && identidad.type == 'albergue'" [routerLink]="['/alberguepersonal']" routerLinkActive="router-link-active" ><a href="#0">Mi Albergue</a></li>
       </ul>
     </li>
     <li><a href="#0">Veterinarias</a></li>
+
     <li>
       <a *ngIf="userService.getIdentidad()== null" >Usuario</a>
       <a *ngIf="userService.getIdentidad()!= null" >{{identidad.nickName}}</a>
       <ul>
         <li *ngIf="userService.getIdentidad() == null"><a  data-bs-toggle="modal" data-bs-target="#exampleModal">Iniciar Sesión</a></li>
+        <li *ngIf="userService.getIdentidad() != null && identidad.type == 'Administrador'"><a  routerLink="administrar">Administrar Usuario</a></li>
         <li *ngIf="userService.getIdentidad() != null"><a data-bs-toggle="modal" data-bs-target="#perfilModal">Mi Perfil</a></li>
         <li *ngIf="userService.getIdentidad() != null"><a (click)="cerrarSesion()" routerLink="home">Cerrar Sesión</a></li>
         <li *ngIf="userService.getIdentidad() == null"><a routerLink="registrar">Registro</a></li>
@@ -107,12 +107,13 @@
 
 
 
-
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModal" aria-hidden="true">
-  <div class="modal-dialog  modal-dialog-centered" >
+  <div class="modal-dialog  modal-dialog-centered"  >
 
 
-    <div class="container-fluid modal-content">
+
+
+      <div class="modal-content" >
       <div class="row main-content bg-success text-center">
         <div class="col-md-4 text-center company__info">
           <span class="company__logo"><span class="fa-android"><img src="../../../assets/DogSilueta.png" class="dog"> </span></span>
@@ -144,48 +145,70 @@
           </div>
         </div>
       </div>
+
+      </div>
+
+
     </div>
 
 
-  </div>
+
 </div>
 
 
 
 <div class="modal fade" id="perfilModal" tabindex="-1" aria-labelledby="perfilModal" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="card">
+    <div class="modal-content" style="width: auto;">
+
+      <div class="card">
+
       <div class="ds-top"></div>
+
+
+
       <div class="avatar-holder">
-        <img src={{identidad.picture}} alt="Albert Einstein">
+
+        <img *ngIf="userService.getIdentidad() != null" src={{identidad.picture}}>
       </div>
       <div class="name">
-        <a href="https://codepen.io/AlbertFeynman/" target="_blank">{{identidad.nameUser}}</a><br>
-        <a href="https://codepen.io/AlbertFeynman/" target="_blank">{{identidad.lastNameUser}}</a>
+
+        <div *ngIf="userService.getIdentidad() != null" class="col"><p>{{identidad.nickName}}</p> </div>
+        <div class="row row-cols-2">
+          <div *ngIf="userService.getIdentidad() != null" class="col"><p>{{identidad.nameUser}}</p> </div>
+          <div *ngIf="userService.getIdentidad() != null" class="col"><p>{{identidad.lastNameUser}}</p></div>
+        </div>
+        <div *ngIf="userService.getIdentidad() != null" class="col"><p>{{identidad.email}}</p> </div>
+        <mat-form-field *ngIf="userService.getIdentidad() != null && identidad.ageUser != null" >
+
+            <input *ngIf="userService.getIdentidad() != null" style="color:white" matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" name="ageUser" value={{identidad.ageUser}} disabled>
+          <mat-datepicker-toggle *ngIf="userService.getIdentidad() != null" matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker *ngIf="userService.getIdentidad() != null" #picker ></mat-datepicker>
+
+
+        </mat-form-field>
+        <div *ngIf="userService.getIdentidad() != null" class="col"><p>{{identidad.type}}</p> </div>
+
+        <button type="button" class="btn btn-outline-primary"  data-bs-dismiss="modal"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Editar</button>
+
       </div>
 
-      <div class="ds-skill">
-        <h6>Skill <i class="fa fa-code" aria-hidden="true"></i></h6>
-        <div class="skill html">
-          <h6><i class="fab fa-html5"></i> HTML5 </h6>
-          <div class="bar bar-html">
-            <p>95%</p>
-          </div>
-        </div>
-        <div class="skill css">
-          <h6><i class="fab fa-css3-alt"></i> CSS3 </h6>
-          <div class="bar bar-css">
-            <p>90%</p>
-          </div>
-        </div>
-        <div class="skill javascript">
-          <h6><i class="fab fa-js"></i> JavaScript </h6>
-          <div class="bar bar-js">
-            <p>75%</p>
-          </div>
-        </div>
-      </div>
+
+
     </div>
 
+    </div>
+
+
+  </div>
+</div>
+
+<div style="background: #121212   ;" class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasBottomLabel">Offcanvas bottom</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body small">
+    ...
   </div>
 </div>

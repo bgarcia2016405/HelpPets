@@ -98,15 +98,12 @@ ul {
 
 .main-content{
 	width: 100%;
-	border-radius: 20px;
+  height: 100%;
 	box-shadow: 0 5px 5px rgba(0,0,0,.4);
-	margin: 5em auto;
-	display: flex;
+
 }
 .company__info{
 	background-color: #008080;
-	border-top-left-radius: 20px;
-	border-bottom-left-radius: 20px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -121,8 +118,7 @@ ul {
 		display: none;
 	}
 	.login_form{
-		border-top-left-radius:20px;
-		border-bottom-left-radius:20px;
+
 	}
 }
 @media screen and (min-width: 642px) and (max-width:800px){
@@ -133,8 +129,6 @@ ul {
 }
 .login_form{
 	background-color: #fff;
-	border-top-right-radius:20px;
-	border-bottom-right-radius:20px;
 	border-top:1px solid #ccc;
 	border-right:1px solid #ccc;
 }
@@ -180,11 +174,7 @@ form{
 
 @import url('https://fonts.googleapis.com/css?family=Krub:400,700');
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+
 
 html, body {
   width: 100%;
@@ -197,15 +187,13 @@ body {
 }
 
 .card {
-  position: absolute;
   margin: auto;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  width: 250px;
+  width: 300px;
   height: 400px;
-  border-radius: 10px;
   box-shadow: 0 10px 25px 5px rgba(0, 0, 0, 0.2);
   background: #151515;
   overflow: hidden;
@@ -254,15 +242,12 @@ body {
     height: 40px;
     text-align: center;
     animation: fadeIn 2s ease-in;
-    a {
+    p {
       color: white;
       text-decoration: none;
-      font-weight: 700;
-      font-size: 18px;
-        &:hover {
-          text-decoration: underline;
-          color: crimson;
-      }
+      font-weight: 100;
+      font-size: 15px;
+
     }
     h6 {
       position: absolute;
