@@ -11,7 +11,7 @@ function createNew(req, res) {
     var actualDate = todayDate.toLocaleDateString();
     
     if(params.newsDescription){
-        newModel.newsDescription = params.titulo;
+        newModel.newsDescription = params.newsDescription;
         newModel.pictures = params.pictures;
         newModel.stateNew = 'Perdido';
         newModel.newDate = actualDate
@@ -38,7 +38,7 @@ function createNew(req, res) {
 }
 
 function getNews(req, res) {
-    New.find().populate('newCreator', 'name user').exec((err, newsFound)=>{
+    New.find().populate('newCreator', 'nickName').exec((err, newsFound)=>{
         console.log(err);
         if(err) return res.status(500).send({ mensaje: 'Error en la peticion de noticias' });
         if(!newsFound) return res.status(500).send({ mensaje: 'Error al obtener las noticias' });
@@ -97,7 +97,7 @@ function deleteComment(req, res) {
 function getNew(req, res) {
     var idNew = req.params.idNew;
 
-    New.findById(idNew).populate('newCreator commentsList.idUserComment', 'user  picture').exec((err, newFound)=>{
+    New.findById(idNew).populate('newCreator commentsList.idUserComment', 'nickName  pictures').exec((err, newFound)=>{
         if(err) return res.status(500).send({ mensaje: 'Error en la peticion de Noticia'});
         if(!newFound) return res.status(500).send({ mensaje: 'Error al obtener la Noticia'});
         return res.status(200).send({ newFound })

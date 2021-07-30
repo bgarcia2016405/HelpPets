@@ -18,6 +18,8 @@ import { AdviceComponent } from './components/advice/advice.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { DetalleConsejoComponent } from './components/detalle-consejo/detalle-consejo.component';
+import { NewComponent } from './components/new/new.component';
+import { DetalleNoticiaComponent } from './components/detalle-noticia/detalle-noticia.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { DetalleConsejoComponent } from './components/detalle-consejo/detalle-co
     FooterComponent,
     RegistroComponent,
     AdviceComponent,
-    DetalleConsejoComponent
+    DetalleConsejoComponent,
+    NewComponent,
+    DetalleNoticiaComponent
   ],
   imports: [
     HttpClientModule,

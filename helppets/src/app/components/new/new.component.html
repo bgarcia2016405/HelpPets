@@ -1,0 +1,113 @@
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="d-grid gap-2 d-md-block">
+        <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#mCreateNew">
+          <i class="bi bi-plus"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-xs-12 col-sm-4" *ngFor="let nws of newsModelGet; let i = index">
+      <div class="card mb-3">
+
+
+          <small class=card-header>
+
+            <div class="dropdown">
+              <strong>
+                {{ nws.newCreator.nickName}}
+              </strong>  - {{nws.newDate}}
+
+              <button class="btn btn-light btn-sm" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-three-dots-vertical"> </i>
+              </button>
+
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item"  (click)="getNewId(nws._id)"
+                  data-bs-toggle="modal" data-bs-target="#modalEditarHotel"><i class="bi bi-pencil-square"></i> | Editar</a></li>
+                <li><a class="dropdown-item" (click)="getNewId(nws._id)"
+                  data-bs-toggle="modal" data-bs-target="#modalEliminarHotel"><i class="bi bi-trash-fill"></i> | Eliminar</a></li>
+               <li><a class="dropdown-item" [routerLink]="['/detalleNoticia', nws._id]"><i class="bi bi-back"></i> | Detalle</a></li>
+              </ul>
+            </div>
+          </small>
+
+        <div class="card-body">
+          <p class="card-text">{{ nws.newsDescription }}</p>
+        </div>
+        <div class="card-footer text-center">
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <!-- <button type="button" class="btn btn-primary" (click)="navegarDetalleEncuesta(enc._id)"><i
+                class="bi bi-back"></i></button> -->
+            <button type="button" class="btn btn-primary"
+              [routerLink]="['/detalleNoticia', nws._id]">
+              <i class="bi bi-back"></i>
+            </button>
+            <!--
+            <button type="button" class="btn btn-primary"
+              data-bs-toggle="collapse"
+              [attr.data-bs-target]="'#acor'+i"
+              aria-expanded="false"
+              [attr.aria-controls]="'acor'+i"
+              (click)="getNewId(nws._id)">
+              <i class="bi bi-chat-square-text"></i>
+            </button>
+ -->
+
+          </div>
+
+        </div>
+      </div>
+      <div class="collapse" [id]="'acor'+i">
+        <div class="card card-body">
+          <form>
+            <div class="mb-3">
+              <label for="inputTextoComentario" class="form-label">Texto Comentario</label>
+              <input type="text" class="form-control" id="inputTextoComentario" name="textoComentario"
+              #textoComentario ="ngModel" [(ngModel)]="modelComment.commentText">
+            </div>
+            <div class="text-end">
+              <button type="submit" class="btn btn-primary" data-bs-toggle="collapse" [attr.data-bs-target]="'#acor'+i"
+              (click)="addCommentNew()">Agregar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Agregar Noticia -->
+<div class="modal fade" id="mCreateNew" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar Noticia</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="inputDescripcion" class="form-label">Descripcion:</label>
+            <textarea class="form-control" id="inputDescripcion" rows="3" name="descripcion" #descripcion="ngModel"
+              [(ngModel)]="newsModelAdd.newsDescription"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="inputDesc" class="form-label">Link de la imágen:</label>
+            <textarea class="form-control" id="inputDesc" rows="3" name="pictures" #pictures="ngModel"
+              [(ngModel)]="newsModelAdd.pictures"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+          (click)="createNew()">Agregar</button>
+      </div>
+    </div>
+  </div>
+</div>
