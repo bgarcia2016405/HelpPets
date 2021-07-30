@@ -81,7 +81,7 @@ export class NewComponent implements OnInit {
     this._newService.addCommentNew(this.token, this.modelComment).subscribe(
       response=>{
         console.log(response);
-
+        this.modelComment.commentText = '';
       }
     )
   }

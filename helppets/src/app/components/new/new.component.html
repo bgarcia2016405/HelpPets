@@ -9,18 +9,27 @@
       </div>
     </div>
   </div>
-  <hr>
-  <div class="row">
-    <div class="col-xs-12 col-sm-4" *ngFor="let nws of newsModelGet; let i = index">
+  <br>
+  <div class="row justify-content-md-center">
+    <div class="col-xs-12 col-sm-8" *ngFor="let nws of newsModelGet; let i = index">
       <div class="card mb-3">
-
-
           <small class=card-header>
 
             <div class="dropdown">
               <strong>
                 {{ nws.newCreator.nickName}}
               </strong>  - {{nws.newDate}}
+
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn"
+                  data-bs-toggle="collapse"
+                  [attr.data-bs-target]="'#acor'+i"
+                  aria-expanded="false"
+                  [attr.aria-controls]="'acor'+i"
+                  (click)="getNewId(nws._id)">
+                  <i class="bi bi-chat-square-text"></i>
+                </button>
+              </div>
 
               <button class="btn btn-light btn-sm" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="bi bi-three-dots-vertical"> </i>
@@ -36,47 +45,46 @@
             </div>
           </small>
 
-        <div class="card-body">
-          <p class="card-text">{{ nws.newsDescription }}</p>
-        </div>
-        <div class="card-footer text-center">
-          <div class="btn-group" role="group" aria-label="Basic example">
-            <!-- <button type="button" class="btn btn-primary" (click)="navegarDetalleEncuesta(enc._id)"><i
-                class="bi bi-back"></i></button> -->
-
-            <!--
-            <button type="button" class="btn btn-primary"
-              [routerLink]="['/detalleNoticia', nws._id]">
-              <i class="bi bi-back"></i>
-            </button>
-            -->
-            <button type="button" class="btn btn-primary"
-              data-bs-toggle="collapse"
-              [attr.data-bs-target]="'#acor'+i"
-              aria-expanded="false"
-              [attr.aria-controls]="'acor'+i"
-              (click)="getNewId(nws._id)">
-              <i class="bi bi-chat-square-text"></i>
-            </button>
-
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="../../../assets/imgNew.jpg" class="img-fluid rounded-start"/>
+              <!--
+                <img *ngIf="adv.picture == ''  " src="/assets/Inicio1.png" class="img-fluid rounded-start">
+                <img *ngIf="adv.picture " [src]="adv.picture" class="img-fluid rounded-start">
+              -->
+            </div>
+            <div class="col-md-8 bg-light">
+              <div class="card-body">
+                <p class="card-text">{{nws.newsDescription}}</p>
+              </div>
+            </div>
           </div>
-
-        </div>
       </div>
       <div class="collapse" [id]="'acor'+i">
-        <div class="card card-body">
-          <form>
-            <div class="mb-3">
-              <label for="inputTextoComentario" class="form-label">Texto Comentario</label>
-              <input type="text" class="form-control" id="inputTextoComentario" name="textoComentario"
-              #textoComentario ="ngModel" [(ngModel)]="modelComment.commentText">
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Escribe un comentario"
+                id="inputTextoComentario"
+                name="textoComentario"
+                #textoComentario ="ngModel"
+                [(ngModel)]="modelComment.commentText"
+              >
+              <span
+                class="input-group-text"
+                id="basic-addon2">
+                <button
+                  type="submit"
+                  class="btn"
+                  data-bs-toggle="collapse"
+                  [attr.data-bs-target]="'#acor'+i"
+                  (click)="addCommentNew()"
+                  >
+                  <i class="bi bi-symmetry-horizontal"></i>
+                </button>
+              </span>
             </div>
-            <div class="text-end">
-              <button type="submit" class="btn btn-primary" data-bs-toggle="collapse" [attr.data-bs-target]="'#acor'+i"
-              (click)="addCommentNew()">Agregar</button>
-            </div>
-          </form>
-        </div>
       </div>
     </div>
   </div>
