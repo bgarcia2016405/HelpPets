@@ -38,7 +38,7 @@ function createNew(req, res) {
 }
 
 function getNews(req, res) {
-    New.find().populate('newCreator', 'nickName').exec((err, newsFound)=>{
+    New.find().populate('newCreator','nickName picture').exec((err, newsFound)=>{
         console.log(err);
         if(err) return res.status(500).send({ mensaje: 'Error en la peticion de noticias' });
         if(!newsFound) return res.status(500).send({ mensaje: 'Error al obtener las noticias' });

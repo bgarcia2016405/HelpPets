@@ -1,22 +1,28 @@
 <br>
 <div class="container">
-  <div class="row">
-    <div class="col">
-      <div class="d-grid gap-2 d-md-block">
-        <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#mCreateNew">
-          <i class="bi bi-plus"></i>
-        </button>
-      </div>
+  <div class="card text-center">
+    <div class="card-body">
+      <h1 class="card-title"><strong>Noticias</strong></h1>
+      <p class="card-text">Esta es una sección con el fin que se puedan reportar noticias sobre mascotas extraviadas, con el fin de que entre todos podamos ayudarnos...</p>
+      <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#mCreateNew">
+        Agregar noticia...
+      </button>
     </div>
   </div>
+
   <br>
-  <div class="row justify-content-md-center">
-    <div class="col-xs-12 col-sm-8" *ngFor="let nws of newsModelGet; let i = index">
+
+  <div class="row justify-content-md-left">
+
+    <div class="col-xs-12 col-sm-12" *ngFor="let nws of newsModelGet; let i = index">
       <div class="card mb-3">
           <small class=card-header>
 
             <div class="dropdown">
-              <strong>
+              <img *ngIf="nws.newCreator.picture == null  " src="/assets/imgNew.jpg" class="avatar-profile" >
+              <img *ngIf="nws.newCreator.picture " [src]="nws.newCreator.picture" class="avatar-profile" >
+
+                <strong>
                 {{ nws.newCreator.nickName}}
               </strong>  - {{nws.newDate}}
 
@@ -46,17 +52,14 @@
           </small>
 
           <div class="row g-0">
-            <div class="col-md-4">
-              <img src="../../../assets/imgNew.jpg" class="img-fluid rounded-start"/>
-              <!--
-                <img *ngIf="adv.picture == ''  " src="/assets/Inicio1.png" class="img-fluid rounded-start">
-                <img *ngIf="adv.picture " [src]="adv.picture" class="img-fluid rounded-start">
-              -->
-            </div>
-            <div class="col-md-8 bg-light">
+            <div class="col-md-6 "> <!-- bg-light-->
               <div class="card-body">
                 <p class="card-text">{{nws.newsDescription}}</p>
               </div>
+            </div>
+            <div align="right"class="col-md-6">
+              <img *ngIf="nws.pictures == ''  " src="/assets/imgNew.jpg" style="max-width:300px" >
+              <img *ngIf="nws.pictures " [src]="nws.pictures" class="img-fluid rounded-start">
             </div>
           </div>
       </div>
@@ -105,6 +108,7 @@
             <textarea class="form-control" id="inputDescripcion" rows="3" name="descripcion" #descripcion="ngModel"
               [(ngModel)]="newsModelAdd.newsDescription"></textarea>
           </div>
+
           <div class="mb-3">
             <label for="inputDesc" class="form-label">Link de la imágen:</label>
             <textarea class="form-control" id="inputDesc" rows="3" name="pictures" #pictures="ngModel"
@@ -113,9 +117,10 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-          (click)="createNew()">Agregar</button>
+        <img src="../../../assets/HelpPetsLogo.png" style="max-width: 20%;" alt="...">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-x-square"></i> Cerrar</button>
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+          (click)="createNew()"><i class="bi bi-plus-square"></i> Agregar</button>
       </div>
     </div>
   </div>
