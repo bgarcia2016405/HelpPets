@@ -84,15 +84,40 @@ export class NewComponent implements OnInit {
   }
 
   createNew() {
+
+    if(
+      this.newsModelAdd.newsDescription===''
+    )
+    {
+      Swal.fire({
+        /*position: 'top',*/
+        icon: 'warning',
+        title: 'Llene todos los campos',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }else{
+
     this._newService.createNew(this.newsModelAdd, this.token).subscribe(
       response=>{
         this.newsModelAdd.newsDescription = '';
         this.newsModelAdd.pictures = '';
         console.log(response);
+
+      Swal.fire({
+        /*position: 'top',*/
+        icon: 'success',
+        title: 'Noticia creada correctamente',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
+      this.getNews();
         this.getNews()
       }
     );
   }
+}
 
   addCommentNew(){
     this.modelComment.idNew = String(this.newsModelGetId._id);
