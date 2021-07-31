@@ -19,6 +19,7 @@ import { AlberguesComponent } from './components/albergues/albergues.component';
 import { MascotasComponent } from './components/mascotas/mascotas.component';
 import { AlberguepersonalComponent } from './components/alberguepersonal/alberguepersonal.component';
 import { AdministracionComponent } from './components/administracion/administracion.component';
+import { CitasComponent } from './components/citas/citas.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,8 @@ import { AdministracionComponent } from './components/administracion/administrac
     AlberguesComponent,
     MascotasComponent,
     AlberguepersonalComponent,
-    AdministracionComponent
+    AdministracionComponent,
+    CitasComponent
   ],
   imports: [
     BrowserModule,
