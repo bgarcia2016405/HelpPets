@@ -14,14 +14,19 @@ export class NavbarComponent implements OnInit {
   public userModel: User;
   public token;
   public identidad;
+  public editarUsuarioModel;
+  public eliminarUsuarioModel
 
   constructor(public userService:UserService,
               private router:Router) {
         this.identidad = this.userService.getIdentidad();
         this.userModel = new User("","","","","","","","","","","","","","");
-               }
+        this.editarUsuarioModel = new User("","","","","","","","","","","","","","");
+        this.eliminarUsuarioModel = new User("","","","","","","","","","","","","","");
+      }
 
   ngOnInit(): void {
+    this.editarUsuarioModel = this.identidad
   }
 
   login(){
@@ -33,6 +38,7 @@ export class NavbarComponent implements OnInit {
         this.getToken();
         this.token=response.token;
         localStorage.setItem('token', JSON.stringify(this.token));
+        this.refresh()
 
       },
       error=>{
@@ -65,7 +71,54 @@ export class NavbarComponent implements OnInit {
     )
   }
 
+  editarUsuario(idUser){
+    this.userService.editarUsuario(idUser,this.editarUsuarioModel).subscribe(
 
+      response=>{
+        console.log(response)
+      }
+    )
+
+  }
+
+  eliminarUsuario(idUser){
+    this.userService.eliminarUsuario(idUser).subscribe(
+      response=>{
+        console.log(response)
+        this.cerrarSesion()
+      }
+    )
+
+  }
+
+  seguro(idUsuario){
+    this.userService.mostrarUsuarioId(idUsuario).subscribe(
+      response=>{
+
+        this.eliminarUsuarioModel = response
+        console.log(this.eliminarUsuarioModel)
+        Swal.fire({
+          title: '¿Quieres eliminar este usuario?' + this.eliminarUsuarioModel.nickName,
+          text: "No se podra revertir",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Si, borralo'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.eliminarUsuario(this.eliminarUsuarioModel._id)
+            Swal.fire(
+              'Eliminado!',
+              'El usuario ha sido eliminado con exito',
+              'success'
+            )
+          }
+        })
+      }
+    )
+
+  }
 
   refresh(): void{
     window.location.reload();

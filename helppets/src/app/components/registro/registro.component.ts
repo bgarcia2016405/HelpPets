@@ -36,7 +36,20 @@ export class RegistroComponent implements OnInit {
 
  registrar(){
    this.userModel.type = this.state;
-   if(this.userModel.password1==this.userModel.password2){
+   if(this.userModel.nameUser == '' || this.userModel.lastNameUser == '' || this.userModel.nickName == '' ||
+    this.userModel.ageUser == '' || this.userModel.email == '' ||
+    this.userModel.picture == '' || this.userModel.password1 == '' ||
+    this.userModel.password2 == '' || this.userModel.nameOrg == '' ){
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Llene los espacios',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }
+   if(this.userModel.password1==this.userModel.password2 && this.userModel.password1 != ''
+     && this.userModel.password2 != ''){
     this.userModel.password = this.userModel.password1
     this.userService.registro(this.userModel,this.state).subscribe(
       response =>{
@@ -49,7 +62,7 @@ export class RegistroComponent implements OnInit {
         })
       }
     )
-   }else{
+   }if(this.userModel.password1!=this.userModel.password2){
     Swal.fire({
       position: 'center',
       icon: 'error',
