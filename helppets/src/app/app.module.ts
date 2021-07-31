@@ -15,10 +15,15 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { HttpClientModule } from '@angular/common/http';
+import { MiVeterinariaComponent } from './components/mi-veterinaria/mi-veterinaria.component';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { VeterinariasComponent } from './components/veterinarias/veterinarias.component';
+
 import { AlberguesComponent } from './components/albergues/albergues.component';
 import { MascotasComponent } from './components/mascotas/mascotas.component';
 import { AlberguepersonalComponent } from './components/alberguepersonal/alberguepersonal.component';
 import { AdministracionComponent } from './components/administracion/administracion.component';
+import { CitasComponent } from './components/citas/citas.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +34,10 @@ import { AdministracionComponent } from './components/administracion/administrac
     AlberguesComponent,
     MascotasComponent,
     AlberguepersonalComponent,
-    AdministracionComponent
+    AdministracionComponent,
+    CitasComponent,
+    MiVeterinariaComponent,
+    VeterinariasComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +50,8 @@ import { AdministracionComponent } from './components/administracion/administrac
     MatNativeDateModule,
     MatFormFieldModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    NgxMaterialTimepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

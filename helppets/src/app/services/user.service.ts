@@ -36,9 +36,26 @@ export class UserService {
     return this.http.post(this.url + '/createUser/'+type, params,{headers: this.headers})
   }
 
+  getMyVet(id:String): Observable<any>{
+    let token = this.headers.set('Authorization', this.getToken())
+    return this.http.get(this.url + '/getMyVet/' + id, {headers: token})
+  }
   mostrarAlbergue():Observable<any>{
     return this.http.get(this.url + '/mostrarAlbergue', {headers: this.headers})
   }
+
+  editVet(veterinaria:User): Observable<any>{
+    let token = this.headers.set('Authorization', this.getToken())
+    let params = JSON.stringify(veterinaria);
+    return this.http.put(this.url + '/editVet', params, {headers: token} )
+  }
+
+  getVets(): Observable<any> {
+    let token = this.headers.set('Authorization', this.getToken())
+
+    return this.http.get(this.url + '/getVets', { headers: token });
+  }
+
 
   mostrarUsuario():Observable<any>{
     let headers = this.headers.set('Authorization',this.getToken())

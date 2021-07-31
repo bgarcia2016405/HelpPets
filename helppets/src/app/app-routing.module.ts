@@ -5,7 +5,10 @@ import { AlberguepersonalComponent } from './components/alberguepersonal/albergu
 import { AlberguesComponent } from './components/albergues/albergues.component';
 import { HomeComponent } from './components/home/home.component';
 import { MascotasComponent } from './components/mascotas/mascotas.component';
+import { MiVeterinariaComponent } from './components/mi-veterinaria/mi-veterinaria.component';
 import { RegistroComponent } from './components/registro/registro.component';
+import { CitasComponent } from './components/citas/citas.component';
+import { VeterinariasComponent } from './components/veterinarias/veterinarias.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
@@ -15,6 +18,9 @@ const routes: Routes = [
   { path: 'mascotas/:idAlbergue', component: MascotasComponent },
   { path: 'alberguepersonal', component: AlberguepersonalComponent },
   { path: 'administrar', component: AdministracionComponent},
+  { path: 'citas', component: CitasComponent},
+  { path: 'miVeterinaria', component : MiVeterinariaComponent},
+  { path: 'veterinarias', component: VeterinariasComponent},
   { path: '**', component: HomeComponent }
 ];
 

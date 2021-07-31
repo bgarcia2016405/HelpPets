@@ -27,4 +27,16 @@ api.delete('/eliminarUsuario/:idUser', authenticated.ensureAuth, userController.
 
 api.get('/mostrarUsuarioId/:idUser', authenticated.ensureAuth, userController.mostrarUsuarioId)
 
+api.put('/compInfoVet', authenticated.ensureAuth, userController.compInfoVet);
+
+api.put('/editVet', authenticated.ensureAuth, userController.editVet);
+
+api.delete('/deleteVet', authenticated.ensureAuth, userController.deleteVet);
+
+api.get('/getMyVet/:idUsuario', authenticated.ensureAuth, userController.getMyVet);
+
+api.get('/getVets', authenticated.ensureAuth, userController.getVets);
+
+
+
 module.exports = api;
