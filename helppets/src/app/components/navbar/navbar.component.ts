@@ -18,7 +18,7 @@ export class NavbarComponent implements OnInit {
   constructor(public userService:UserService,
               private router:Router) {
         this.identidad = this.userService.getIdentidad();
-        this.userModel = new User("","","","","","","","","","","","","","",null,"","","","","");
+        this.userModel = new User("","","","","","","","","","","","","","",0,"","","","","");
                }
 
   ngOnInit(): void {

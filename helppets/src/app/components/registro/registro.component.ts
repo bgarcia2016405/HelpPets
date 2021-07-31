@@ -22,7 +22,7 @@ export class RegistroComponent implements OnInit {
     public userService: UserService
   ) {
     this.identidad = this.userService.getIdentidad();
-    this.userModel = new User("","","","","","","","","","","","","","",null,"","","","","");
+    this.userModel = new User("","","","","","","","","","","","","","",0,"","","","","");
 
    }
 

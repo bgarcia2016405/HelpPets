@@ -35,8 +35,7 @@ import { CitasComponent } from './components/citas/citas.component';
     MascotasComponent,
     AlberguepersonalComponent,
     AdministracionComponent,
-    CitasComponent
-    RegistroComponent,
+    CitasComponent,
     MiVeterinariaComponent,
     VeterinariasComponent
   ],

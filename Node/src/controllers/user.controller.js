@@ -225,5 +225,12 @@ module.exports = {
   editVet,
   deleteVet,
   getMyVet,
-  getVets
+  getVets,
+  mostrarUsuarioId,
+  miAlbergue,
+  eliminar,
+  mostrarAlbergue,
+  mostrarAlbergue,
+  editar
+
 }

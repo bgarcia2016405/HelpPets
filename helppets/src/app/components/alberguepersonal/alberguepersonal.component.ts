@@ -15,7 +15,7 @@ export class AlberguepersonalComponent implements OnInit {
   pet: Pet;
 
   constructor( public userService: UserService, public petService: PetService) {
-    this.usuario = new User("","","","","","","","","","","","","","",);
+    this.usuario =  new User("","","","","","","","","","","","","","",0,"","","","","");
     this.pet = new Pet("","","","","","","");
   }
 

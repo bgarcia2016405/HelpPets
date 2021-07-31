@@ -11,9 +11,9 @@ export class MiVeterinariaComponent implements OnInit {
   public userModel: User;
   public identidad;
 
-  constructor(public userService:UserService) { 
+  constructor(public userService:UserService) {
     this.identidad = this.userService.getIdentidad();
-    this.userModel = new User("","","","","","","","","","","","","","",null,"","","","","");
+    this.userModel = new User("","","","","","","","","","","","","","",0,"","","","","");
   }
 
   ngOnInit(): void {
