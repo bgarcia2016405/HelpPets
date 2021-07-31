@@ -16,5 +16,12 @@ export class User{
     public  pictureOrg: String,
     public  direction: String,
 
+    public phone: number,
+    public pictureTwo: String,
+    public pictureThree: String,
+    public description: String,
+    public hOpen: String,
+    public hClose: String
+
     ){}
 }

@@ -15,6 +15,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { HttpClientModule } from '@angular/common/http';
+import { MiVeterinariaComponent } from './components/mi-veterinaria/mi-veterinaria.component';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { VeterinariasComponent } from './components/veterinarias/veterinarias.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,9 @@ import { HttpClientModule } from '@angular/common/http';
     NavbarComponent,
     HomeComponent,
     FooterComponent,
-    RegistroComponent
+    RegistroComponent,
+    MiVeterinariaComponent,
+    VeterinariasComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +40,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatNativeDateModule,
     MatFormFieldModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    NgxMaterialTimepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

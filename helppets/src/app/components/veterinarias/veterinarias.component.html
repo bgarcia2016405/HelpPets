@@ -1,0 +1,26 @@
+<br>
+<body class="container pos" style="padding-top: 15px;">
+    <div class="mt-4 text-center color">
+        <h2>Veterinarias</h2>
+    </div>
+    <div class="wrapper">
+        <div id="formContent" style="align-items: center; justify-content: center;margin: auto;"
+            class="col-lg-9 row pt-2" *ngFor="let vet of veterinarias">
+            <div class="col-lg-6">
+                <img width="300" class="img-fluid" src="{{vet.pictureOrg}}">
+            </div>
+            <div class="col-lg-6">
+                <h2 class="mt-4">{{vet.nameOrg}}</h2>
+                <p class="text-muted text-left">{{vet.direction}}</p>
+                <input type="submit"  class="fadeIn fourth"
+                    value="Más info">
+            </div>
+            <br>
+        </div>
+        <br>
+        <br>
+        <br>
+    </div>
+</body>
+
+<!-- routerLink="../HotelInicio/{{optionHotel._id}}" -->
