@@ -97,10 +97,35 @@ function deleteComment(req, res) {
 function getNew(req, res) {
     var idNew = req.params.idNew;
 
-    New.findById(idNew).populate('newCreator commentsList.idUserComment', 'nickName  pictures').exec((err, newFound)=>{
+    New.findById(idNew).populate('newCreator', 'nickName  pictures').exec((err, newFound)=>{
         if(err) return res.status(500).send({ mensaje: 'Error en la peticion de Noticia'});
         if(!newFound) return res.status(500).send({ mensaje: 'Error al obtener la Noticia'});
         return res.status(200).send({ newFound })
+    })
+}
+
+function editNew(req, res) {
+    var idNew = req.params.idNew;
+    var params = req.body;
+
+    New.findByIdAndUpdate(idNew,params, {new:true}, (err,newEdit)=>{
+        if(err) return res.status(404).send({report:"Error in edit Advice"});
+        if(!newEdit) return res.status(200).send({report:"Advice has not edit"});
+            return res.status(200).send(newEdit)
+    })
+}
+
+function deleteNew(req, res) {
+    let idNew = req.params.idNew;
+
+    New.findByIdAndRemove(idNew, (err, newDeleted) => {
+        if (err) {
+            return res.status(500).send({ message: 'Error general' })
+        } else if (newDeleted) {
+            return res.send({ message: 'Noticia eliminada', noticiaDrop: newDeleted })
+        } else {
+            return res.status(404).send({ message: 'Noticia no encontrada o ya eliminada' })
+        }
     })
 }
 
@@ -111,7 +136,9 @@ module.exports = {
     editCommentNew,
     getComment,
     deleteComment,
-    getNew
+    getNew,
+    editNew,
+    deleteNew
 }
 
 

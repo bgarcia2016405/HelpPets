@@ -3,16 +3,19 @@ import { Router } from '@angular/router';
 import { New } from 'src/app/models/new.model';
 import { NewService } from 'src/app/services/new.service';
 import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-new',
   templateUrl: './new.component.html',
-  styleUrls: ['./new.component.scss'],
-  providers: [NewService, UserService],
+  styleUrls: ['./new.component.scss']
+  /*,
+  providers: [NewService, UserService],*/
 })
 export class NewComponent implements OnInit {
 
   public token;
+  public identidad;
   public newsModelGet: New;
   public newsModelAdd: New;
   public newsModelGetId: New;
@@ -38,10 +41,22 @@ export class NewComponent implements OnInit {
       [{ commentText: '', idUserComment: '' }],
       ''
     );
+    this.newsModelGetId = new New(
+      '',
+      '',
+      '',
+      '',
+      '',
+      { si: 0, no: 0, ninguna: 0, usersComment: [] },
+      [{ commentText: '', idUserComment: '' }],
+      ''
+  );
+    this.identidad = this._userService.getIdentidad();
    }
 
   ngOnInit(): void {
     this.getNews();
+    console.log(this.identidad.type)
   }
 
   getNews() {
@@ -56,11 +71,14 @@ export class NewComponent implements OnInit {
     );
   }
 
-  getNewId(idNew){
-    this._newService.getNewId(this.token, idNew).subscribe(
+  getNew(idNew) {
+    this._newService.getNew(this.token, idNew).subscribe(
       response => {
-        this.newsModelGetId =response.newFound;
-        console.log(response);
+        this.newsModelGetId = response.newFound;
+        console.log(this.newsModelGetId);
+      },
+      error => {
+        console.log(<any>error);
       }
     )
   }
@@ -86,6 +104,46 @@ export class NewComponent implements OnInit {
     )
   }
 
+  editNew(){
+    if(
+      this.newsModelGetId.newsDescription===''
+    )
+    {
+      Swal.fire({
+        /*position: 'top',*/
+        icon: 'warning',
+        title: 'Llene todos los campos',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }else{
+
+  this._newService.editNew(this.newsModelGetId).subscribe(
+    response=>{
+      console.log(response);
+
+      Swal.fire({
+        /*position: 'top',*/
+        icon: 'success',
+        title: 'Noticia editada y actualizada correctamente',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
+      this.getNews();
+    }
+  )
+}
+}
+
+  deleteNew(idNew) {
+    this._newService.deleteNew(idNew).subscribe(
+      response=>{
+        console.log(response);
+        this.getNews();
+      }
+    )
+  }
   //Otra manera de Navegar con Parametros
   navegarDetalleNew(idNew) {
     this._router.navigate(['/detalleNoticia', idNew]);

@@ -19,7 +19,7 @@
           <small class=card-header>
 
             <div class="dropdown">
-              <img *ngIf="nws.newCreator.picture == null  " src="/assets/imgNew.jpg" class="avatar-profile" >
+              <img *ngIf="nws.newCreator.picture == null  " src="/assets/HelpPetsLogo.png" class="avatar-profile" >
               <img *ngIf="nws.newCreator.picture " [src]="nws.newCreator.picture" class="avatar-profile" >
 
                 <strong>
@@ -32,7 +32,7 @@
                   [attr.data-bs-target]="'#acor'+i"
                   aria-expanded="false"
                   [attr.aria-controls]="'acor'+i"
-                  (click)="getNewId(nws._id)">
+                  (click)="getNew(nws._id)">
                   <i class="bi bi-chat-square-text"></i>
                 </button>
               </div>
@@ -42,10 +42,10 @@
               </button>
 
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item"  (click)="getNewId(nws._id)"
-                  data-bs-toggle="modal" data-bs-target="#modalEditarHotel"><i class="bi bi-pencil-square"></i> | Editar</a></li>
-                <li><a class="dropdown-item" (click)="getNewId(nws._id)"
-                  data-bs-toggle="modal" data-bs-target="#modalEliminarHotel"><i class="bi bi-trash-fill"></i> | Eliminar</a></li>
+                <li><a class="dropdown-item"  (click)="getNew(nws._id)"
+                  data-bs-toggle="modal" data-bs-target="#mEditNew"><i class="bi bi-pencil-square"></i> | Editar</a></li>
+                <li><a class="dropdown-item" (click)="getNew(nws._id)"
+                  data-bs-toggle="modal" data-bs-target="#mDeleteNew"><i class="bi bi-trash-fill"></i> | Eliminar</a></li>
                <li><a class="dropdown-item" [routerLink]="['/detalleNoticia', nws._id]"><i class="bi bi-back"></i> | Detalle</a></li>
               </ul>
             </div>
@@ -59,7 +59,7 @@
             </div>
             <div align="right"class="col-md-6">
               <img *ngIf="nws.pictures == ''  " src="/assets/imgNew.jpg" style="max-width:300px" >
-              <img *ngIf="nws.pictures " [src]="nws.pictures" class="img-fluid rounded-start">
+              <img *ngIf="nws.pictures " [src]="nws.pictures" style="max-width:300px">
             </div>
           </div>
       </div>
@@ -125,3 +125,63 @@
     </div>
   </div>
 </div>
+
+
+<!-- Modal Editar Noticia-->
+<div class="modal fade" id="mEditNew" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar Noticia</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="inputDescripción" class="form-label"><i class="bi bi-card-text"></i> <strong> Descripción:</strong></label>
+              <textarea class="form-control" id="inputDescripción" rows="3"
+                  name="adviceDesc"
+                  #adviceDesc="ngModel"
+                  [(ngModel)]="newsModelGetId.newsDescription">
+              </textarea>
+          </div>
+          <div class="mb-3">
+            <label for="inputLink" class="form-label"><i class="bi bi-link"></i> <strong> Link de la imágen:</strong></label>
+            <textarea class="form-control" id="inputLink" rows="3"
+                  name="linkPicture"
+                  #linkPicture="ngModel"
+                  [(ngModel)]="newsModelGetId.pictures">
+              </textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <img src="../../../assets/HelpPetsLogo.png" style="max-width: 20%;" alt="...">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-x-square"></i> Cerrar</button>
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="editNew()"><i class="bi bi-save"></i> Guardar cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Eliminar Noticia -->
+<div class="modal fade" id="mDeleteNew" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Eliminar Noticia</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ¿Está seguro de que desea eliminar la noticia?
+      </div>
+      <div class="modal-footer">
+        <img src="../../../assets/HelpPetsLogo.png" style="max-width: 20%;" alt="...">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-square"></i> No, cerrar</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+        (click)="deleteNew(newsModelGetId._id)"><i class="bi bi-check-square"></i> Si, eliminar <i class="bi bi-trash"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+
