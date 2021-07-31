@@ -49,8 +49,11 @@ function getNews(req, res) {
 function addCommentNew(req, res) {
     var newID = req.params.idNew;
     var params = req.body;
+    
+    var todayDate = new Date();
+    var actualDate = todayDate.toLocaleDateString();
 
-    New.findByIdAndUpdate(newID, { $push: { commentsList: { commentText: params.commentText, idUserComment: req.user.sub } } },
+    New.findByIdAndUpdate(newID, { $push: { commentsList: { commentDate: actualDate ,commentText: params.commentText, idUserComment: req.user.sub } } },
         {new: true}, (err, commentAdded)=>{
             if (err) return res.status(500).send({ mensaje: 'Error en la peticion del comentario' });
             if(!commentAdded) return res.status(500).send({ mensaje: 'Error al agregar el comentario a la noticia' });
@@ -62,7 +65,7 @@ function editCommentNew(req, res) {
     var newId = req.params.idNew;
     var commentId = req.params.idComment;
     var params = req.body;
-   
+    
     New.findOneAndUpdate({ _id: newId, "commentsList._id": commentId, 'commentsList.idUserComment': req.user.sub }, 
     { "commentsList.$.commentText": params.commentText }, {new: true, useFindAndModify: false}, (err, commentEdited)=>{
         if(err) return res.status(500).send({ mensaje: 'Error en la peticion de Comentario' });
@@ -79,7 +82,7 @@ function getComment(req, res) {
         if(err) return res.status(500).send({ mensaje: 'Error en la peticion de Noticias' });
         if(!commentFound) return res.status(500).send({ mensaje: 'Error al obtener el comentario' });
         return res.status(200).send({ commentFound })
-    })
+    }).populate('commentsList.idUserComment')
 }
 
 function deleteComment(req, res) {
@@ -89,7 +92,6 @@ function deleteComment(req, res) {
     {new: true, useFindAndModify: false},(err, commentDeleted)=>{
         if(err) return res.status(500).send({mensaje: 'Error en la peticion de Comentario'});
         if(!commentDeleted) return res.status(500).send({ mensaje: 'Error al eliminar el Comentario' });
-
         return res.status(200).send({ commentDeleted })
     })
 }
@@ -97,7 +99,7 @@ function deleteComment(req, res) {
 function getNew(req, res) {
     var idNew = req.params.idNew;
 
-    New.findById(idNew).populate('newCreator', 'nickName  pictures').exec((err, newFound)=>{
+    New.findById(idNew).populate('newCreator commentsList.idUserComment', 'nickName  picture').exec((err, newFound)=>{
         if(err) return res.status(500).send({ mensaje: 'Error en la peticion de Noticia'});
         if(!newFound) return res.status(500).send({ mensaje: 'Error al obtener la Noticia'});
         return res.status(200).send({ newFound })
@@ -109,9 +111,9 @@ function editNew(req, res) {
     var params = req.body;
 
     New.findByIdAndUpdate(idNew,params, {new:true}, (err,newEdit)=>{
-        if(err) return res.status(404).send({report:"Error in edit Advice"});
-        if(!newEdit) return res.status(200).send({report:"Advice has not edit"});
-            return res.status(200).send(newEdit)
+        if(err) return res.status(404).send({report:"Error in edit New"});
+        if(!newEdit) return res.status(200).send({report:"New has not edit"});
+            return res.status(200).send(newEdit)      
     })
 }
 

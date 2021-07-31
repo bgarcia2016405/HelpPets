@@ -26,9 +26,9 @@ export class NewComponent implements OnInit {
   }
 
   constructor(
-    private _newService: NewService,
-    private _userService: UserService,
-    private _router: Router
+    public _newService: NewService,
+    public _userService: UserService,
+    public _router: Router
   ) {
     this.token = this._userService.getToken();
     this.newsModelAdd = new New(
@@ -38,7 +38,7 @@ export class NewComponent implements OnInit {
       '',
       '',
       { si: 0, no: 0, ninguna: 0, usersComment: [] },
-      [{ commentText: '', idUserComment: '' }],
+      [{ commentDate:'',commentText: '', idUserComment: '' }],
       ''
     );
     this.newsModelGetId = new New(
@@ -48,7 +48,7 @@ export class NewComponent implements OnInit {
       '',
       '',
       { si: 0, no: 0, ninguna: 0, usersComment: [] },
-      [{ commentText: '', idUserComment: '' }],
+      [{  commentDate:'',commentText: '', idUserComment: '' }],
       ''
   );
     this.identidad = this._userService.getIdentidad();

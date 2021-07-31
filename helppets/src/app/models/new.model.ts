@@ -12,6 +12,7 @@ export class New{
       usersComment: []
     },
     public commentsList: [{
+      commentDate: String,
       commentText: String,
       idUserComment: String
     }],

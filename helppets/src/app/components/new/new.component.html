@@ -15,7 +15,7 @@
   <div class="row justify-content-md-left">
 
     <div class="col-xs-12 col-sm-12" *ngFor="let nws of newsModelGet; let i = index">
-      <div class="card mb-3">
+      <div *ngIf="nws.stateNew==='Perdido'" class="card mb-3">
           <small class=card-header>
 
             <div class="dropdown">
@@ -25,6 +25,8 @@
                 <strong>
                 {{ nws.newCreator.nickName}}
               </strong>  - {{nws.newDate}}
+
+              - <strong>Estado actual: </strong>"{{nws.stateNew}}"
 
               <div class="btn-group" role="group" aria-label="Basic example">
                 <button type="button" class="btn"
@@ -42,9 +44,9 @@
               </button>
 
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item"  (click)="getNew(nws._id)"
+                <li  *ngIf="nws.newCreator._id === identidad._id || identidad.type === 'Administrador'"   ><a class="dropdown-item"  (click)="getNew(nws._id)"
                   data-bs-toggle="modal" data-bs-target="#mEditNew"><i class="bi bi-pencil-square"></i> | Editar</a></li>
-                <li><a class="dropdown-item" (click)="getNew(nws._id)"
+                <li  *ngIf="nws.newCreator._id === identidad._id || identidad.type === 'Administrador'"  ><a class="dropdown-item" (click)="getNew(nws._id)"
                   data-bs-toggle="modal" data-bs-target="#mDeleteNew"><i class="bi bi-trash-fill"></i> | Eliminar</a></li>
                <li><a class="dropdown-item" [routerLink]="['/detalleNoticia', nws._id]"><i class="bi bi-back"></i> | Detalle</a></li>
               </ul>
@@ -153,6 +155,18 @@
                   [(ngModel)]="newsModelGetId.pictures">
               </textarea>
           </div>
+
+        <div class="mb-3">
+          <label for="inputEstado" class="form-label"><i class="bi bi-list-task"></i> <strong> Estado actual:</strong></label>
+          <h5>El estado de publicación es útil para saber si la mascota se encuentra perdida o ya fue encontrada...</h5>
+          <select  name="type" #type="ngModel"
+            [(ngModel)]="newsModelGetId.stateNew" class="form-select" aria-label="Default select example">
+            <option  [ngValue]="'Encontrado'">Encontrado</option>
+            <option  [ngValue]="'Perdido'">Perdido</option>
+          </select>
+          <br>
+          <h5 style="color:Red">Nota: En la sección de noticias solo podrá ver las noticias que cuentan con estado "Perdido".</h5>
+      </div>
         </form>
       </div>
       <div class="modal-footer">

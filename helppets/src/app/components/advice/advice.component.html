@@ -9,18 +9,14 @@
 <body>
 <div  class="main">
   <div class="container">
-    <div class="row justify-content-md-center">
-      <div style="text-align:center" class="col col-lg-5" >
-        <br>
-        <h1 style="background-color: white; border:black; ">Consejos</h1>
-      </div>
-      <div *ngIf="_adviceService.getIdentidad().type==='Administrador'" class="d-grid gap-2 d-md-block">
-        <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#mCreateAdvice">
-          <i class="bi bi-plus-square"></i> Agregar Consejo
+    <br>
+    <div class="card text-center">
+      <div class="card-body">
+        <h1 class="card-title"><strong>Consejos</strong></h1>
+        <p class="card-text">Esta es una sección en la cual se proporcionan consejos generales sobre los cuidados de mascotas...</p>
+        <button  *ngIf="_adviceService.getIdentidad().type==='Administrador'" class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#mCreateAdvice">
+          Agregar consejo...
         </button>
-      </div>
-      <div class="d-grid gap-2 d-md-block">
-        <br>
       </div>
     </div>
     <br>

@@ -15,6 +15,7 @@ var NewSchema = Schema({
         usersComment: []
     },
     commentsList: [{
+        commentDate: String,
         commentText: String,
         idUserComment: {type: Schema.Types.ObjectId, ref:'User'}
     }],
