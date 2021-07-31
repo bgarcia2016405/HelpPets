@@ -9,6 +9,7 @@ const cors = require("cors")
 
 const user_rutes = require("./src/rutes/user.rutes");
 const service_routes = require("./src/rutes/service.routes");
+const pet_rutes = require("./src/rutes/pet.rutes");
 
 
 

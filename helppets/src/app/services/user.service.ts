@@ -40,6 +40,9 @@ export class UserService {
     let token = this.headers.set('Authorization', this.getToken())
     return this.http.get(this.url + '/getMyVet/' + id, {headers: token})
   }
+  mostrarAlbergue():Observable<any>{
+    return this.http.get(this.url + '/mostrarAlbergue', {headers: this.headers})
+  }
 
   editVet(veterinaria:User): Observable<any>{
     let token = this.headers.set('Authorization', this.getToken())
@@ -53,6 +56,36 @@ export class UserService {
     return this.http.get(this.url + '/getVets', { headers: token });
   }
 
+
+  mostrarUsuario():Observable<any>{
+    let headers = this.headers.set('Authorization',this.getToken())
+    return this.http.get(this.url + '/mostrarUsuarios', {headers:headers})
+  }
+
+  editarUsuario(idUser,usuario:User):Observable<any>{
+    let header = this.headers.set('Authorization', this.getToken())
+    let params = JSON.stringify(usuario)
+
+    return this.http.put(this.url + '/editarUsuario/'+idUser, params, {headers:header})
+  }
+
+  eliminarUsuario(idUser):Observable<any>{
+    let header = this.headers.set('Authorization', this.getToken())
+
+    return this.http.delete(this.url + '/eliminarUsuario/'+ idUser, {headers:header})
+  }
+
+  mostrarUsuarioId(idUser):Observable<any>{
+    let header = this.headers.set('Authorization', this.getToken())
+    return this.http.get(this.url + '/mostrarUsuarioId/' + idUser, {headers:header})
+  }
+
+
+  miAlbergue():Observable<any>{
+    let headers = this.headers.set('Authorization', this.getToken())
+
+    return this.http.get(this.url + '/miAlbergue', {headers: headers})
+  }
 
   getToken(){
     var token2 = localStorage.token;
@@ -73,6 +106,5 @@ export class UserService {
     }
     return this.identidad;
  }
-
 
 }

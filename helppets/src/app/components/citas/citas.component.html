@@ -1,0 +1,40 @@
+<div class="container">
+
+    <div class="row text-center">
+        <h1 style="color: green; font-size: 50px">Nombre de la Veterinaria</h1>
+    </div>
+    <hr>
+
+    <div class="row ">
+
+        <div class="col-6 text-center">
+            <br>
+            <img style="width: 500px" src="https://www.vetquality.com.br/wp-content/uploads/2021/06/vacina-para-cachorro.jpg" class="img-fluid img-thumbnail" alt="cita">
+        </div>
+        <div class="col-6 text-center" style="background-color:#76b676; padding-left: 40px; padding-right: 40px; box-shadow: 0 0 15px 10px rgb(96, 167, 96);">
+            <br>
+            <h1 style="font-size: 40px">Agenda tu cita ahora!!!</h1>
+            <br>
+            <div class="card" style="width: 100%; border-color: rgb(0, 0, 0); border: outset; ">
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col">
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="picker" placeholder="Fecha de cita" name="fechaCita">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-success btn-lg">Agendar</button>
+
+                    </div>
+                    <br>
+                </div>
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>

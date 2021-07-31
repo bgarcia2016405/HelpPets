@@ -6,6 +6,7 @@ const bcrypt = require("bcrypt-nodejs");
 const userModel = require("../models/user.model");
 const Service = require("../models/service.model");
 
+const administrador ='Administrador'
 const usuario = 'dueño';
 const Albergue = 'albergue';
 const Veterinario = 'veterinaria';
@@ -77,10 +78,12 @@ function createUser(req, res) {
   })
 }
 
-function showUser(req, res) {
+function showUser(req,res) {
+  var type = req.user.type;
 
-  userModel.find({}, (err, UserFound) => {
-    if (err) return res.status(404).send({ report: 'Erro in save User' });
+ if(type != administrador) return res.status(404).send({report:'Usted no es administrador'})
+  userModel.find({},(err,UserFound)=>{
+    if(err) return res.status(404).send({report:'Erro in save User'});
     return res.status(200).send(UserFound)
   })
 }
@@ -95,7 +98,63 @@ function compInfoVet(req, res) {
     return res.status(200).send(infoVet)
   })
 }
+function mostrarAlbergue(req, res){
+userModel.find({type: Albergue},(err, albergueFound)=>{
+  if(err) return res.status(500).send({ mensaje: 'Error en la petición' })
+  if(!albergueFound) return res.status(500).send({ mensaje: 'No se han encontrado albergues' })
 
+   return res.status(200).send(albergueFound)
+  })
+
+}
+
+function editar(req,res){
+  var idUser = req.params.idUser
+  var params = req.body
+
+  userModel.findByIdAndUpdate(idUser,params,(err,userUpdate)=>{
+    if(err) return res.status(500).send({ report: 'Error en la petición' })
+    if(userUpdate == null) return res.status(500).send({ report: 'No se actualizo el usuario'})
+    console.log('hola')
+
+    return res.status(200).send(userUpdate)
+  })
+
+}
+
+function eliminar(req,res){
+  var idUser = req.params.idUser
+
+  userModel.findByIdAndDelete(idUser, (err,userDelete)=>{
+    if(err) return res.status(500).send({ report: 'Error en la petición' })
+    if(userDelete == null) return res.status(500).send({ report: 'No se borro el usuario'})
+
+    return res.status(200).send(userDelete)
+  })
+
+}
+
+function mostrarUsuarioId(req,res){
+  var idUser = req.params.idUser;
+
+  userModel.findById(idUser,(err,userFound)=>{
+    if(err) return res.status(500).send({ report: 'Error en la petición' })
+    if(!userFound) return res.status(500).send({ report: 'No se encontro el usuario'})
+
+    return res.status(200).send(userFound)
+  })
+}
+
+function miAlbergue(req, res){
+  var token = req.user.sub
+
+  userModel.findById(token, (err, albergueFound)=>{
+    if(err) return res.status(500).send({mensaje: 'Error en la petición'})
+    if(!albergueFound) return res.status(500).send({mensaje: 'No se han encontrado los datos'})
+
+    return res.status(200).send(albergueFound)
+  })
+}
 function editVet(req, res) {
   var params = req.body;
   var user = req.user.sub;
