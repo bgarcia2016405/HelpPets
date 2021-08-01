@@ -16,7 +16,7 @@ export class AlberguepersonalComponent implements OnInit {
 
   constructor( public userService: UserService, public petService: PetService) {
     this.usuario = new User("","","","","","","","","","","","","","",);
-    this.pet = new Pet("","","","","","","");
+    this.pet = new Pet("","","","","","","","","");
   }
 
   ngOnInit(): void {

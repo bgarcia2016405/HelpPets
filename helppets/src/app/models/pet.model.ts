@@ -6,7 +6,9 @@ export class Pet{
   public organizacion: String,
   public dueño: String,
   public picture: String,
-  public state: String
+  public state: String,
+  public dpi: String,
+  public departureDate: String
   ){}
 
 }

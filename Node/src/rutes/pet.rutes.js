@@ -12,6 +12,10 @@ api.get('/mostrarMascotas', authenticated.ensureAuth, petController.mostrarMasco
 
 api.get('/mostrarMascotasUser/:idOrg', petController.mostrarMascotasUser)
 
+api.get('/mostrarMascotaId/:idMascota', petController.mostrarMascotaId)
+
 api.put('/editarMascota/:idPet', authenticated.ensureAuth, petController.editarMascota)
+
+api.put('/adoptarMascota/:idMascota', authenticated.ensureAuth, petController.adoptarMascota)
 
 module.exports = api;

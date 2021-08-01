@@ -15,7 +15,7 @@ export class MascotasComponent implements OnInit {
   pet: Pet;
 
   constructor(public _activatedRoute: ActivatedRoute, public petService: PetService) {
-    this.pet = new Pet("","","","","","","")
+    this.pet = new Pet("","","","","","","","","")
   }
 
   ngOnInit(): void {

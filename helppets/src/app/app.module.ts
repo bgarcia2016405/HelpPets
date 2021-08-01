@@ -20,6 +20,7 @@ import { MascotasComponent } from './components/mascotas/mascotas.component';
 import { AlberguepersonalComponent } from './components/alberguepersonal/alberguepersonal.component';
 import { AdministracionComponent } from './components/administracion/administracion.component';
 import { CitasComponent } from './components/citas/citas.component';
+import { AdopcionComponent } from './components/adopcion/adopcion.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +32,8 @@ import { CitasComponent } from './components/citas/citas.component';
     MascotasComponent,
     AlberguepersonalComponent,
     AdministracionComponent,
-    CitasComponent
+    CitasComponent,
+    AdopcionComponent
   ],
   imports: [
     BrowserModule,

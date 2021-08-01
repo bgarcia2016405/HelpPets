@@ -7,6 +7,7 @@ import { HomeComponent } from './components/home/home.component';
 import { MascotasComponent } from './components/mascotas/mascotas.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { CitasComponent } from './components/citas/citas.component';
+import { AdopcionComponent } from './components/adopcion/adopcion.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'alberguepersonal', component: AlberguepersonalComponent },
   { path: 'administrar', component: AdministracionComponent},
   { path: 'citas', component: CitasComponent},
+  { path: 'adopcion/:idMascota', component: AdopcionComponent},
   { path: '**', component: HomeComponent }
 ];
 
