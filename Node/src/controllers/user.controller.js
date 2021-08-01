@@ -193,6 +193,7 @@ function deleteVet(req, res) {
 
     }
   })
+}
 
 function eliminarAlbergue(req, res) {
   var idUser = req.params.idUser;
@@ -217,7 +218,7 @@ function editarAlbergue(req, res){
     return res.status(200).send({albergueUpdate})
   })
 }
-}
+
 
 function getMyVet(req, res) {
   var idUsuario = req.params.idUsuario
@@ -253,7 +254,8 @@ module.exports = {
   miAlbergue,
   eliminar,
   mostrarAlbergue,
-  mostrarAlbergue,
-  editar
+  eliminarAlbergue,
+  editar,
+  editarAlbergue
 
 }
