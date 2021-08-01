@@ -12,6 +12,7 @@ import { MiVeterinariaComponent } from './components/mi-veterinaria/mi-veterinar
 import { NewComponent } from './components/new/new.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { CitasComponent } from './components/citas/citas.component';
+import { AdopcionComponent } from './components/adopcion/adopcion.component';
 import { VeterinariasComponent } from './components/veterinarias/veterinarias.component';
 
 const routes: Routes = [
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'alberguepersonal', component: AlberguepersonalComponent },
   { path: 'administrar', component: AdministracionComponent},
   { path: 'citas', component: CitasComponent},
+  { path: 'adopcion/:idMascota', component: AdopcionComponent},
   { path: 'miVeterinaria', component : MiVeterinariaComponent},
   { path: 'veterinarias', component: VeterinariasComponent},
   { path: 'consejos', component: AdviceComponent},

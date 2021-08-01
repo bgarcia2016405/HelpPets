@@ -12,10 +12,14 @@ api.get('/mostrarMascotas', authenticated.ensureAuth, petController.mostrarMasco
 
 api.get('/mostrarMascotasUser/:idOrg', petController.mostrarMascotasUser)
 
+api.get('/mostrarMascotaId/:idMascota', petController.mostrarMascotaId)
+
 api.put('/editarMascota/:idPet', authenticated.ensureAuth, petController.editarMascota)
 
 api.delete('/eliminarMascota/:idPet', authenticated.ensureAuth, petController.eliminarMascota)
 
 api.get('/buscarMascotaID/:idPet', petController.buscarMascotaID)
+
+api.put('/adoptarMascota/:idMascota', authenticated.ensureAuth, petController.adoptarMascota)
 
 module.exports = api;
