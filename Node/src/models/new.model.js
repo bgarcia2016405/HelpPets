@@ -4,8 +4,22 @@ const mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var NewSchema = Schema({
-    usuario: {type: Schema.Types.ObjectId, ref:'User'}
+    newsDescription: String,
+    pictures: String,
+    stateNew: String,
+    newDate: String,
+    opinion: {
+        si: Number,
+        no: Number,
+        ninguna: Number,
+        usersComment: []
+    },
+    commentsList: [{
+        commentDate: String,
+        commentText: String,
+        idUserComment: {type: Schema.Types.ObjectId, ref:'User'}
+    }],
+    newCreator: {type: Schema.Types.ObjectId, ref:'User'}
 })
 
 module.exports = mongoose.model('New', NewSchema);
-

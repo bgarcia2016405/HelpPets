@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HelpPets</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+</head>
+<body>
+<div  class="main">
+  <div class="container">
+    <br>
+    <div class="card text-center">
+      <div class="card-body">
+        <h1 class="card-title"><strong>Consejos</strong></h1>
+        <p class="card-text">Esta es una sección en la cual se proporcionan consejos generales sobre los cuidados de mascotas...</p>
+        <button  *ngIf="_adviceService.getIdentidad().type==='Administrador'" class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#mCreateAdvice">
+          Agregar consejo...
+        </button>
+      </div>
+    </div>
+    <br>
+
+    <div class="row">
+      <div class="card mb-3" style="max-width: 440px;" *ngFor="let adv of adviceModelGet; let i = index">
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button  *ngIf="_adviceService.getIdentidad().type==='Administrador'" type="button" class="btn btn-success"
+           (click)="getAdviceId(adv._id)"
+           data-bs-toggle="modal" data-bs-target="#mEditAdvice">
+           <i class="bi bi-pencil-square"></i></button>
+          <button  *ngIf="_adviceService.getIdentidad().type==='Administrador'" type="button" class="btn btn-success"
+          (click)="getAdviceId(adv._id)"
+           data-bs-toggle="modal" data-bs-target="#mDeleteAdvice">
+          <i class="bi bi-trash-fill"></i></button>
+          <button type="button" class="btn btn-success" [routerLink]="['/detalleConsejo', adv._id]">
+            <i class="bi bi-arrows-move"></i>
+          </button>
+        </div>
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="../../../assets/imgAdvice.jpg" class="img-fluid rounded-start"/>
+            <!--
+              <img *ngIf="adv.picture == ''  " src="/assets/Inicio1.png" class="img-fluid rounded-start">
+              <img *ngIf="adv.picture " [src]="adv.picture" class="img-fluid rounded-start">
+            -->
+          </div>
+
+          <div class="col-md-8 bg-light">
+            <div class="card-body">
+              <h5 class="card-title">{{adv.title}}</h5>
+              <p class="card-text">{{adv.resume}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</body>
+</html>
+
+ <!-- Modal Agregar Consejo -->
+<div class="modal fade" id="mCreateAdvice" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar Consejo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="inputNombre" class="form-label"><strong><i class="bi bi-phone-landscape"></i> Título:</strong></label>
+            <input type="text" class="form-control" id="inputNombre" name="title" #title="ngModel"
+              [(ngModel)]="adviceModelCreate.title">
+          </div>
+          <div class="mb-3">
+            <label for="inputResumen" class="form-label"><strong><i class="bi bi-card-text"></i> Resumen:</strong></label>
+            <textarea class="form-control" id="inputResumen" rows="3" name="resume" #resume="ngModel"
+              [(ngModel)]="adviceModelCreate.resume"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="inputDescripcion" class="form-label"><strong><i class="bi bi-card-text"></i> Descripción:</strong></label>
+            <textarea class="form-control" id="inputDescripcion" rows="3" name="descripcion" #descripcion="ngModel"
+              [(ngModel)]="adviceModelCreate.advice"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="inputPicture" class="form-label"><strong><i class="bi bi-link"></i> Link de la imágen:</strong></label>
+            <textarea class="form-control" id="inputPicture" rows="3" name="picture" #picture="ngModel"
+              [(ngModel)]="adviceModelCreate.picture"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <img src="../../../assets/HelpPetsLogo.png" style="max-width: 20%;" alt="...">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-x-square"></i> Cerrar</button>
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+          (click)="createAdvice()"><i class="bi bi-plus-square"></i> Agregar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Editar Consejo -->
+<div class="modal fade" id="mEditAdvice" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar Consejo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="inputTitle" class="form-label"><i class="bi bi-phone-landscape"></i><strong> Título:</strong></label>
+            <input type="text" class="form-control" id="inputTitle"
+            name="title" #title="ngModel" [(ngModel)]="adviceModelGetId.title">
+          </div>
+          <div class="mb-3">
+            <label for="inputResumen" class="form-label"><i class="bi bi-card-text"></i> <strong> Resumen:</strong></label>
+              <textarea class="form-control" id="inputResumen" rows="3"
+                name="resume"
+                #resume="ngModel"
+                [(ngModel)]="adviceModelGetId.resume">
+              </textarea>
+          </div>
+          <div class="mb-3">
+            <label for="inputDescripción" class="form-label"><i class="bi bi-card-text"></i> <strong> Descripción:</strong></label>
+              <textarea class="form-control" id="inputDescripción" rows="3"
+                  name="adviceDesc"
+                  #adviceDesc="ngModel"
+                  [(ngModel)]="adviceModelGetId.advice">
+              </textarea>
+          </div>
+          <div class="mb-3">
+            <label for="inputLink" class="form-label"><i class="bi bi-link"></i> <strong> Link de la imágen:</strong></label>
+            <textarea class="form-control" id="inputLink" rows="3"
+                  name="linkPicture"
+                  #linkPicture="ngModel"
+                  [(ngModel)]="adviceModelGetId.picture">
+              </textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <img src="../../../assets/HelpPetsLogo.png" style="max-width: 20%;" alt="...">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-x-square"></i> Cerrar</button>
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="editAdvice()"><i class="bi bi-save"></i> Guardar cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Eliminar Consejos -->
+<div class="modal fade" id="mDeleteAdvice" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Eliminar Consejo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ¿Esta seguro de que desea eliminar el consejo, {{ adviceModelGetId.title }}?
+      </div>
+      <div class="modal-footer">
+        <img src="../../../assets/HelpPetsLogo.png" style="max-width: 20%;" alt="...">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-square"></i> No, cerrar</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+        (click)="deleteAdvice(adviceModelGetId._id)"><i class="bi bi-check-square"></i> Si, eliminar <i class="bi bi-trash"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+

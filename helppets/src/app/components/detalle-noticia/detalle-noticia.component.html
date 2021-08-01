@@ -1,0 +1,69 @@
+<br>
+<div class="container">
+  <div class="card text-center">
+    <div class="card-body">
+      <h1 class="card-title"><strong>Detalle de la noticia</strong></h1>
+      <p class="card-text">Esta es una sección donde podrás ver la información de la noticia, junto con los comentarios.</p>
+      <button type="button" class="btn " [routerLink]="['/noticias']">
+        <i class="bi bi-arrow-left-circle-fill"> Regresar a las noticias...</i>
+      </button>
+    </div>
+  </div>
+
+  <br>
+  <div class="row justify-content-md-center">
+    <div class="card mb-3"> <!-- *ngIf="nws.stateNew==='Perdido'" -->
+      <small class=card-header>
+          <img *ngIf="newModel.newCreator.picture == null  " src="/assets/HelpPetsLogo.png" class="avatar-profile" >
+          <img *ngIf="newModel.newCreator.picture " [src]="newModel.newCreator.picture" class="avatar-profile" >
+            <strong>
+            {{ newModel.newCreator.nickName}}
+          </strong>  - {{newModel.newDate}}
+          - <strong>Estado actual: </strong>"{{newModel.stateNew}}"
+      </small>
+      <div class="row g-0">
+        <div class="col-md-6 "> <!-- bg-light-->
+          <div class="card-body">
+            <p class="card-text">{{newModel.newsDescription}}</p>
+          </div>
+        </div>
+        <div align="right"class="col-md-6">
+          <img *ngIf="newModel.pictures == null  " src="/assets/imgNew.jpg" style="max-width:300px" >
+          <img *ngIf="newModel.pictures " [src]="newModel.pictures" style="max-width:300px">
+        </div>
+      </div>
+
+      <form>
+
+
+        <div class="list-group">
+          <a class="list-group-item list-group-item-action" aria-current="true" *ngFor="let nws of newModel.commentsList">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">
+
+                <img *ngIf="nws.idUserComment.picture == null  " src="/assets/HelpPetsLogo.png" class="avatar-profile" >
+                <img *ngIf="nws.idUserComment.picture " [src]="nws.idUserComment.picture" class="avatar-profile" > {{nws.idUserComment.nickName}}
+
+              </h5>
+              {{ nws.commentDate}}
+              <!--
+                <small>
+                  <div class="dropdown">
+                    <button class="btn btn-light btn-sm" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="bi bi-three-dots-vertical"></i>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      <li><a class="dropdown-item" href="#">Editar</a></li>
+                      <li><a class="dropdown-item" href="#">Eliminar</a></li>
+                    </ul>
+                  </div>
+                </small>
+               -->
+            </div>
+            <p  class="mb-1">{{ nws.commentText}}</p>
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

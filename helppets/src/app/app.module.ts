@@ -14,7 +14,12 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { AdviceComponent } from './components/advice/advice.component';
+
 import { HttpClientModule } from '@angular/common/http';
+import { DetalleConsejoComponent } from './components/detalle-consejo/detalle-consejo.component';
+import { NewComponent } from './components/new/new.component';
+import { DetalleNoticiaComponent } from './components/detalle-noticia/detalle-noticia.component';
 import { MiVeterinariaComponent } from './components/mi-veterinaria/mi-veterinaria.component';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { VeterinariasComponent } from './components/veterinarias/veterinarias.component';
@@ -31,6 +36,11 @@ import { CitasComponent } from './components/citas/citas.component';
     HomeComponent,
     FooterComponent,
     RegistroComponent,
+    AdviceComponent,
+    DetalleConsejoComponent,
+    NewComponent,
+    DetalleNoticiaComponent
+    RegistroComponent,
     AlberguesComponent,
     MascotasComponent,
     AlberguepersonalComponent,
@@ -40,6 +50,7 @@ import { CitasComponent } from './components/citas/citas.component';
     VeterinariasComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
