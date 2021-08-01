@@ -50,10 +50,14 @@ export class UserService {
     return this.http.put(this.url + '/editVet', params, {headers: token} )
   }
 
-  getVets(): Observable<any> {
-    let token = this.headers.set('Authorization', this.getToken())
+  deleteVet():Observable<any>{
+    let token = this.headers.set('Authorization', this.getToken());
+    return this.http.delete(this.url + '/deleteVet', { headers: token})
 
-    return this.http.get(this.url + '/getVets', { headers: token });
+  }
+
+  getVets(): Observable<any> {
+    return this.http.get(this.url + '/getVets', { headers: this.headers });
   }
 
 

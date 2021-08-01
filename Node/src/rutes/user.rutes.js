@@ -35,7 +35,7 @@ api.delete('/deleteVet', authenticated.ensureAuth, userController.deleteVet);
 
 api.get('/getMyVet/:idUsuario', authenticated.ensureAuth, userController.getMyVet);
 
-api.get('/getVets', authenticated.ensureAuth, userController.getVets);
+api.get('/getVets', userController.getVets);
 
 
 
