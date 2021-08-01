@@ -93,7 +93,16 @@
       <a routerLink="veterinarias">Veterinarias</a>
       <ul>
         <li *ngIf="userService.getIdentidad() != null && userService.getIdentidad().type == 'veterinaria'"><a routerLink="miVeterinaria">Mi Veterinaria</a></li>
+
       </ul>
+    </li>
+    <li >
+      <a>Información</a>
+      <ul>
+        <li routerLink="consejos"><a  >Consejos</a></li>
+        <li routerLink="noticias"><a >Noticias</a></li>
+      </ul>
+
     </li>
     <li>
       <a *ngIf="userService.getIdentidad()== null" >Usuario</a>

@@ -39,8 +39,7 @@ import { CitasComponent } from './components/citas/citas.component';
     AdviceComponent,
     DetalleConsejoComponent,
     NewComponent,
-    DetalleNoticiaComponent
-    RegistroComponent,
+    DetalleNoticiaComponent,
     AlberguesComponent,
     MascotasComponent,
     AlberguepersonalComponent,
