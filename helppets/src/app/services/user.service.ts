@@ -47,6 +47,12 @@ export class UserService {
     return this.http.get(this.url + '/miAlbergue', {headers: headers})
   }
 
+  eliminarAlbergue(idUser):Observable<any>{
+    let headers = this.headers.set('Authorization', this.getToken())
+
+    return this.http.delete(this.url + '/eliminarAlbergue/' + idUser, {headers: headers})
+  }
+
   getToken(){
     var token2 = localStorage.token;
     if(token2 != undefined){
