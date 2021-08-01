@@ -56,11 +56,12 @@ function mostrarMascotasUser(req, res){
     })
 }
 
-function editarMascota(){
-    var idOrg = req.user.sub;
+function editarMascota(req, res){
+    var idPet = req.params.idPet;
     var params = req.body;
 
-    usuarioModel.findByIdAndUpdate({organizacion:idOrg}, params, {new: true},(err, petUpdate)=>{
+    petModel.findByIdAndUpdate(idPet, params, {new: true},(err, petUpdate)=>{
+        console.log(petUpdate)
         if(err) return res.status(500).send({ mensaje: 'Error en la petición'});
         if(!petUpdate) return res.status(500).send({mensaje: 'No se pudo actualizar la mascota'});
 
@@ -68,11 +69,38 @@ function editarMascota(){
     })
 }
 
+function eliminarMascota(req, res) {
+    var idPet = req.params.idPet;
+  
+    if(req.user.type != 'albergue'){
+        return res.status(500).send({mensaje: 'Tu usuario no cumple con los requisitos necesarios'})
+    }
+  
+    petModel.findByIdAndDelete(idPet,(err, mascotaDeleted)=>{
+        if(err) return res.status(500).send({ mensaje: 'Error en la peticion' });
+        if(!mascotaDeleted) return res.status(500).send({ mensaje: 'Error al eliminar esta mascota' });
+  
+        return res.status(200).send({ mascotaDeleted });
+    })
+  } 
+
+function buscarMascotaID(req, res){
+    var idPet = req.params.idPet;
+
+    petModel.findById(idPet, (err, petFound)=>{
+        if(err) return res.status(500).send({mensaje: 'Error'})
+        if(!petFound) return res.status(500).send({mensaje: 'No se pudo encontrar ninguna mascota'})
+
+        return res.status(200).send(petFound)
+    })
+}
 
 
 module.exports ={
     crearMascota,
     mostrarMascotas,
     mostrarMascotasUser,
-    editarMascota
+    editarMascota,
+    eliminarMascota,
+    buscarMascotaID
 }

@@ -194,6 +194,29 @@ function deleteVet(req, res) {
     }
   })
 
+function eliminarAlbergue(req, res) {
+  var idUser = req.params.idUser;
+
+  userModel.findByIdAndDelete(idUser,(err, deleteAlbergue)=>{
+      if(err) return res.status(500).send({ mensaje: 'Error en la peticion' });
+      if(!deleteAlbergue) return res.status(500).send({ mensaje: 'Error al eliminar su cuenta.' });
+
+      return res.status(200).send({ deleteAlbergue });
+  })
+}
+
+function editarAlbergue(req, res){
+  var idUsuario = req.params.idUsuario;
+  var params = req.body;
+
+  usuarioModel.findByIdAndUpdate(idUsuario, params, {new: true},(err, albergueUpdate)=>{
+    console.log(albergueUpdate)
+    if(err) return res.status(500).send({mensaje: 'Error en la petición'});
+    if(!albergueUpdate) return res.status(500).send({mensaje: 'No se pudieron actualizar los datos'});
+
+    return res.status(200).send({albergueUpdate})
+  })
+}
 }
 
 function getMyVet(req, res) {

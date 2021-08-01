@@ -34,6 +34,23 @@ export class PetService {
     return this.http.get(this.url + '/mostrarMascotasUser/'+ idOrg, {headers: this.headers})
    }
 
+   eliminarMacota(idPet):Observable<any>{
+    let token = this.headers.set('Authorization' , this.getToken())
+
+     return this.http.delete(this.url + '/eliminarMascota/' + idPet, {headers: token})
+   }
+
+   buscarMascotaID(idPet):Observable<any>{
+    return this.http.get(this.url + '/buscarMascotaID/'+ idPet, {headers: this.headers} )
+   }
+
+   editarMascota(idPet, mascota: Pet):Observable<any>{
+     let params = JSON.stringify(mascota)
+     let token = this.headers.set('Authorization', this.getToken())
+
+     return this.http.put(this.url + '/editarMascota/' + idPet, params, {headers: token})
+   }
+
    getToken(){
     var token2 = localStorage.token;
     if(token2 != undefined){

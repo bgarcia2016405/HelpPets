@@ -15,8 +15,47 @@
                       <br>
                       <input #direction= "ngModel" [(ngModel)]="usuario.direction" type="text" name="txtEmail" class="form-control" placeholder="Direccion Aqui" disabled/>
                       <hr>
-                      <button class="btn btn-primary">Editar</button>
-                      <button class="btn btn-outline-primary">Eliminar</button>
+                      <details>
+                        <summary>
+                          <div class="button">
+                            Editar
+                          </div>
+                          <div class="details-modal-overlay"></div>
+                        </summary>
+                        <div class="details-modal">
+                          <div class="details-modal-close">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M13.7071 1.70711C14.0976 1.31658 14.0976 0.683417 13.7071 0.292893C13.3166 -0.0976311 12.6834 -0.0976311 12.2929 0.292893L7 5.58579L1.70711 0.292893C1.31658 -0.0976311 0.683417 -0.0976311 0.292893 0.292893C-0.0976311 0.683417 -0.0976311 1.31658 0.292893 1.70711L5.58579 7L0.292893 12.2929C-0.0976311 12.6834 -0.0976311 13.3166 0.292893 13.7071C0.683417 14.0976 1.31658 14.0976 1.70711 13.7071L7 8.41421L12.2929 13.7071C12.6834 14.0976 13.3166 14.0976 13.7071 13.7071C14.0976 13.3166 14.0976 12.6834 13.7071 12.2929L8.41421 7L13.7071 1.70711Z" fill="black" />
+                            </svg>
+                          </div>
+                          <div class="details-modal-title">
+
+                          </div>
+                          <div class="details-modal-content">
+                            <div class="center">
+                              <h1>Editar mis datos</h1>
+                              <form>
+                                <div class="inputbox">
+                                  <input type="text" required="required" id="nameOrg" class="form__input" name="nameOrg"  #nameOrg="ngModel" [(ngModel)]="usuario.nameOrg">
+                                  <span>Nombre</span>
+                                </div>
+                                <div class="inputbox inputbox">
+                                  <input type="text" required="required" id="direction" class="form__input" name="direction"  #direction="ngModel" [(ngModel)]="usuario.direction">
+                                  <span>Dirección</span>
+                                </div>
+                                <div class="inputbox inputbox">
+                                  <input type="text" required="required" id="pictureOrg" class="form__input" name="pictureOrg"  #pictureOrg="ngModel" [(ngModel)]="usuario.pictureOrg">
+                                  <span>Foto (URL)</span>
+                                </div>
+                                <div class="inputbox">
+                                  <input type="button" value="Confirmar" data-bs-dismiss="modal" (click)="crearMascota()" >
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </details>
+                      <button class="btn btn-outline-primary eliminar">Eliminar</button>
                     </div>
                   </div>
                 </div>
@@ -25,31 +64,100 @@
             <div class="col-md-8">
               <div class="container">
                 <h2>Mis Mascotas</h2>
+
+                <details>
+                  <summary>
+                    <div class="button">
+                      Agregar Mascota
+                    </div>
+                    <div class="details-modal-overlay"></div>
+                  </summary>
+                  <div class="details-modal">
+                    <div class="details-modal-close">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M13.7071 1.70711C14.0976 1.31658 14.0976 0.683417 13.7071 0.292893C13.3166 -0.0976311 12.6834 -0.0976311 12.2929 0.292893L7 5.58579L1.70711 0.292893C1.31658 -0.0976311 0.683417 -0.0976311 0.292893 0.292893C-0.0976311 0.683417 -0.0976311 1.31658 0.292893 1.70711L5.58579 7L0.292893 12.2929C-0.0976311 12.6834 -0.0976311 13.3166 0.292893 13.7071C0.683417 14.0976 1.31658 14.0976 1.70711 13.7071L7 8.41421L12.2929 13.7071C12.6834 14.0976 13.3166 14.0976 13.7071 13.7071C14.0976 13.3166 14.0976 12.6834 13.7071 12.2929L8.41421 7L13.7071 1.70711Z" fill="black" />
+                      </svg>
+                    </div>
+                    <div class="details-modal-title">
+
+                    </div>
+                    <div class="details-modal-content">
+                      <div class="center">
+                        <h1>Agrega una Mascota</h1>
+                        <form>
+                          <div class="inputbox">
+                            <input type="text" required="required" id="name" class="form__input" name="name"  #name="ngModel" [(ngModel)]="petAdd.name">
+                            <span>Nombre</span>
+                          </div>
+                          <select class="form-select" aria-label="Default select example"  id="especie" name="especie"  #especie="ngModel" [(ngModel)]="petAdd.especie">
+                            <option selected>Selecciona una Especie</option>
+                            <option value="Perro">Perro</option>
+                            <option value="Gato">Gato</option>
+                            <option value="Ave">Ave</option>
+                            <option value="Roedor">Roedor</option>
+                          </select>
+                          <br><br>
+                          <div class="inputbox inputbox">
+                            <input type="text" required="required" id="picture" class="form__input" name="picture"  #picture="ngModel" [(ngModel)]="petAdd.picture">
+                            <span>Foto (URL)</span>
+                          </div>
+                          <div class="inputbox">
+                            <input type="button" value="Agregar" data-bs-dismiss="modal" (click)="crearMascota()" >
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </details>
+                <br>
                 <ul class="responsive-table">
                   <li class="table-header">
-                    <div class="col col-1">Número</div>
                     <div class="col col-2">Nombre</div>
                     <div class="col col-3">Especie</div>
+                    <div class="col col-4">Estado</div>
+                    <div class="col col-5">Acciones</div>
                   </li>
-                  <li class="table-row">
-                    <div class="col col-1" data-label="Numero">42235</div>
-                    <div class="col col-2" data-label="Nombre">John Doe</div>
-                    <div class="col col-3" data-label="Especie">$350</div>
-                  </li>
-                  <li class="table-row">
-                    <div class="col col-1" data-label="Job Id">42442</div>
-                    <div class="col col-2" data-label="Customer Name">Jennifer Smith</div>
-                    <div class="col col-3" data-label="Amount">$220</div>
-                  </li>
-                  <li class="table-row">
-                    <div class="col col-1" data-label="Job Id">42257</div>
-                    <div class="col col-2" data-label="Customer Name">John Smith</div>
-                    <div class="col col-3" data-label="Amount">$341</div>
-                  </li>
-                  <li class="table-row">
-                    <div class="col col-1" data-label="Job Id">42311</div>
-                    <div class="col col-2" data-label="Customer Name">John Carpenter</div>
-                    <div class="col col-3" data-label="Amount">$115</div>
+                  <li *ngFor="let item of pet"  class="table-row">
+                    <div class="col col-2" data-label="Nombre">{{item.name}}</div>
+                    <div class="col col-3" data-label="Especie">{{item.especie}}</div>
+                    <div class="col col-4" data-label="Estado">{{item.state}}</div>
+                    <div class="col col-5"><details>
+                      <summary>
+                        <div class="button" (click)="buscarMascotaID(item._id)">
+                          Editar
+                        </div>
+                        <div class="details-modal-overlay"></div>
+                      </summary>
+                      <div class="details-modal">
+                        <div class="details-modal-close">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M13.7071 1.70711C14.0976 1.31658 14.0976 0.683417 13.7071 0.292893C13.3166 -0.0976311 12.6834 -0.0976311 12.2929 0.292893L7 5.58579L1.70711 0.292893C1.31658 -0.0976311 0.683417 -0.0976311 0.292893 0.292893C-0.0976311 0.683417 -0.0976311 1.31658 0.292893 1.70711L5.58579 7L0.292893 12.2929C-0.0976311 12.6834 -0.0976311 13.3166 0.292893 13.7071C0.683417 14.0976 1.31658 14.0976 1.70711 13.7071L7 8.41421L12.2929 13.7071C12.6834 14.0976 13.3166 14.0976 13.7071 13.7071C14.0976 13.3166 14.0976 12.6834 13.7071 12.2929L8.41421 7L13.7071 1.70711Z" fill="black" />
+                          </svg>
+                        </div>
+                        <div class="details-modal-title">
+
+                        </div>
+                        <div class="details-modal-content">
+                          <div class="center">
+                            <h1>Edita una Mascota</h1>
+                            <form>
+                              <div class="inputbox">
+                                <input type="text" required="required" id="name" class="form__input" name="name" #name="ngModel" [(ngModel)]="petUpdate.name">
+                                <span>Nombre</span>
+                              </div>
+                              <div class="inputbox">
+                                <input type="text" required="required" id="picture" class="form__input" name="picture" #picture="ngModel" [(ngModel)]="petUpdate.picture">
+                                <span>Foto (URL)</span>
+                              </div>
+                              <div class="inputbox">
+                                <input type="button" value="Confirmar" (click)="editarMascota()">
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </details>
+                    <button class="btn btn-primary eliminar2" (click)="seguridadEliminar(item._id)"> Eliminar</button></div>
                   </li>
                 </ul>
               </div>
@@ -57,3 +165,5 @@
               </div>
             </div>
 
+
+<hr>

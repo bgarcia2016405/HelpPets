@@ -16,6 +16,9 @@ api.get('/mostrarAlbergue', userController.mostrarAlbergue)
 
 api.get('/miAlbergue',authenticated.ensureAuth , userController.miAlbergue)
 
+api.delete('/eliminarAlbergue/:idUser', authenticated.ensureAuth, userController.eliminarAlbergue)
+
+
 
 api.post('/mostrarAlbergue', userController.mostrarAlbergue)
 
