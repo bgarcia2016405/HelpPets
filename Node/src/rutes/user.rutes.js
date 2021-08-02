@@ -18,6 +18,8 @@ api.get('/miAlbergue',authenticated.ensureAuth , userController.miAlbergue)
 
 api.delete('/eliminarAlbergue/:idUser', authenticated.ensureAuth, userController.eliminarAlbergue)
 
+api.get('/buscarAlbergueID/:idUser', userController.buscarAlbergueID)
 
+api.put('/editarAlbergue/:idUser', authenticated.ensureAuth, userController.editarAlbergue)
 
 module.exports = api;

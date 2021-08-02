@@ -17,7 +17,7 @@
                       <hr>
                       <details>
                         <summary>
-                          <div class="button">
+                          <div class="button" (click)="buscarAlbergueID(usuario._id)">
                             Editar
                           </div>
                           <div class="details-modal-overlay"></div>
@@ -48,14 +48,15 @@
                                   <span>Foto (URL)</span>
                                 </div>
                                 <div class="inputbox">
-                                  <input type="button" value="Confirmar" data-bs-dismiss="modal" (click)="crearMascota()" >
+                                  <input type="button" value="Confirmar" data-bs-dismiss="modal" (click)="editarAlbergue()">
                                 </div>
                               </form>
                             </div>
                           </div>
                         </div>
                       </details>
-                      <button class="btn btn-outline-primary eliminar">Eliminar</button>
+                      <br>
+                      <button class="btn btn-primary eliminar2" (click)="seguridadEliminarAlbergue(usuario._id)">Eliminar</button>
                     </div>
                   </div>
                 </div>
@@ -165,5 +166,3 @@
               </div>
             </div>
 
-
-<hr>

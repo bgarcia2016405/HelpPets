@@ -109,6 +109,17 @@ function miAlbergue(req, res){
 
 /**/
 
+function buscarAlbergueID(req, res){
+  var idUser = req.params.idUser;
+
+  userModel.findById(idUser,(err, albergueFound)=>{
+    if(err) return res.status(500).send({mensaje: 'Error'})
+    if(!albergueFound) return res.status(500).send({mensaje: 'No se encontró el Albergue'})
+
+    return res.status(200).send(albergueFound)
+  })
+}
+
 function eliminarAlbergue(req, res) {
   var idUser = req.params.idUser;
 
@@ -121,10 +132,10 @@ function eliminarAlbergue(req, res) {
 }
 
 function editarAlbergue(req, res){
-  var idUsuario = req.params.idUsuario;
+  var idUser = req.params.idUser;
   var params = req.body;
 
-  usuarioModel.findByIdAndUpdate(idUsuario, params, {new: true},(err, albergueUpdate)=>{
+  userModel.findByIdAndUpdate(idUser, params, {new: true},(err, albergueUpdate)=>{
     console.log(albergueUpdate)
     if(err) return res.status(500).send({mensaje: 'Error en la petición'});
     if(!albergueUpdate) return res.status(500).send({mensaje: 'No se pudieron actualizar los datos'});
@@ -139,5 +150,6 @@ module.exports ={
     mostrarAlbergue,
     miAlbergue,
     eliminarAlbergue,
-    editarAlbergue
+    editarAlbergue,
+    buscarAlbergueID
 }
