@@ -40,6 +40,7 @@ export class UserService {
     let token = this.headers.set('Authorization', this.getToken())
     return this.http.get(this.url + '/getMyVet/' + id, {headers: token})
   }
+  
   mostrarAlbergue():Observable<any>{
     return this.http.get(this.url + '/mostrarAlbergue', {headers: this.headers})
   }
@@ -50,16 +51,28 @@ export class UserService {
     return this.http.put(this.url + '/editVet', params, {headers: token} )
   }
 
+  editVetAdmin(id, veterinaria:User): Observable<any>{
+    let headersToken = this.headers.set('Authorization', this.getToken())
+    let params = JSON.stringify(veterinaria);
+    return this.http.put(this.url + '/editVetAdmin/' + id, params, {headers: headersToken} )
+  }
+
   deleteVet():Observable<any>{
     let token = this.headers.set('Authorization', this.getToken());
     return this.http.delete(this.url + '/deleteVet', { headers: token})
 
   }
 
+  deleteVetAdmin(id):Observable<any>{
+    let header = this.headers.set('Authorization', this.getToken())
+
+    return this.http.delete(this.url + '/deleteVetAdmin/'+ id, {headers:header})
+  }
+
+
   getVets(): Observable<any> {
     return this.http.get(this.url + '/getVets', { headers: this.headers });
   }
-
 
   mostrarUsuario():Observable<any>{
     let headers = this.headers.set('Authorization',this.getToken())

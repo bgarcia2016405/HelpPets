@@ -29,6 +29,12 @@ export class ServiceService {
     return this.http.get(this.url + '/getServiceId/' + id, { headers: headersToken });
   }
 
+  getServices(idVet): Observable<any> {
+    let headersToken = this.headers.set('Authorization', this.getToken());
+
+    return this.http.get(this.url + '/getServices/' + idVet, {headers: headersToken});
+  }
+
   createService(service: Service, token): Observable<any>{
     let headersToken = this.headers.set('Authorization', token)
     let params = JSON.stringify(service);

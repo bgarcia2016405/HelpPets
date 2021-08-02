@@ -7,7 +7,7 @@
 
 .car{
 position: relative;
-z-index: 1;
+z-index: -11;
 }
 /* BASIC */
 a {
@@ -23,9 +23,12 @@ a {
   font-weight: 500;
   display:inline-block;
   margin: 40px 8px 10px 8px; 
-  color: #059245;
+  color: #255D00;
 }
 
+.nombre{
+  color: #558B2F;
+}
 
 
 /* STRUCTURE */
@@ -71,8 +74,8 @@ a {
 
 /* FORM TYPOGRAPHY*/
 
-input[type=button], input[type=submit], input[type=reset]  {
-  background-color: #059245;
+input[type=submit], input[type=reset]  {
+  background-color: #558B2F;
   border: none;
   color: white;
   padding: 15px 80px;
@@ -81,8 +84,8 @@ input[type=button], input[type=submit], input[type=reset]  {
   display: inline-block;
   text-transform: uppercase;
   font-size: 13px;
-  -webkit-box-shadow: 0 10px 30px 0 #059245;
-  box-shadow: 0 10px 30px 0 #059245;
+  -webkit-box-shadow: 0 10px 30px 0 #558B2F;
+  box-shadow: 0 10px 30px 0 #558B2F;
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
   margin: 5px 20px 40px 20px;
@@ -93,32 +96,32 @@ input[type=button], input[type=submit], input[type=reset]  {
   transition: all 0.3s ease-in-out;
 }
 
-.botones{
-  background-color: #8bc43f;
-  border: none;
-  color: white;
-  padding: 15px 80px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  text-transform: uppercase;
-  font-size: 13px;
-  -webkit-box-shadow: 0 10px 30px 0 #8bc43f;
-  box-shadow: 0 10px 30px 0 #8bc43f;
-  -webkit-border-radius: 5px 5px 5px 5px;
-  border-radius: 5px 5px 5px 5px;
-  margin: 5px 20px 40px 20px;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-}
-input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover, .botones:hover  {
+// .botones{
+//   background-color: #8bc43f;
+//   border: none;
+//   color: white;
+//   padding: 15px 80px;
+//   text-align: center;
+//   text-decoration: none;
+//   display: inline-block;
+//   text-transform: uppercase;
+//   font-size: 13px;
+//   -webkit-box-shadow: 0 10px 30px 0 #8bc43f;
+//   box-shadow: 0 10px 30px 0 #8bc43f;
+//   -webkit-border-radius: 5px 5px 5px 5px;
+//   border-radius: 5px 5px 5px 5px;
+//   margin: 5px 20px 40px 20px;
+//   -webkit-transition: all 0.3s ease-in-out;
+//   -moz-transition: all 0.3s ease-in-out;
+//   -ms-transition: all 0.3s ease-in-out;
+//   -o-transition: all 0.3s ease-in-out;
+//   transition: all 0.3s ease-in-out;
+// }
+input[type=submit]:hover, input[type=reset]:hover{
   background-color: #8bc43f;
 }
 
-input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
+input[type=submit]:active, input[type=reset]:active  {
   -moz-transform: scale(0.95);
   -webkit-transform: scale(0.95);
   -o-transform: scale(0.95);
@@ -126,35 +129,35 @@ input[type=button]:active, input[type=submit]:active, input[type=reset]:active  
   transform: scale(0.95);
 }
 
-input[type=text],  select {
-  background-color: #f6f6f6;
-  border: none;
-  color: #0d0d0d;
-  padding: 15px 22px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 5px;
-  width: 85%;
-  border: 2px solid #f6f6f6;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-  -webkit-border-radius: 5px 5px 5px 5px;
-  border-radius: 5px 5px 5px 5px;
-}
+// input[type=text],  select {
+//   background-color: #f6f6f6;
+//   border: none;
+//   color: #0d0d0d;
+//   padding: 15px 22px;
+//   text-align: center;
+//   text-decoration: none;
+//   display: inline-block;
+//   font-size: 16px;
+//   margin: 5px;
+//   width: 85%;
+//   border: 2px solid #f6f6f6;
+//   -webkit-transition: all 0.3s ease-in-out;
+//   -moz-transition: all 0.3s ease-in-out;
+//   -ms-transition: all 0.3s ease-in-out;
+//   -o-transition: all 0.3s ease-in-out;
+//   transition: all 0.3s ease-in-out;
+//   -webkit-border-radius: 5px 5px 5px 5px;
+//   border-radius: 5px 5px 5px 5px;
+// }
 
-input[type=text]:focus {
-  background-color: #fff;
-  border-bottom: 2px solid #5fbae9;
-}
+// input[type=text]:focus {
+//   background-color: #fff;
+//   border-bottom: 2px solid #5fbae9;
+// }
 
-input[type=text]:placeholder {
-  color: #cccccc;
-}
+// input[type=text]:placeholder {
+//   color: #cccccc;
+// }
 
 
 
@@ -293,4 +296,59 @@ input[type=text]:placeholder {
 
 .dropdown{
   width: 100%;
+}
+
+.botones{
+  margin-bottom: 1rem;
+}
+
+.title{
+	color: #009345;
+}
+
+.account-settings .user-profile h5.user-name {
+  margin: 0 0 0.3rem 0;
+}
+.account-settings .user-profile h6.user-email {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #9fa8b9;
+}
+.account-settings .about {
+  margin: 2rem 0 0 0;
+  text-align: center;
+}
+.account-settings .about h5 {
+  margin: 0 0 15px 0;
+  color: #009345;
+}
+.account-settings .about p {
+  font-size: 0.825rem;
+}
+.form-control {
+  border: 1px solid #cfd1d8;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  font-size: .825rem;
+  background: #ffffff;
+  color: #2e323c;
+}
+
+::ng-deep ngx-material-timepicker-content{
+  --body-background-color: #fff;
+  --primary-font-family: 'Roboto',sans-serif;
+  --button-color: #7ac70ee0 !important;
+  --dial-active-color: #fff;
+  --dial-inactive-color: rgba(255, 255, 255, .5);
+  --dial-background-color: #7ac70ee0 !important;
+  --dial-editable-active-color: #7ac70ee0 !important;
+  --dial-editable-background-color: #fff;
+  --clock-face-time-active-color: #fff;
+  --clock-face-time-inactive-color: #6c6c6c;
+  --clock-face-inner-time-inactive-color: #929292;
+  --clock-face-time-disabled-color: #c5c5c5;
+  --clock-face-background-color: #f0f0f0;
+  --clock-hand-color: #7ac70ee0 !important;
 }
