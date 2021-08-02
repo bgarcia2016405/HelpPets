@@ -18,7 +18,8 @@ export class AdopcionComponent implements OnInit {
 
   constructor(
     public _activatedRoute: ActivatedRoute,
-     public petService: PetService
+     public petService: PetService,
+     private router:Router
     ) {
     this.mascota = new Pet("","","","","","","","","")
     this.adopcionm = new Pet("","","","","","","","","")
@@ -55,8 +56,9 @@ adoptarMascota(){
         title: 'Mascota en Espera',
         showConfirmButton: false,
         timer: 1500
-      })
 
+      })
+  this.router.navigate(['/home'])
     }
   )
 }

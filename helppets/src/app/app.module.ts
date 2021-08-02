@@ -14,13 +14,23 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { AdviceComponent } from './components/advice/advice.component';
+
 import { HttpClientModule } from '@angular/common/http';
+import { DetalleConsejoComponent } from './components/detalle-consejo/detalle-consejo.component';
+import { NewComponent } from './components/new/new.component';
+import { DetalleNoticiaComponent } from './components/detalle-noticia/detalle-noticia.component';
+import { MiVeterinariaComponent } from './components/mi-veterinaria/mi-veterinaria.component';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { VeterinariasComponent } from './components/veterinarias/veterinarias.component';
+
 import { AlberguesComponent } from './components/albergues/albergues.component';
 import { MascotasComponent } from './components/mascotas/mascotas.component';
 import { AlberguepersonalComponent } from './components/alberguepersonal/alberguepersonal.component';
 import { AdministracionComponent } from './components/administracion/administracion.component';
 import { CitasComponent } from './components/citas/citas.component';
 import { AdopcionComponent } from './components/adopcion/adopcion.component';
+import { MisMascotasComponent } from './components/mis-mascotas/mis-mascotas.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,14 +38,22 @@ import { AdopcionComponent } from './components/adopcion/adopcion.component';
     HomeComponent,
     FooterComponent,
     RegistroComponent,
+    AdviceComponent,
+    DetalleConsejoComponent,
+    NewComponent,
+    DetalleNoticiaComponent,
     AlberguesComponent,
     MascotasComponent,
     AlberguepersonalComponent,
     AdministracionComponent,
     CitasComponent,
-    AdopcionComponent
+    MiVeterinariaComponent,
+    VeterinariasComponent,
+    AdopcionComponent,
+    MisMascotasComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -46,7 +64,8 @@ import { AdopcionComponent } from './components/adopcion/adopcion.component';
     MatNativeDateModule,
     MatFormFieldModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    NgxMaterialTimepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

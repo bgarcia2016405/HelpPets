@@ -1,4 +1,4 @@
-  import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http"
 import { GLOBAL } from './global.service';
 import { Observable } from 'rxjs';
@@ -36,9 +36,26 @@ export class UserService {
     return this.http.post(this.url + '/createUser/'+type, params,{headers: this.headers})
   }
 
+  getMyVet(id:String): Observable<any>{
+    let token = this.headers.set('Authorization', this.getToken())
+    return this.http.get(this.url + '/getMyVet/' + id, {headers: token})
+  }
   mostrarAlbergue():Observable<any>{
     return this.http.get(this.url + '/mostrarAlbergue', {headers: this.headers})
   }
+
+  editVet(veterinaria:User): Observable<any>{
+    let token = this.headers.set('Authorization', this.getToken())
+    let params = JSON.stringify(veterinaria);
+    return this.http.put(this.url + '/editVet', params, {headers: token} )
+  }
+
+  getVets(): Observable<any> {
+    let token = this.headers.set('Authorization', this.getToken())
+
+    return this.http.get(this.url + '/getVets', { headers: token });
+  }
+
 
   mostrarUsuario():Observable<any>{
     let headers = this.headers.set('Authorization',this.getToken())
@@ -68,6 +85,12 @@ export class UserService {
     let headers = this.headers.set('Authorization', this.getToken())
 
     return this.http.get(this.url + '/miAlbergue', {headers: headers})
+  }
+
+  eliminarAlbergue(idUser):Observable<any>{
+    let headers = this.headers.set('Authorization', this.getToken())
+
+    return this.http.delete(this.url + '/eliminarAlbergue/' + idUser, {headers: headers})
   }
 
   getToken(){

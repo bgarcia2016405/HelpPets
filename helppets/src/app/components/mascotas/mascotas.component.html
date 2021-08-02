@@ -8,7 +8,7 @@
     <div class="product-grid">
         <div *ngFor="let item of pet" style="background-color: rgb(210, 241, 210); float: left;margin-left: 100px;margin-bottom: 20px;">
             <div class="product-image">
-                <a href="#" class="image">
+                <a [routerLink]="['/adopcion', item._id]" routerLinkActive="router-link-active" class="image">
                     <img class="pic-1" src="{{item.picture}}">
                 </a>
                 <ul class="product-links">
@@ -16,7 +16,7 @@
                 </ul>
             </div>
             <div class="product-content">
-                <h3 class="title"><a href="#">{{item.name}}</a></h3>
+                <h3 class="title"><a  [routerLink]="['/adopcion', item._id]" routerLinkActive="router-link-active">{{item.name}}</a></h3>
                 <div class="price">{{item.especie}}</div>
             </div>
         </div>
