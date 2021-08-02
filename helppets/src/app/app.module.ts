@@ -50,7 +50,7 @@ import { MisMascotasComponent } from './components/mis-mascotas/mis-mascotas.com
     CitasComponent,
     MiVeterinariaComponent,
     VeterinariasComponent,
-    VeterinariaComponent
+    VeterinariaComponent,
     AdopcionComponent,
     MisMascotasComponent
   ],
