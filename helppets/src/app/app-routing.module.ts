@@ -14,6 +14,7 @@ import { RegistroComponent } from './components/registro/registro.component';
 import { CitasComponent } from './components/citas/citas.component';
 import { AdopcionComponent } from './components/adopcion/adopcion.component';
 import { VeterinariasComponent } from './components/veterinarias/veterinarias.component';
+import { MisMascotasComponent } from './components/mis-mascotas/mis-mascotas.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'detalleConsejo/:idAdvice', component: DetalleConsejoComponent},
   { path: 'noticias', component: NewComponent},
   { path: 'detalleNoticia/:idNew', component: DetalleNoticiaComponent},
+  { path: 'misMascotas', component:MisMascotasComponent},
   { path: '**', component: HomeComponent }
 ];
 

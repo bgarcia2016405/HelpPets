@@ -85,7 +85,9 @@
     <li>
       <a [routerLink]="['/albergues']" routerLinkActive="router-link-active" >Albergues</a>
       <ul>
-        <li *ngIf="userService.getIdentidad() != null && identidad.type == 'albergue'" [routerLink]="['/alberguepersonal']" routerLinkActive="router-link-active" ><a href="#0">Mi Albergue</a></li>
+        <li *ngIf="userService.getIdentidad() != null && identidad.type == 'albergue'" [routerLink]="['/alberguepersonal']" routerLinkActive="router-link-active" ><a>Mi Albergue</a></li>
+        <li *ngIf="userService.getIdentidad() != null && identidad.type == 'dueño'" [routerLink]="['/misMascotas']" routerLinkActive="router-link-active" ><a >Mis mascotas</a></li>
+
       </ul>
     </li>
 

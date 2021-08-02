@@ -41,7 +41,7 @@ function crearMascota(req, res) {
 function mostrarMascotas(req, res) {
     var idOrg = req.user.sub;
 
-    petModel.find({ organizacion: idOrg }, (err, petFound) => {
+    petModel.find({ dueño: idOrg }, (err, petFound) => {
         if (err) return res.status(500).send({ mensaje: 'Error en la peticion' })
         if (!petFound) return res.status(500).send({ mensaje: 'No se ha encontrado ninguna mascota' });
 
@@ -50,7 +50,7 @@ function mostrarMascotas(req, res) {
 }
 
 function mostrarMascotasUser(req, res) {
-    petModel.find({ organizacion: req.params.idOrg }, (err, petFound) => {
+    petModel.find({ organizacion: req.params.idOrg, state: cuidando}, (err, petFound) => {
         if (err) return res.status(500).send({ mensaje: 'Error en la peticion' })
         if (!petFound) return res.status(500).send({ mensaje: 'No se ha encontrado la mascota' });
 
@@ -104,23 +104,24 @@ function adoptarMascota(req, res) {
     petModel.findOneAndUpdate({ _id: idMascota }, { dpi: params.dpi, departureDate: params.departureDate, dueño: dueñoo, state: estado }, { new: true }, (err, mascotaAdoptada) => {
         if (err) return res.status(500).send({ mensaje: 'Error en la peticion' })
         if (!mascotaAdoptada) return res.status(500).send({ mensaje: 'No se ha encontrado la mascota' });
-function buscarMascotaID(req, res){
-    var idPet = req.params.idPet;
+
 
         return res.status(200).send({ mascotaAdoptada })
     })
 }
 
+function buscarMascotaID(req, res){
+    var idPet = req.params.idPet;
 
-module.exports = {
+
     petModel.findById(idPet, (err, petFound)=>{
         if(err) return res.status(500).send({mensaje: 'Error'})
         if(!petFound) return res.status(500).send({mensaje: 'No se pudo encontrar ninguna mascota'})
 
         return res.status(200).send(petFound)
     })
-}
 
+}
 
 module.exports ={
     crearMascota,
@@ -128,7 +129,7 @@ module.exports ={
     mostrarMascotasUser,
     editarMascota,
     eliminarMascota,
-    buscarMascotaID
+    buscarMascotaID,
     mostrarMascotaId,
     editarMascota,
     adoptarMascota

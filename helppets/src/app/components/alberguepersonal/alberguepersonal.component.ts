@@ -21,10 +21,10 @@ export class AlberguepersonalComponent implements OnInit {
 
   constructor( public userService: UserService, public petService: PetService) {
     this.usuario =  new User("","","","","","","","","","","","","","",0,"","","","","");
-    this.pet = new Pet("","","","","","","");
-    this.petAdd = new Pet("","","","","","","");
-    this.idPet = new Pet("","","","","","","");
-    this.petUpdate = new Pet("","","","","","","")
+    this.pet = new Pet("","","","","","","","","")
+    this.petAdd = new Pet("","","","","","","","","")
+    this.idPet = new Pet("","","","","","","","","")
+    this.petUpdate = new Pet("","","","","","","","","")
   }
 
   ngOnInit(): void {
