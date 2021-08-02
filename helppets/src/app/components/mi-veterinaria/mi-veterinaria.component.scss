@@ -68,6 +68,15 @@ body {
 	background-color: #8bc43f;
 	color: #ffffff;
 	margin-top: 1rem;
+    margin-right: 1rem;
+}
+
+.btnDelete{
+    margin-top: 1rem;
+}
+
+.botonesVet{
+    display: flex;
 }
 
 .btnEditM{
@@ -90,4 +99,25 @@ body {
     --clock-face-time-disabled-color: #c5c5c5;
     --clock-face-background-color: #f0f0f0;
     --clock-hand-color: #7ac70ee0 !important;
+}
+
+.agregar{
+    margin-bottom: 1rem;
+    background-color: #8bc43f;
+    color: #fff;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #8ac43f28;
   }

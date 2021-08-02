@@ -61,14 +61,24 @@ function getServices(req, res) {
       if(!vetsFound) return res.status(500).send({mensaje: 'Vets were not brought'});
       return res.status(200).send(vetsFound)
     })
-  
 }
 
+
+function getServiceId(req, res){
+    var idService = req.params.idService;
+
+    Service.findById(idService, (err, serviceFound)=>{
+        if(err) return res.status(500).send({ mensaje: 'Error getting service'});
+        if(!serviceFound) return res.status(500).send({ mensaje: 'Service were not brought'})
+        return res.status(200).send(serviceFound);
+    })
+}
 
 module.exports={
     createService,
     editService,
     deleteService,
     getMyServices,
-    getServices
+    getServices,
+    getServiceId
 }

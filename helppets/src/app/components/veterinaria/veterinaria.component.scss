@@ -1,0 +1,89 @@
+.containerOg{
+    max-width: 90%;
+    margin-left: 5%;
+    display: block;
+}
+
+.containerBody{
+    display: flex;
+    min-height: 50%;
+}
+
+.containerText{
+    margin-left: 2rem;
+}
+
+h1{
+    font-family: 'Noto Sans TC', sans-serif;
+    font-family: 'Nunito', sans-serif;
+    color: #388E3C;
+    font-size: xx-large;
+}
+
+.subtitulos{
+    display: flex;
+}
+
+h2{
+    font-size: 1.2rem;
+    margin-bottom: 0;
+    margin-left: 0.2rem;
+}
+
+.iconos{
+    height: 1.5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerImg{
+    min-height: 25%;
+    max-height: 25%;
+    width: 34%;
+}
+
+.card-body{
+    padding: 0px;
+    border: rgba(255, 255, 255, 0);
+}
+
+.infoCard{
+    border: rgba(255, 255, 255, 0);
+}
+
+.form-control{
+    background-color: rgba(255, 255, 255, 0);
+    border: rgba(255, 255, 255, 0);
+}
+
+p{
+    font-size: 0.9rem;
+
+}
+
+.containerServices{
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.servicesCard{
+    border-color: #85bb5c;
+}
+
+.mb-3{
+    margin-bottom: 0;
+}
+
+.btnAgendar{
+    background-color: #558B2F;
+    border: none;
+    color: white;
+    margin: 0;
+    transition-duration: 0.4s;
+}
+
+.btnAgendar:hover{
+    background-color: #85bb5c;
+    color: white;
+}
