@@ -120,7 +120,7 @@
                   <li *ngFor="let item of pet"  class="table-row">
                     <div class="col col-2" data-label="Nombre">{{item.name}}</div>
                     <div class="col col-3" data-label="Especie">{{item.especie}}</div>
-                    <div class="col col-4" data-label="Estado">{{item.state}}</div>
+                    <div class="col col-4" data-label="Estado">{{item.state}} <button *ngIf="item.state == 'enEspera'"class="eliminar" (click)="seguridadEditarState(item._id)">Cancelar</button> <button *ngIf="item.state == 'enEspera'" (click)="seguridadAdoptado(item._id)">Adoptado</button></div>
                     <div class="col col-5"><details>
                       <summary>
                         <div class="button" (click)="buscarMascotaID(item._id)">

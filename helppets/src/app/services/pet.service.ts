@@ -34,6 +34,11 @@ export class PetService {
     return this.http.get(this.url + '/mostrarMascotasUser/'+ idOrg, {headers: this.headers})
    }
 
+   mostrarMascotasOrg():Observable<any>{
+    let token = this.headers.set('Authorization',this.getToken())
+    return this.http.get(this.url + '/mostrarMascotasOrg', {headers: token})
+   }
+
    mostrarMascotaId(id: String):Observable<any>{
      return this.http.get(this.url + '/mostrarMascotaId/' + id, {headers: this.headers})
    }

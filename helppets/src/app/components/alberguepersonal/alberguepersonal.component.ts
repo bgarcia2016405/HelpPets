@@ -47,7 +47,7 @@ refresh(): void{
 }
 
 mostrarMascotas(){
-  this.petService.mostrarMascotas().subscribe(
+  this.petService.mostrarMascotasOrg().subscribe(
     response =>{
       console.log(response);
       this.pet = response;
@@ -120,6 +120,74 @@ editarMascota(){
   )
 }
 
+editarMascotaState(){
 
+  this.petService.editarMascota(this.petUpdate._id, this.petUpdate).subscribe(
+    response =>{
+      console.log(response);
+      this.mostrarMascotas()
+    }
+  )
+}
+
+seguridadEditarState(idPet){
+
+  this.petService.buscarMascotaID(idPet).subscribe(
+    response=>{
+      this.petUpdate = response;
+      this.petUpdate.state = 'cuidando'
+      Swal.fire({
+        title: '¿Quieres cancelar la adopción de ' + this.petUpdate.name,
+        text: "No se podra revertir",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.editarMascotaState()
+          Swal.fire(
+            'Cancelada!',
+            'La adopción a sido cancelada',
+            'success'
+          )
+        }
+      })
+
+    }
+  )
+}
+seguridadAdoptado(idPet){
+  console.log(this.petUpdate)
+  this.petService.buscarMascotaID(idPet).subscribe(
+    response=>{
+      this.petUpdate = response;
+
+  this.petUpdate.state = 'adoptado'
+
+  console.log(this.petUpdate)
+      Swal.fire({
+        title: this.petUpdate.name + ' fué adoptado?',
+        text: "Confirmar con el botón de abajo",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, fué Adoptado'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.editarMascotaState()
+          Swal.fire(
+            'De acuerdo!',
+            'La mascota fué adoptada',
+            'success'
+          )
+        }
+      })
+
+    }
+  )
+}
 
 }
