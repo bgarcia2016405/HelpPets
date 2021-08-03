@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'mascotas/:idAlbergue', component: MascotasComponent },
   { path: 'alberguepersonal', component: AlberguepersonalComponent },
   { path: 'administrar', component: AdministracionComponent},
-  { path: 'citas', component: CitasComponent},
+  { path: 'citas/:idVeterinaria', component: CitasComponent},
   { path: 'adopcion/:idMascota', component: AdopcionComponent},
   { path: 'miVeterinaria', component : MiVeterinariaComponent},
   { path: 'veterinarias', component: VeterinariasComponent},
