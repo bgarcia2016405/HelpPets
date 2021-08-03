@@ -166,6 +166,17 @@ function editVet(req, res) {
   })
 }
 
+function editVetAdmin(req, res) {
+  var params = req.body;
+  var idUsuario = req.params.idUsuario;
+
+  userModel.findByIdAndUpdate(idUsuario, params, { new: true, useFindAndModify: false }, (err, vetEdited) => {
+    if (err) return res.status(404).send({ mensaje: 'Error editing user' });
+    if (!vetEdited) return res.status(200).send({ mensaje: 'Vet was not edited' });
+    return res.status(200).send(vetEdited)
+  })
+}
+
 function deleteVet(req, res) {
   var user = req.user.sub;
 
@@ -206,6 +217,36 @@ function eliminarAlbergue(req, res) {
   })
 }
 
+function deleteVetAdmin(req, res) {
+  var idUsuario = req.params.idUsuario;
+
+  Service.find({ organizacion: idUsuario }, (err, serviceFound) => {
+    if (err) return res.status(500).send({ mensaje: 'Error' })
+
+    if (serviceFound && serviceFound.length >= 1) {
+      Service.deleteMany({ organizacion: idUsuario }, (err, servicesDeleted) => {
+        if (err) return res.status(500).send({ mensaje: 'Error deleting services' })
+
+        if (servicesDeleted) {
+          userModel.findByIdAndDelete(idUsuario, (err, vetDeleted) => {
+            if (err) return res.status(404).send({ mensaje: 'Error deleting veterinary' });
+            if (!vetDeleted) return res.status(404).send({ mensaje: 'Vet was not deleted' })
+            return res.status(200).send([servicesDeleted, vetDeleted]);
+          })
+        }
+      })
+    } else {
+      userModel.findByIdAndDelete(idUsuario, (err, vetDeleted) => {
+        if (err) return res.status(404).send({ mensaje: 'Error deleting veterinary' });
+        if (!vetDeleted) return res.status(404).send({ mensaje: 'Vet was not deleted' })
+        return res.status(200).send(vetDeleted);
+      })
+
+    }
+  })
+
+}
+
 function editarAlbergue(req, res){
   var idUsuario = req.params.idUsuario;
   var params = req.body;
@@ -221,6 +262,7 @@ function editarAlbergue(req, res){
 
 
 function getMyVet(req, res) {
+  
   var idUsuario = req.params.idUsuario
   //Encuesta.find({ titulo: { $regex: 'encuesta', $options: 'i' } }, { listaComentarios: 0})
   userModel.findById(idUsuario, (err, vetsFound)=>{
@@ -247,7 +289,9 @@ module.exports = {
   showUser,
   compInfoVet,
   editVet,
+  editVetAdmin,
   deleteVet,
+  deleteVetAdmin,
   getMyVet,
   getVets,
   mostrarUsuarioId,

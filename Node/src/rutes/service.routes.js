@@ -12,6 +12,6 @@ api.put('/editService/:idService', authenticated.ensureAuth, serviceController.e
 api.delete('/deleteService/:idService', authenticated.ensureAuth, serviceController.deleteService);
 api.get('/getMyServices', authenticated.ensureAuth, serviceController.getMyServices);
 api.get('/getServices/:idVet', authenticated.ensureAuth, serviceController.getServices);
-
+api.get('/getServiceId/:idService', authenticated.ensureAuth, serviceController.getServiceId);
 
 module.exports = api;

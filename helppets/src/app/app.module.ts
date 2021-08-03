@@ -29,6 +29,7 @@ import { MascotasComponent } from './components/mascotas/mascotas.component';
 import { AlberguepersonalComponent } from './components/alberguepersonal/alberguepersonal.component';
 import { AdministracionComponent } from './components/administracion/administracion.component';
 import { CitasComponent } from './components/citas/citas.component';
+import { VeterinariaComponent } from './components/veterinaria/veterinaria.component';
 import { AdopcionComponent } from './components/adopcion/adopcion.component';
 import { MisMascotasComponent } from './components/mis-mascotas/mis-mascotas.component';
 @NgModule({
@@ -49,6 +50,7 @@ import { MisMascotasComponent } from './components/mis-mascotas/mis-mascotas.com
     CitasComponent,
     MiVeterinariaComponent,
     VeterinariasComponent,
+    VeterinariaComponent,
     AdopcionComponent,
     MisMascotasComponent
   ],
