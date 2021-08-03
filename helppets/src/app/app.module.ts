@@ -32,6 +32,7 @@ import { CitasComponent } from './components/citas/citas.component';
 import { VeterinariaComponent } from './components/veterinaria/veterinaria.component';
 import { AdopcionComponent } from './components/adopcion/adopcion.component';
 import { MisMascotasComponent } from './components/mis-mascotas/mis-mascotas.component';
+import { MisCitasComponent } from './components/mis-citas/mis-citas.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +53,8 @@ import { MisMascotasComponent } from './components/mis-mascotas/mis-mascotas.com
     VeterinariasComponent,
     VeterinariaComponent,
     AdopcionComponent,
-    MisMascotasComponent
+    MisMascotasComponent,
+    MisCitasComponent
   ],
   imports: [
     HttpClientModule,

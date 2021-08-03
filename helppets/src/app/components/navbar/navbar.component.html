@@ -95,7 +95,7 @@
       <a routerLink="veterinarias">Veterinarias</a>
       <ul>
         <li *ngIf="userService.getIdentidad() != null && userService.getIdentidad().type == 'veterinaria'"><a routerLink="miVeterinaria">Mi Veterinaria</a></li>
-
+        <li *ngIf="userService.getIdentidad() != null && identidad.type == 'dueño'" [routerLink]="['/misCitas']" routerLinkActive="router-link-active" ><a >Mis Citas</a></li>
       </ul>
     </li>
     <li >
@@ -112,7 +112,7 @@
       <ul>
         <li *ngIf="userService.getIdentidad() == null"><a  data-bs-toggle="modal" data-bs-target="#exampleModal">Iniciar Sesión</a></li>
         <li *ngIf="userService.getIdentidad() != null && identidad.type == 'Administrador'"><a  routerLink="administrar">Administrar Usuario</a></li>
-        <li *ngIf="userService.getIdentidad() != null"><a data-bs-toggle="modal" data-bs-target="#perfilModal">Mi Perfil</a></li>
+        <li *ngIf="userService.getIdentidad() != null"><a data-bs-toggle="modal" data-bs- target="#perfilModal">Mi Perfil</a></li>
         <li *ngIf="userService.getIdentidad() != null" routerLink="home"><a (click)="cerrarSesion()" routerLink="home">Cerrar Sesión</a></li>
         <li *ngIf="userService.getIdentidad() == null"><a routerLink="registrar">Registro</a></li>
       </ul>

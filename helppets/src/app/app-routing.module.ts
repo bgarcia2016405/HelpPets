@@ -16,6 +16,7 @@ import { AdopcionComponent } from './components/adopcion/adopcion.component';
 import { VeterinariasComponent } from './components/veterinarias/veterinarias.component';
 import { VeterinariaComponent } from './components/veterinaria/veterinaria.component';
 import { MisMascotasComponent } from './components/mis-mascotas/mis-mascotas.component';
+import { MisCitasComponent } from './components/mis-citas/mis-citas.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
@@ -35,6 +36,7 @@ const routes: Routes = [
   { path: 'noticias', component: NewComponent},
   { path: 'detalleNoticia/:idNew', component: DetalleNoticiaComponent},
   { path: 'misMascotas', component:MisMascotasComponent},
+  { path: 'misCitas', component:MisCitasComponent},
   { path: '**', component: HomeComponent }
 ];
 
