@@ -4,6 +4,7 @@ import { Date } from 'src/app/models/date.model';
 import { User } from 'src/app/models/user.model';
 import { Service } from 'src/app/models/service.model';
 import { DateService } from 'src/app/services/date.service';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-citas',
@@ -19,7 +20,8 @@ export class CitasComponent implements OnInit {
 
   constructor(
     public _activatedRoute: ActivatedRoute,
-    public dateService: DateService
+    public dateService: DateService,
+    public route: Router
   ) {
     this.dateAdd = new Date("","","",""),
     this.veterinariaaGet = new User("","","","","","","","","","","","","","",0,"","","","",""),
@@ -40,6 +42,24 @@ export class CitasComponent implements OnInit {
     this.dateService.createDate(this.dateAdd).subscribe(
       response => {
         console.log(response)
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Cita reservada',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        this.route.navigate(['/home'])
+      },
+      err=>{
+        console.log(<any>err);
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'No autorizado para hacer esta acción',
+          showConfirmButton: false,
+          timer: 1500
+        })
       }
     )
   }

@@ -14,7 +14,7 @@ function createDate(req, res) {
     var DateModel = new dateModel();
 
     if (req.user.type != 'dueño') {
-        return res.status(500).send({ mensaje: 'Solo los albergues pueden realizar esta accion' })
+        return res.status(404).send({ mensaje: 'Solo los dueños pueden realizar esta accion' })
     }
 
     DateModel.user = idUser;
