@@ -7,7 +7,7 @@ const userModel = require('./src/models/user.model');
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb+srv://root:root@helppets.0yht9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {useNewUrlParser:true, useUnifiedTopology: true}).then(()=>{
+mongoose.connect('mongodb+srv://root:root@helppets.aeb41.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {useNewUrlParser:true, useUnifiedTopology: true}).then(()=>{
 
     var nickName = 'ADMIN';
     var password = '123456';
