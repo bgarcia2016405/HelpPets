@@ -7,8 +7,13 @@ const dateModel = require("../models/date.model");
 const veterinariaModel = require("../models/user.model")
 const serviceModel = require("../models/service.model")
 
+const reservado = 'reservado';
+const cancelado = 'cancelado';
+const servido = 'termida';
+
 function createDate(req, res) {
 
+    var veterinaria = req.params.veterinaria
     var idUser = req.user.sub;
     var params = req.body;
     var DateModel = new dateModel();
@@ -17,10 +22,12 @@ function createDate(req, res) {
         return res.status(404).send({ mensaje: 'Solo los dueños pueden realizar esta accion' })
     }
 
+   
     DateModel.user = idUser;
     DateModel.service = params.service;
     DateModel.date = params.date;
-
+    DateModel.state = reservado; 
+    DateModel.veterinaria = params.veterinaria
     dateModel.find({
         $or: [
             { date: DateModel.date }
@@ -71,8 +78,57 @@ function getVeteriariaId(req, res) {
 
 }
 
+function getMyDate(req,res){
+  var idUser = req.user.sub;
+
+  dateModel.find({user:idUser}, (err,dateFound)=>{
+    if (err) return res.status(500).send({ mensaje: 'Error en la peticion' });
+    if (!dateFound) return res.status(500).send({ mensaje: 'Erro al obtener la citas' });
+    return res.status(200).send(dateFound)
+  }).populate('service veterinaria')
+}
+
+function getDatesOrg(req,res){
+  var idUser = req.params.idUser;
+
+  if (req.user.type != 'veterinaria') {
+    return res.status(404).send({ mensaje: 'Solo las veterianarias pueden realizar esta accion' })
+}
+
+  dateModel.findById(idUser,(err,dateFound)=>{
+    if (err) return res.status(500).send({ mensaje: 'Error en la peticion' });
+    if (!dateFound) return res.status(500).send({ mensaje: 'Erro al obtener la citas' });
+    return res.status(200).send(dateFound)
+  })
+}
+
+function editarDate(req,res){
+  var idDate = req.params.idDate;
+  var params = req.body;
+
+  dateModel.findByIdAndUpdate(idDate,params,(err,dateEdit)=>{
+    if (err) return res.status(500).send({ mensaje: 'Error en la peticion' });
+    if (!dateEdit) return res.status(500).send({ mensaje: 'Erro en editar ' });
+    return res.status(200).send(dateEdit)
+  })
+}
+
+function buscarIdDate(req,res){
+  var idDate = req.params.idDate;
+
+  dateModel.findById(idDate,(err,dateFound)=>{
+    if (err) return res.status(500).send({ mensaje: 'Error en la peticion' });
+    if (!dateFound) return res.status(500).send({ mensaje: 'Erro en buscar ' });
+    return res.status(200).send(dateFound)
+  })
+}
+
 module.exports = {
     createDate,
     getService,
-    getVeteriariaId
+    getVeteriariaId,
+    getMyDate,
+    getDatesOrg,
+    editarDate,
+    buscarIdDate
 }

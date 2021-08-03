@@ -12,4 +12,13 @@ api.get('/getService/:idVeterinaria', authenticated.ensureAuth, dateController.g
 
 api.get('/getVeterinariaId/:idVeterinaria', authenticated.ensureAuth, dateController.getVeteriariaId);
 
+api.get('/getMyDate', authenticated.ensureAuth, dateController.getMyDate)
+
+api.get('/getDatesOrg/:idUser', authenticated.ensureAuth, dateController.getDatesOrg)
+
+api.put('/editarDate/:idDate', authenticated.ensureAuth, dateController.editarDate)
+
+api.get('/buscarIdDate/:idDate', authenticated.ensureAuth, dateController.buscarIdDate)
+
+
 module.exports = api;
