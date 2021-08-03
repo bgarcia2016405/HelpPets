@@ -7,7 +7,7 @@ const userModel = require('./src/models/user.model');
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost:27017/HelpPets', {useNewUrlParser:true, useUnifiedTopology: true}).then(()=>{
+mongoose.connect('mongodb+srv://root:root@helppets.0yht9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {useNewUrlParser:true, useUnifiedTopology: true}).then(()=>{
 
     var nickName = 'ADMIN';
     var password = '123456';
@@ -37,7 +37,7 @@ mongoose.connect('mongodb://localhost:27017/HelpPets', {useNewUrlParser:true, us
         })
     })
 
-    app.listen(3000, function(){
+    app.listen(process.env.PORT  || 3000, function(){
     })
 
 }).catch(err => console.log(err))
