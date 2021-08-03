@@ -49,6 +49,18 @@ function mostrarMascotas(req, res) {
     })
 }
 
+function mostrarMascotasOrg(req, res) {
+    var idOrg = req.user.sub;
+
+    petModel.find({ organizacion: idOrg }, (err, petFound) => {
+        if (err) return res.status(500).send({ mensaje: 'Error en la peticion' })
+        if (!petFound) return res.status(500).send({ mensaje: 'No se ha encontrado ninguna mascota' });
+
+        return res.status(200).send(petFound)
+    })
+}
+
+
 function mostrarMascotasUser(req, res) {
     petModel.find({ organizacion: req.params.idOrg, state: cuidando}, (err, petFound) => {
         if (err) return res.status(500).send({ mensaje: 'Error en la peticion' })
@@ -69,11 +81,11 @@ function mostrarMascotaId(req, res) {
     })
 }
 
-function editarMascota() {
-    var idOrg = req.user.sub;
+function editarMascota(req,res) {
+    var idPet = req.params.idPet;
     var params = req.body;
 
-    usuarioModel.findByIdAndUpdate({ organizacion: idOrg }, params, { new: true }, (err, petUpdate) => {
+    petModel.findByIdAndUpdate(idPet , params, { new: true }, (err, petUpdate) => {
         if (err) return res.status(500).send({ mensaje: 'Error en la petición' });
         if (!petUpdate) return res.status(500).send({ mensaje: 'No se pudo actualizar la mascota' });
 
@@ -132,5 +144,6 @@ module.exports ={
     buscarMascotaID,
     mostrarMascotaId,
     editarMascota,
-    adoptarMascota
+    adoptarMascota,
+    mostrarMascotasOrg
 }
