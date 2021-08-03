@@ -1,0 +1,110 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@700&family=Nunito:wght@800&display=swap" rel="stylesheet">
+<br>
+<div class="containerOg">
+    <div class="containerBody">
+        <div class="containerImg col-md-6">
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="{{veterinaria.pictureOrg}}" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{veterinaria.pictureTwo}}" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{veterinaria.pictureThree}}" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        <div class="containerText">
+            <div class="containerTitle">
+                <h1>{{veterinaria.nameOrg}}</h1>
+            </div>
+            <br>
+            <p class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">{{veterinaria.description}}</p>
+            <br>
+            <div class="containerInfo">
+                <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                    <div class="card h-100 infoCard">
+                        <div class="card-body">
+                            <div class="row gutters" *ngIf="userService.getIdentidad()">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <div class="subtitulos">
+                                            <img src="../../../assets/location.png" class="iconos">
+                                            <h2>Dirección</h2>
+                                        </div>
+                                        <p>{{veterinaria.direction}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <div class="subtitulos">
+                                            <img src="../../../assets/phone-call.png" class="iconos">
+                                            <h2>Teléfono</h2>
+                                        </div>
+                                        <p>{{veterinaria.phone}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <div class="subtitulos">
+                                            <img src="../../../assets/clock.png" class="iconos">
+                                            <h2>Horario</h2>
+                                        </div>
+                                        <p>{{veterinaria.hOpen}} - {{veterinaria.hClose}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="container containerServices">
+        <div class="col-6 containerTable">
+            <div class="card servicesCard">
+                <table class="table table-borderless">
+                    <thead>
+                        <tr>
+                            <th scope="col">Servicio</th>
+                            <th scope="col">Precio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let ser of services">
+                            <td>{{ser.service}}</td>
+                            <td>{{ser.precio}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-6 d-flex align-items-end flex-column bd-highlight btnOg">
+            <div class="col-sm-6 mt-auto p-2 bd-highlight d-grid gap-2">
+                <button type="button" class="btn btnAgendar" [routerLink]="['/citas', veterinaria._id]" routerLinkActive="router-link-active">Agendar</button>
+            </div>
+
+        </div>
+    </div>
+</div>

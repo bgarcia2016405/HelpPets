@@ -1,0 +1,410 @@
+<br>
+<br>
+<br>
+<div class="container">
+    <div class="row gutters">
+        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="account-settings">
+                        <div class="user-profile">
+                            <div class="user-avatar">
+                                <img *ngIf="userService.getIdentidad().pictureOrg == null"
+                                    src="../../../assets/imgMissing.png" alt="Falta imagen">
+                                <img *ngIf="userService.getIdentidad().pictureOrg != null" src={{identidad.pictureOrg}}
+                                    alt="Falta imagen">
+                            </div>
+                            <h5 class="user-name">Imagen 1</h5>
+                        </div>
+                        <div class="user-profile">
+                            <div class="user-avatar">
+                                <img *ngIf="userService.getIdentidad().pictureTwo == null"
+                                    src="../../../assets/imgMissing.png" alt="Falta imagen">
+                                <img *ngIf="userService.getIdentidad().pictureTwo != null" src={{identidad.pictureTwo}}
+                                    alt="Falta imagen">
+                            </div>
+                            <h5 class="user-name">Imagen 2</h5>
+                        </div>
+                        <div class="user-profile">
+                            <div class="user-avatar">
+                                <img *ngIf="userService.getIdentidad().pictureThree == null"
+                                    src="../../../assets/imgMissing.png" alt="Falta imagen">
+                                <img *ngIf="userService.getIdentidad().pictureThree != null"
+                                    src={{identidad.pictureThree}} alt="Falta imagen">
+                            </div>
+                            <h5 class="user-name">Imagen 3</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="row gutters" *ngIf="userService.getIdentidad()">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <h6 class="mb-2 title">Información General</h6>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="fullName">Nombre Veterinaria</label>
+                                <input type="text" class="form-control" id="nameVet" name="nameOrg" #nameOrg="ngModel"
+                                    [(ngModel)]="identidad.nameOrg" placeholder="Ingrese nombre veterinaria" disabled>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="eMail">Dirección</label>
+                                <input type="email" class="form-control" id="dirVet" name="direction"
+                                    #direction="ngModel" [(ngModel)]="identidad.direction"
+                                    placeholder="Ingrese dirección" disabled>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="phone">Teléfono</label>
+                                <input type="text" class="form-control" id="phoneVet" name="phone" #phone="ngModel"
+                                    [(ngModel)]="identidad.phone" placeholder="Ingrese número de teléfono" disabled>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="website">Descripción</label>
+                                <input type="url" class="form-control" id="descVet" name="decription"
+                                    #description="ngModel" [(ngModel)]="identidad.description"
+                                    placeholder="Ingrese texto corto" disabled>
+                            </div>
+                        </div>
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <h6 class="mt-3 mb-2 title">Horario</h6>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group abierto">
+                                <label for="website">Hora Abrir</label>
+                                <input class="form-control" id="hourOpen" name="hOpen" #hOpen="ngModel"
+                                    [(ngModel)]="identidad.hOpen" placeholder="Ingrese hora de abrir" disabled>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group cerrado">
+                                <label for="website">Hora Cerrar</label>
+                                <input class="form-control two" id="hourClose" name="hClose" #hClose="ngModel"
+                                    [(ngModel)]="identidad.hClose" placeholder="Ingrese hora de cerrar" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row gutters">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <h6 class="mt-3 mb-2 title">Imágenes</h6>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="Street">URL imágen 1</label>
+                                <input type="name" class="form-control" id="urlOne" name="pictureOrg"
+                                    #pictureOrg="ngModel" [(ngModel)]="identidad.pictureOrg"
+                                    placeholder="Ingrese URL imágen" disabled>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="ciTy">URL imágen 2</label>
+                                <input type="name" class="form-control" id="urlTwo" name="pictureTwo"
+                                    #pictureTwo="ngModel" [(ngModel)]="identidad.pictureTwo"
+                                    placeholder="Ingrese URL imágen" disabled>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="sTate">URL imágen 3</label>
+                                <input type="text" class="form-control" id="urlThree" name="pictureThree"
+                                    #pictureThree="ngModel" [(ngModel)]="identidad.pictureThree"
+                                    placeholder="Ingrese URL imágen" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row gutters ">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 botonesVet">
+                            <div>
+                                <button type="button" id="submit" (click)="getMyVet(identidad._id)" class="btn btnEdit"
+                                    data-bs-toggle="modal" data-bs-target="#modalEditVet">Editar</button>
+                            </div>
+                            <div>
+                                <button type="button" id="submit" class="btn btn-danger btnDelete"
+                                    data-bs-toggle="modal" data-bs-target="#modalDeleteVet">Eliminar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row gutters">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <h6 class="mt-3 mb-2 title">Servicios</h6>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button class="btn agregar" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#modalCreateService">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Servicio</th>
+                                        <th scope="col">Precio</th>
+                                        <th scope="col">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let ser of serviceModelGet">
+                                        <td>{{ser.service}}</td>
+                                        <td>{{ser.precio}}</td>
+                                        <td>
+                                            <div class="col botones">
+                                                <button class="btn btn-outline-warning" type="button"
+                                                    data-bs-toggle="modal" data-bs-target="#modalEditService"
+                                                    (click)="getServiceId(ser._id)">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                                <button class="btn btn-outline-danger" type="button"
+                                                    data-bs-toggle="modal" data-bs-target="#modalDeleteService"
+                                                    (click)="getServiceId(ser._id)">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div><br><br>
+
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                          <h6 class="mt-3 mb-2 title">Citas</h6>
+
+                          <table class="table table-striped">
+                            <thead>
+                              <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Clinica</th>
+                                <th scope="col">Servicio</th>
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Estado</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let dates of dates; let i = index">
+                                <th scope="row">{{i+1}}</th>
+                                <td>{{dates.veterinaria.nameOrg}}</td>
+                                <td>{{dates.service.service}}</td>
+                                <td>
+                                  <mat-form-field>
+                                    <input matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" value="{{dates.date}}" disabled>
+                                    <mat-datepicker-toggle matSuffix [for]="picker" disabled></mat-datepicker-toggle>
+                                    <mat-datepicker #picker disabled ></mat-datepicker>
+                                  </mat-form-field>
+                                </td>
+                                <td>{{dates.state}}<br>
+                                <button *ngIf="dates.state == 'reservado'" type="button" class="btn btn-success" (click)="seguridadTerminar(dates._id)">Terminado</button>
+                                <button *ngIf="dates.state == 'reservado'" type="button" class="btn btn-danger" (click)="seguridadCancelar(dates._id)">Cancelar</button>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                      </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- modal edit veterinary -->
+<div class="modal fade" id="modalEditVet" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar datos de la veterinaria</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body"
+                *ngIf="userService.getIdentidad() != null && userService.getIdentidad().type == 'veterinaria'">
+                <form>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <h6 class="mb-2 title">Información General</h6>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputTitulo" class="form-label">Nombre de Veterinaria</label>
+                        <input type="text" class="form-control" id="inputName" name="nameOrg" #nameOrg="ngModel"
+                            [(ngModel)]="userModel.nameOrg">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFoto" class="form-label">Dirección</label>
+                        <input type="foto" class="form-control" id="exampleFoto" name="direction" #direction="ngModel"
+                            [(ngModel)]="userModel.direction">
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputTitulo" class="form-label">Teléfono</label>
+                        <input type="text" class="form-control" id="inputName" name="phone" #phone="ngModel"
+                            [(ngModel)]="userModel.phone">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFoto" class="form-label">Descripción</label>
+                        <input type="foto" class="form-control" id="exampleFoto" name="description"
+                            #description="ngModel" [(ngModel)]="userModel.description">
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <h6 class="mb-2 title">Horario</h6>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFoto" class="form-label">Hora Abrir</label>
+                        <input [ngxTimepicker]="picker" type="foto" class="form-control" id="exampleFoto" name="hOpen"
+                            #hOpen="ngModel" [(ngModel)]="userModel.hOpen">
+                        <ngx-material-timepicker #picker></ngx-material-timepicker>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFoto" class="form-label">Hora Cerrar</label>
+                        <input [ngxTimepicker]="pickerDos" type="foto" class="form-control" id="exampleFoto"
+                            name="hClose" #hClose="ngModel" [(ngModel)]="userModel.hClose">
+                        <ngx-material-timepicker #pickerDos></ngx-material-timepicker>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <h6 class="mb-2 title">Imágenes</h6>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFoto" class="form-label">Url imágen 1</label>
+                        <input type="foto" class="form-control" id="exampleFoto" name="pictureOrg" #pictureOrg="ngModel"
+                            [(ngModel)]="userModel.pictureOrg">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFoto" class="form-label">Url imágen 2</label>
+                        <input type="foto" class="form-control" id="exampleFoto" name="pictureTwo" #pictureTwo="ngModel"
+                            [(ngModel)]="userModel.pictureTwo">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFoto" class="form-label">Url imágen 3</label>
+                        <input type="foto" class="form-control" id="exampleFoto" name="pictureThree"
+                            #pictureThree="ngModel" [(ngModel)]="userModel.pictureThree">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-success btnEditM" data-bs-dismiss="modal"
+                    (click)="editVet()">Editar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Agregar Servicio-->
+<div class="modal fade" id="modalCreateService" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Servicio</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="inputTitulo" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="inputService" name="service" #service="ngModel"
+                            [(ngModel)]="serviceModelCreate.service">
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputPrecio" class="form-label">Precio</label>
+                        <input type="text" class="form-control" id="inputPrecio" name="precio" #precio="ngModel"
+                            [(ngModel)]="serviceModelCreate.precio">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+                    (click)="createService()">Agregar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Eliminar Torneo-->
+<div class="modal fade" id="modalDeleteVet" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Eliminar mi veterinaria</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="inputTitulo" class="form-label">{{identidad.nameOrg}}, se eliminará junto con su
+                            usuario. Desea eliminarlo?</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, cancelar</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteVet()"
+                    routerLink="home">Sí, eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Edit Service-->
+<div class="modal fade" id="modalEditService" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar Servicio</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="inputTitulo" class="form-label">Servicio</label>
+                        <input type="text" class="form-control" id="inputName" name="service" #service="ngModel"
+                            [(ngModel)]="serviceModelGetId.service">
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputPrecio" class="form-label">Precio</label>
+                        <input type="text" class="form-control" id="exampleFoto" name="precio" #precio="ngModel"
+                            [(ngModel)]="serviceModelGetId.precio">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+                    (click)="editService()">Editar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Delete Servicio-->
+<div class="modal fade" id="modalDeleteService" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Eliminar el servicio</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="inputTitulo" class="form-label">{{serviceModelGetId.service}} se eliminará, desea
+                            eliminar el servicio?</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, cancelar</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteService()">Sí,
+                    eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>

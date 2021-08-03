@@ -8,7 +8,11 @@ const cors = require("cors")
 
 
 const user_rutes = require("./src/rutes/user.rutes");
+const service_routes = require("./src/rutes/service.routes");
 const pet_rutes = require("./src/rutes/pet.rutes");
+const advice_rutes = require("./src/rutes/advice.rutes");
+const new_rutes = require("./src/rutes/new.rutes");
+const date_rutes = require("./src/rutes/date.rutes");
 
 
 
@@ -21,7 +25,12 @@ app.use(bodyParser.json())
 app.use(cors());
 
 // CARGA DE RUTAS
-app.use('/api', user_rutes, pet_rutes)
+app.use('/api', user_rutes,
+    service_routes,
+    pet_rutes,
+    advice_rutes,
+    new_rutes,
+    date_rutes);
 
 
 module.exports = app;

@@ -16,9 +16,9 @@ export class AdministracionComponent implements OnInit {
   public eliminarUsuarioModel:User
 
   constructor(public userService: UserService) {
-    this.usuario = new User("","","","","","","","","","","","","","");
-    this.editarUsuarioModel = new User("","","","","","","","","","","","","","");
-    this.eliminarUsuarioModel = new User("","","","","","","","","","","","","","");
+    this.usuario =  new User("","","","","","","","","","","","","","",0,"","","","","");
+    this.editarUsuarioModel =  new User("","","","","","","","","","","","","","",0,"","","","","");
+    this.eliminarUsuarioModel = new User("","","","","","","","","","","","","","",0,"","","","","");
   }
 
   ngOnInit(): void {

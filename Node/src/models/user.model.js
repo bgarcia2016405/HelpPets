@@ -16,7 +16,13 @@ var UserSchema = Schema({
         nameOrg: String,
         pictureOrg: String,
         direction: String,
-        type:String
+
+        phone: Number,
+        pictureTwo: String,
+        pictureThree: String,
+        description: String,
+        hOpen: String,
+        hClose: String
     
 
 })

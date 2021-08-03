@@ -34,6 +34,39 @@ export class PetService {
     return this.http.get(this.url + '/mostrarMascotasUser/'+ idOrg, {headers: this.headers})
    }
 
+   mostrarMascotasOrg():Observable<any>{
+    let token = this.headers.set('Authorization',this.getToken())
+    return this.http.get(this.url + '/mostrarMascotasOrg', {headers: token})
+   }
+
+   mostrarMascotaId(id: String):Observable<any>{
+     return this.http.get(this.url + '/mostrarMascotaId/' + id, {headers: this.headers})
+   }
+
+   adoptarMascota(id: String, mascota: Pet): Observable<any>{
+     let params = JSON.stringify(mascota);
+     let token = this.headers.set('Authorization', this.getToken());
+
+     return this.http.put(this.url + '/adoptarMascota/' + id, params, {headers: token})
+   }
+
+   eliminarMacota(idPet):Observable<any>{
+    let token = this.headers.set('Authorization' , this.getToken())
+
+     return this.http.delete(this.url + '/eliminarMascota/' + idPet, {headers: token})
+   }
+
+   buscarMascotaID(idPet):Observable<any>{
+    return this.http.get(this.url + '/buscarMascotaID/'+ idPet, {headers: this.headers} )
+   }
+
+   editarMascota(idPet, mascota: Pet):Observable<any>{
+     let params = JSON.stringify(mascota)
+     let token = this.headers.set('Authorization', this.getToken())
+
+     return this.http.put(this.url + '/editarMascota/' + idPet, params, {headers: token})
+   }
+
    getToken(){
     var token2 = localStorage.token;
     if(token2 != undefined){

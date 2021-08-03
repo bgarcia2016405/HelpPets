@@ -16,6 +16,9 @@ api.get('/mostrarAlbergue', userController.mostrarAlbergue)
 
 api.get('/miAlbergue',authenticated.ensureAuth , userController.miAlbergue)
 
+api.delete('/eliminarAlbergue/:idUser', authenticated.ensureAuth, userController.eliminarAlbergue)
+
+
 
 api.post('/mostrarAlbergue', userController.mostrarAlbergue)
 
@@ -26,5 +29,21 @@ api.put('/editarUsuario/:idUser', authenticated.ensureAuth, userController.edita
 api.delete('/eliminarUsuario/:idUser', authenticated.ensureAuth, userController.eliminar )
 
 api.get('/mostrarUsuarioId/:idUser', authenticated.ensureAuth, userController.mostrarUsuarioId)
+
+api.put('/compInfoVet', authenticated.ensureAuth, userController.compInfoVet);
+
+api.put('/editVet', authenticated.ensureAuth, userController.editVet);
+
+api.put('/editVetAdmin/:idUsuario', authenticated.ensureAuth, userController.editVetAdmin);
+
+api.delete('/deleteVet', authenticated.ensureAuth, userController.deleteVet);
+
+api.delete('/deleteVetAdmin/:idUsuario', authenticated.ensureAuth, userController.deleteVetAdmin);
+
+api.get('/getMyVet/:idUsuario', authenticated.ensureAuth, userController.getMyVet);
+
+api.get('/getVets', userController.getVets);
+
+
 
 module.exports = api;

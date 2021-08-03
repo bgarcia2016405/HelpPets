@@ -1,0 +1,62 @@
+<div class="container">
+    <!--*ngFor="let masc of mascota"-->
+    <div class="row align-items-center " *ngFor="let masc of mascota">
+
+        <div class="col-md-5 text-center">
+            <div class="row">
+                <img style="width: 180px" src={{masc.organizacion.pictureOrg}} class="img-fluid img-thumbnail" alt="Albergue">
+                <!--{{masc.organizacion.pictureOrg}}-->
+            </div>
+            <br>
+            <div class="row">
+                <img style="width: 450px" src={{masc.picture}} class="img-fluid img-thumbnail" alt="Mascota">
+                <!--{{masc.picture}}-->
+            </div>
+            <br>
+            <div class="row">
+                <h1 style="color: green; font-size: 50px">{{masc.name}}</h1>
+                <!--{{masc.name}}-->
+            </div>
+            <br>
+        </div>
+        <div class="col-md-4 text-center">
+            <div class="card" style="width: 100%; border-color: green; border-radius: 10px;">
+                <div class="card-body">
+                    <h1 class="card-title" style="color: rgb(34, 112, 34); font-size: 32px">Requisitos de adopcion</h1>
+                    <br>
+                    <div class="mb-3">
+                        <label for="numeroDPI" class="form-label" style="font-size: 25px">Numero de DPI</label>
+                        <input type="dpi" class="form-control" id="numeroDPI" placeholder="ingresar CUI" name="dpi" #dpi="ngModel" [(ngModel)]="adopcionm.dpi">
+                        <!--name="dpi" #dpi="ngModel" [(ngModel)]="masc.dpi"-->
+                    </div>
+                </div>
+
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" style="border-color: green;">
+                        <h2>Documento que llevar al recoger a la mascota.</h2>
+                        <h3>- Comprobante de domicilio.</h3>
+
+                    </li>
+                    <li class="list-group-item">
+                        <h2>Para poder completar la adopcion va a tener que firmar un contrato de adopcion en las instalaciones.</h2>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-3 text-center">
+            <mat-form-field>
+                <input matInput [matDatepicker]="picker" placeholder="Fecha a recoger" name="departureDate" #departureDate="ngModel" [(ngModel)]="adopcionm.departureDate">
+                <!--name="departureDate" #departureDate="ngModel" [(ngModel)]="masc.departureDate"-->
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <br>
+            <button type="button" class="btn btn-success btn-lg" (click)="adoptarMascota()">Adoptar</button>
+            <!--(click)="adoptarMascota()"-->
+            <br>
+            <br>
+        </div>
+
+    </div>
+
+</div>

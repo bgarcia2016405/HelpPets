@@ -1,0 +1,201 @@
+<br><br><br><br><br><br>
+<div class="container">
+  <div class="card text-center">
+    <div class="card-body">
+      <h1 class="card-title"><strong>Noticias</strong></h1>
+      <p class="card-text">Esta es una sección con el fin que se puedan reportar noticias sobre mascotas extraviadas, con el fin de que entre todos podamos ayudarnos...</p>
+      <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#mCreateNew">
+        Agregar noticia...
+      </button>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row justify-content-md-left">
+
+    <div class="col-xs-12 col-sm-12" *ngFor="let nws of newsModelGet; let i = index">
+      <div *ngIf="nws.stateNew==='Perdido'" class="card mb-3">
+          <small class=card-header>
+
+            <div class="dropdown">
+              <img *ngIf="nws.newCreator.picture == null  " src="/assets/HelpPetsLogo.png" class="avatar-profile" >
+              <img *ngIf="nws.newCreator.picture " [src]="nws.newCreator.picture" class="avatar-profile" >
+
+                <strong>
+                {{ nws.newCreator.nickName}}
+              </strong>  - {{nws.newDate}}
+
+              - <strong>Estado actual: </strong>"{{nws.stateNew}}"
+
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn"
+                  data-bs-toggle="collapse"
+                  [attr.data-bs-target]="'#acor'+i"
+                  aria-expanded="false"
+                  [attr.aria-controls]="'acor'+i"
+                  (click)="getNew(nws._id)">
+                  <i class="bi bi-chat-square-text"></i>
+                </button>
+              </div>
+
+              <button class="btn btn-light btn-sm" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-three-dots-vertical"> </i>
+              </button>
+
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li  *ngIf="nws.newCreator._id === identidad._id || identidad.type === 'Administrador'"   ><a class="dropdown-item"  (click)="getNew(nws._id)"
+                  data-bs-toggle="modal" data-bs-target="#mEditNew"><i class="bi bi-pencil-square"></i> | Editar</a></li>
+                <li  *ngIf="nws.newCreator._id === identidad._id || identidad.type === 'Administrador'"  ><a class="dropdown-item" (click)="getNew(nws._id)"
+                  data-bs-toggle="modal" data-bs-target="#mDeleteNew"><i class="bi bi-trash-fill"></i> | Eliminar</a></li>
+               <li><a class="dropdown-item" [routerLink]="['/detalleNoticia', nws._id]"><i class="bi bi-back"></i> | Detalle</a></li>
+              </ul>
+            </div>
+          </small>
+
+          <div class="row g-0">
+            <div class="col-md-6 "> <!-- bg-light-->
+              <div class="card-body">
+                <p class="card-text">{{nws.newsDescription}}</p>
+              </div>
+            </div>
+            <div align="right"class="col-md-6">
+              <img *ngIf="nws.pictures == ''  " src="/assets/imgNew.jpg" style="max-width:300px" >
+              <img *ngIf="nws.pictures " [src]="nws.pictures" style="max-width:300px">
+            </div>
+          </div>
+      </div>
+      <div class="collapse" [id]="'acor'+i">
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Escribe un comentario"
+                id="inputTextoComentario"
+                name="textoComentario"
+                #textoComentario ="ngModel"
+                [(ngModel)]="modelComment.commentText"
+              >
+              <span
+                class="input-group-text"
+                id="basic-addon2">
+                <button
+                  type="submit"
+                  class="btn"
+                  data-bs-toggle="collapse"
+                  [attr.data-bs-target]="'#acor'+i"
+                  (click)="addCommentNew()"
+                  >
+                  <i class="bi bi-symmetry-horizontal"></i>
+                </button>
+              </span>
+            </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Agregar Noticia -->
+<div class="modal fade" id="mCreateNew" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar Noticia</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="inputDescripcion" class="form-label">Descripcion:</label>
+            <textarea class="form-control" id="inputDescripcion" rows="3" name="descripcion" #descripcion="ngModel"
+              [(ngModel)]="newsModelAdd.newsDescription"></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="inputDesc" class="form-label">Link de la imágen:</label>
+            <textarea class="form-control" id="inputDesc" rows="3" name="pictures" #pictures="ngModel"
+              [(ngModel)]="newsModelAdd.pictures"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <img src="../../../assets/HelpPetsLogo.png" style="max-width: 20%;" alt="...">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-x-square"></i> Cerrar</button>
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+          (click)="createNew()"><i class="bi bi-plus-square"></i> Agregar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal Editar Noticia-->
+<div class="modal fade" id="mEditNew" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar Noticia</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="inputDescripción" class="form-label"><i class="bi bi-card-text"></i> <strong> Descripción:</strong></label>
+              <textarea class="form-control" id="inputDescripción" rows="3"
+                  name="adviceDesc"
+                  #adviceDesc="ngModel"
+                  [(ngModel)]="newsModelGetId.newsDescription">
+              </textarea>
+          </div>
+          <div class="mb-3">
+            <label for="inputLink" class="form-label"><i class="bi bi-link"></i> <strong> Link de la imágen:</strong></label>
+            <textarea class="form-control" id="inputLink" rows="3"
+                  name="linkPicture"
+                  #linkPicture="ngModel"
+                  [(ngModel)]="newsModelGetId.pictures">
+              </textarea>
+          </div>
+
+        <div class="mb-3">
+          <label for="inputEstado" class="form-label"><i class="bi bi-list-task"></i> <strong> Estado actual:</strong></label>
+          <h5>El estado de publicación es útil para saber si la mascota se encuentra perdida o ya fue encontrada...</h5>
+          <select  name="type" #type="ngModel"
+            [(ngModel)]="newsModelGetId.stateNew" class="form-select" aria-label="Default select example">
+            <option  [ngValue]="'Encontrado'">Encontrado</option>
+            <option  [ngValue]="'Perdido'">Perdido</option>
+          </select>
+          <br>
+          <h5 style="color:Red">Nota: En la sección de noticias solo podrá ver las noticias que cuentan con estado "Perdido".</h5>
+      </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <img src="../../../assets/HelpPetsLogo.png" style="max-width: 20%;" alt="...">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-x-square"></i> Cerrar</button>
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="editNew()"><i class="bi bi-save"></i> Guardar cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Eliminar Noticia -->
+<div class="modal fade" id="mDeleteNew" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Eliminar Noticia</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ¿Está seguro de que desea eliminar la noticia?
+      </div>
+      <div class="modal-footer">
+        <img src="../../../assets/HelpPetsLogo.png" style="max-width: 20%;" alt="...">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-square"></i> No, cerrar</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+        (click)="deleteNew(newsModelGetId._id)"><i class="bi bi-check-square"></i> Si, eliminar <i class="bi bi-trash"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+

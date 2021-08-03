@@ -1,0 +1,141 @@
+<body class="container pos" style="padding-top: 15px;">
+    <div class="mt-4 text-center color">
+        <h2 class="titulo2">Veterinarias</h2>
+    </div>
+    <div class="wrapper" *ngFor="let vet of veterinarias">
+        <div id="formContent" style="align-items: center; justify-content: center;margin: auto;"
+            class="col-lg-9 row pt-2">
+            <div class="col-lg-6">
+                <img width="300" class="img-fluid" src="{{vet.pictureOrg}}">
+            </div>
+            <div class="col-lg-6">
+                <h2 class="mt-4 nombre">{{vet.nameOrg}}</h2>
+                <p class="text-muted text-left">{{vet.direction}}</p>
+                <input
+                    *ngIf="userService.getIdentidad() == null || userService.getIdentidad() == '' || userService.getIdentidad() == 'undefined'"
+                    type="submit" class="fadeIn fourth" value="Más info" disabled>
+                <input *ngIf="userService.getIdentidad() != null && userService.getIdentidad() != ''" type="submit"
+                    class="fadeIn fourth" value="Más info" [routerLink]="['/veterinaria', vet._id]"
+                    routerLinkActive="router-link-active">
+            </div>
+            <div *ngIf="userService.getIdentidad() != null && userService.getIdentidad().type == 'Administrador'" class="botonesAdmin">
+                <div class="botones">
+                    <button class="btn btn-outline-warning" type="button" data-bs-toggle="modal"
+                        data-bs-target="#modalEditVet" (click)="getMyVet(vet._id)">
+                        <i class="bi bi-pencil"></i>
+                    </button>
+                    <button class="btn btn-outline-danger" type="button" data-bs-toggle="modal"
+                        data-bs-target="#modalDeleteVet" (click)="getMyVet(vet._id)">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <br>
+    <br>
+</body>
+
+<!-- modal edit veterinary -->
+<div class="modal fade" id="modalEditVet" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar datos de la veterinaria</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body"
+                *ngIf="userService.getIdentidad() != null && userService.getIdentidad().type == 'Administrador'">
+                <form>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <h6 class="mb-2 title">Información General</h6>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputTitulo" class="form-label">Nombre de Veterinaria</label>
+                        <input type="text" class="form-control" id="inputName" name="nameOrg" #nameOrg="ngModel"
+                            [(ngModel)]="vetModelGetId.nameOrg">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFoto" class="form-label">Dirección</label>
+                        <input type="foto" class="form-control" id="exampleFoto" name="direction" #direction="ngModel"
+                            [(ngModel)]="vetModelGetId.direction">
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputTitulo" class="form-label">Teléfono</label>
+                        <input type="text" class="form-control" id="inputName" name="phone" #phone="ngModel"
+                            [(ngModel)]="vetModelGetId.phone">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFoto" class="form-label">Descripción</label>
+                        <input type="foto" class="form-control" id="exampleFoto" name="description"
+                            #description="ngModel" [(ngModel)]="vetModelGetId.description">
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <h6 class="mb-2 title">Horario</h6>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFoto" class="form-label">Hora Abrir</label>
+                        <input [ngxTimepicker]="picker" type="foto" class="form-control" id="exampleFoto" name="hOpen"
+                            #hOpen="ngModel" [(ngModel)]="vetModelGetId.hOpen">
+                        <ngx-material-timepicker #picker></ngx-material-timepicker>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFoto" class="form-label">Hora Cerrar</label>
+                        <input [ngxTimepicker]="pickerDos" type="foto" class="form-control" id="exampleFoto"
+                            name="hClose" #hClose="ngModel" [(ngModel)]="vetModelGetId.hClose">
+                        <ngx-material-timepicker #pickerDos></ngx-material-timepicker>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <h6 class="mb-2 title">Imágenes</h6>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFoto" class="form-label">Url imágen 1</label>
+                        <input type="foto" class="form-control" id="exampleFoto" name="pictureOrg" #pictureOrg="ngModel"
+                            [(ngModel)]="vetModelGetId.pictureOrg">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFoto" class="form-label">Url imágen 2</label>
+                        <input type="foto" class="form-control" id="exampleFoto" name="pictureTwo" #pictureTwo="ngModel"
+                            [(ngModel)]="vetModelGetId.pictureTwo">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFoto" class="form-label">Url imágen 3</label>
+                        <input type="foto" class="form-control" id="exampleFoto" name="pictureThree"
+                            #pictureThree="ngModel" [(ngModel)]="vetModelGetId.pictureThree">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-success btnEditM" data-bs-dismiss="modal"
+                    (click)="editVetAdmin(vetModelGetId._id)">Editar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Eliminar Veterinaria-->
+<div class="modal fade" id="modalDeleteVet" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Eliminar veterinaria</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="inputTitulo" class="form-label">{{vetModelGetId.nameOrg}}, se eliminará junto con el
+                            usuario {{vetModelGetId.nickName}}. Desea eliminarlo?</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, cancelar</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteVetAdmin(vetModelGetId._id)"
+                    routerLink="home">Sí, eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>

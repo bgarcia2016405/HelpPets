@@ -85,11 +85,28 @@
     <li>
       <a [routerLink]="['/albergues']" routerLinkActive="router-link-active" >Albergues</a>
       <ul>
-        <li *ngIf="userService.getIdentidad() != null && identidad.type == 'albergue'" [routerLink]="['/alberguepersonal']" routerLinkActive="router-link-active" ><a href="#0">Mi Albergue</a></li>
+        <li *ngIf="userService.getIdentidad() != null && identidad.type == 'albergue'" [routerLink]="['/alberguepersonal']" routerLinkActive="router-link-active" ><a>Mi Albergue</a></li>
+        <li *ngIf="userService.getIdentidad() != null && identidad.type == 'dueño'" [routerLink]="['/misMascotas']" routerLinkActive="router-link-active" ><a >Mis mascotas</a></li>
+
       </ul>
     </li>
-    <li><a href="#0">Veterinarias</a></li>
 
+    <li>
+      <a routerLink="veterinarias">Veterinarias</a>
+      <ul>
+        <li *ngIf="userService.getIdentidad() != null && userService.getIdentidad().type == 'veterinaria'"><a routerLink="miVeterinaria">Mi Veterinaria</a></li>
+        <li *ngIf="userService.getIdentidad() != null && identidad.type == 'dueño'"><a routerLink="misCitas">Mis Citas</a></li>
+
+      </ul>
+    </li>
+    <li >
+      <a>Información</a>
+      <ul>
+        <li routerLink="consejos"><a  >Consejos</a></li>
+        <li routerLink="noticias"><a >Noticias</a></li>
+      </ul>
+
+    </li>
     <li>
       <a *ngIf="userService.getIdentidad()== null" >Usuario</a>
       <a *ngIf="userService.getIdentidad()!= null" >{{identidad.nickName}}</a>
@@ -97,7 +114,7 @@
         <li *ngIf="userService.getIdentidad() == null"><a  data-bs-toggle="modal" data-bs-target="#exampleModal">Iniciar Sesión</a></li>
         <li *ngIf="userService.getIdentidad() != null && identidad.type == 'Administrador'"><a  routerLink="administrar">Administrar Usuario</a></li>
         <li *ngIf="userService.getIdentidad() != null"><a data-bs-toggle="modal" data-bs-target="#perfilModal">Mi Perfil</a></li>
-        <li *ngIf="userService.getIdentidad() != null"><a (click)="cerrarSesion()" routerLink="home">Cerrar Sesión</a></li>
+        <li *ngIf="userService.getIdentidad() != null" routerLink="home"><a (click)="cerrarSesion()" routerLink="home">Cerrar Sesión</a></li>
         <li *ngIf="userService.getIdentidad() == null"><a routerLink="registrar">Registro</a></li>
       </ul>
     </li>
@@ -169,28 +186,28 @@
 
       <div class="avatar-holder">
 
-        <img *ngIf="userService.getIdentidad() != null" src={{identidad.picture}}>
+        <img *ngIf="userService.getIdentidad() != null" src={{editarUsuarioModel.picture}}>
       </div>
       <div class="name">
 
-        <div *ngIf="userService.getIdentidad() != null" class="col"><p>{{identidad.nickName}}</p> </div>
+        <div *ngIf="userService.getIdentidad() != null" class="col"><p>{{editarUsuarioModel.nickName}}</p> </div>
         <div class="row row-cols-2">
-          <div *ngIf="userService.getIdentidad() != null" class="col"><p>{{identidad.nameUser}}</p> </div>
-          <div *ngIf="userService.getIdentidad() != null" class="col"><p>{{identidad.lastNameUser}}</p></div>
+          <div *ngIf="userService.getIdentidad() != null" class="col"><p>{{editarUsuarioModel.nameUser}}</p> </div>
+          <div *ngIf="userService.getIdentidad() != null" class="col"><p>{{editarUsuarioModel.lastNameUser}}</p></div>
         </div>
-        <div *ngIf="userService.getIdentidad() != null" class="col"><p>{{identidad.email}}</p> </div>
-        <mat-form-field *ngIf="userService.getIdentidad() != null && identidad.ageUser != null" >
+        <div *ngIf="userService.getIdentidad() != null" class="col"><p>{{editarUsuarioModel.email}}</p> </div>
+        <mat-form-field *ngIf="userService.getIdentidad() != null && editarUsuarioModel.ageUser != null" >
 
-            <input *ngIf="userService.getIdentidad() != null" style="color:white" matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" name="ageUser" value={{identidad.ageUser}} disabled>
+            <input *ngIf="userService.getIdentidad() != null" style="color:white" matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" name="ageUser" value={{editarUsuarioModel.ageUser}} disabled>
           <mat-datepicker-toggle *ngIf="userService.getIdentidad() != null" matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker *ngIf="userService.getIdentidad() != null" #picker ></mat-datepicker>
 
 
         </mat-form-field>
-        <div *ngIf="userService.getIdentidad() != null" class="col"><p>{{identidad.type}}</p> </div>
+        <div *ngIf="userService.getIdentidad() != null" class="col"><p>{{editarUsuarioModel.type}}</p> </div>
 
-        <button type="button" class="btn btn-outline-primary"  data-bs-dismiss="modal"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Editar</button>
-
+        <button *ngIf="userService.getIdentidad() != null && identidad.type != 'Administrador'"  type="button" class="btn btn-outline-primary"  data-bs-dismiss="modal"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Editar</button>
+        <button *ngIf="userService.getIdentidad() != null && identidad.type != 'Administrador'"  type="button" class="btn btn-outline-primary"  (click)="seguro(editarUsuarioModel._id)" >Eliminar</button>
       </div>
 
 
@@ -205,10 +222,48 @@
 
 <div style="background: #121212   ;" class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasBottomLabel">Offcanvas bottom</h5>
-    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    <h1 class="offcanvas-title" id="offcanvasBottomLabel">Editar</h1>
+    <div class="col-4" style="text-align: center;" *ngIf="userService.getIdentidad() != null">
+      <button style="text-align: center;"  class="btn btn-success" data-bs-dismiss="offcanvas" aria-label="Close" (click)="editarUsuario(editarUsuarioModel._id)"><i (click)="editarUsuario(editarUsuarioModel._id)" class="bi bi-pencil"></i></button>
+   </div>
   </div>
   <div class="offcanvas-body small">
-    ...
-  </div>
+    <form>
+      <div class="container">
+
+        <div class="row">
+          <div class="col-4" *ngIf="userService.getIdentidad() != null">
+            <div class="form-floating mb-3">
+              <input  type="text" class="form-control" id="nameUser" name="nameUser" #nameUser="ngModel" [(ngModel)]="editarUsuarioModel.nameUser" placeholder="name@example.com">
+              <label for="floatingInput">Nombre</label>
+            </div>
+          </div>
+          <div class="col-4" *ngIf="userService.getIdentidad() != null">
+            <div class="form-floating mb-3">
+              <input   type="text" class="form-control" id="lastNameUser"  name="lastNameUser" #lastNameUser="ngModel" [(ngModel)]="editarUsuarioModel.lastNameUser"  placeholder="name@example.com">
+              <label for="floatingInput">Apellido</label>
+            </div>
+          </div>
+          <div class="col-4" *ngIf="userService.getIdentidad() != null">
+            <div class="form-floating mb-3">
+              <input  type="email" class="form-control" id="email" name="email" #email="ngModel" [(ngModel)]="editarUsuarioModel.email" placeholder="name@example.com">
+              <label for="floatingInput">Email</label>
+            </div>
+
+          </div>
+          <div class="col-7" *ngIf="userService.getIdentidad() != null">
+            <div class="form-floating mb-3">
+              <textarea type="email" class="form-control" id="picture" name="picture" #picture="ngModel" [(ngModel)]="editarUsuarioModel.picture" placeholder="name@example.com"></textarea>
+              <label for="floatingInput">Imagen</label>
+            </div>
+
+          </div>
+
+
+
+        </div>
+      </div>
+  </form>
+
+ </div>
 </div>
