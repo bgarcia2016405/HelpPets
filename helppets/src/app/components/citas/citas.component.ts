@@ -23,7 +23,7 @@ export class CitasComponent implements OnInit {
     public dateService: DateService,
     public route: Router
   ) {
-    this.dateAdd = new Date("","","","",""),
+    this.dateAdd = new Date("","","","","",""),
     this.veterinariaaGet = new User("","","","","","","","","","","","","","",0,"","","","",""),
     this.serviceeGet = new Service("","","",0)
   }

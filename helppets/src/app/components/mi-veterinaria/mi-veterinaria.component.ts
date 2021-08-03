@@ -3,6 +3,8 @@ import { Service } from 'src/app/models/service.model';
 import { User } from 'src/app/models/user.model';
 import { ServiceService } from 'src/app/services/service.service';
 import { UserService } from 'src/app/services/user.service';
+import { DateService } from 'src/app/services/date.service';
+import { Date } from 'src/app/models/date.model';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -15,19 +17,34 @@ export class MiVeterinariaComponent implements OnInit {
   public serviceModelGet: Service;
   public serviceModelGetId: Service;
   public serviceModelCreate: Service;
+  public dates: Date;
+  public dateEdit: Date;
   public identidad;
   public token;
 
-  constructor(public userService:UserService, public servicesService:ServiceService) {
+  constructor(public userService:UserService, public servicesService:ServiceService,public dateService: DateService) {
     this.identidad = this.userService.getIdentidad();
     this.userModel = new User("","","","","","","","","","","","","","",0,"","","","","");
     this.serviceModelCreate = new Service("","","",0);
     this.serviceModelGetId = new Service('', '', '',0);
+    this.dates = new Date("","","","","","")
+    this.dateEdit = new Date("","","","","","")
     this.token = this.userService.getToken();
   }
 
   ngOnInit(): void {
     this.getMyServices();
+
+    this.mostrarCitas()
+  }
+
+  mostrarCitas(){
+    this.dateService.getDatesOrg(this.identidad._id).subscribe(
+      responce=>{
+        this.dates= responce
+        console.log(this.dates)
+      }
+    )
   }
 
   getMyVet(idUsuario){
@@ -138,5 +155,77 @@ export class MiVeterinariaComponent implements OnInit {
     localStorage.setItem('token', JSON.stringify(this.token));
     this.refresh()
   }
+
+  seguridadCancelar(idPet){
+    this.dateService.buscarIdDate(idPet).subscribe(
+
+      response=>{
+
+        this.dateEdit = response
+        this.dateEdit.state = 'cancelado'
+        console.log(response)
+        Swal.fire({
+          title: '¿Quieres cancelar la cita?   ',
+          text: "No se podra revertir",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Si, cancelala'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire(
+
+              'Cancelada!',
+              'La cita ha sido cancelada con exito',
+              'success'
+            )
+            this.editarDate();
+          }
+        })
+      }
+    )
+}
+
+seguridadTerminar(idPet){
+  this.dateService.buscarIdDate(idPet).subscribe(
+
+    response=>{
+
+      this.dateEdit = response
+      this.dateEdit.state = 'termida'
+      console.log(response)
+      Swal.fire({
+        title: 'Se termino la cita ',
+        text: "No se podra revertir",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, muy satisfecho'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+
+            'Terminada!',
+            'Esperamos que regrese',
+            'success'
+          )
+          this.editarDate();
+        }
+      })
+    }
+  )
+}
+
+  editarDate(){
+    this.dateService.editarDate(this.dateEdit._id, this.dateEdit).subscribe(
+      response=>{
+        console.log(response)
+        this.mostrarCitas()
+      }
+    )
+  }
+
 
 }

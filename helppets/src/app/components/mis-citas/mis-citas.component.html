@@ -26,7 +26,7 @@
               </mat-form-field>
             </td>
             <td>{{dates.state}}<br>
-            <button type="button" class="btn btn-danger" (click)="seguridadCancelar(dates._id)">Cancelar</button>
+            <button *ngIf="dates.state == 'reservado'" type="button" class="btn btn-danger" (click)="seguridadCancelar(dates._id)">Cancelar</button>
             </td>
           </tr>
         </tbody>

@@ -18,8 +18,8 @@ export class MisCitasComponent implements OnInit {
   constructor(
     public dateService: DateService
   ) {
-    this.dates = new Date("","","","","")
-    this.dateEdit = new Date("","","","","")
+    this.dates = new Date("","","","","","")
+    this.dateEdit = new Date("","","","","","")
    }
 
 
@@ -30,7 +30,6 @@ export class MisCitasComponent implements OnInit {
   mostrarCitas(){
     this.dateService.getMyDate().subscribe(
       responce=>{
-        console.log(responce)
         this.dates= responce
       }
     )
@@ -40,7 +39,9 @@ export class MisCitasComponent implements OnInit {
     this.dateService.buscarIdDate(idPet).subscribe(
 
       response=>{
+
         this.dateEdit = response
+        this.dateEdit.state = 'cancelado'
         console.log(response)
         Swal.fire({
           title: '¿Quieres cancelar la cita?   ',
@@ -53,18 +54,25 @@ export class MisCitasComponent implements OnInit {
         }).then((result) => {
           if (result.isConfirmed) {
             Swal.fire(
+
               'Cancelada!',
               'La cita ha sido cancelada con exito',
               'success'
             )
+            this.editarDate();
           }
         })
       }
-
-
     )
-
-
 }
+
+  editarDate(){
+    this.dateService.editarDate(this.dateEdit._id, this.dateEdit).subscribe(
+      response=>{
+        console.log(response)
+        this.mostrarCitas()
+      }
+    )
+  }
 
 }

@@ -89,17 +89,17 @@ function getMyDate(req,res){
 }
 
 function getDatesOrg(req,res){
-  var idUser = req.params.idUser;
+  var idUser = req.user.sub;
 
   if (req.user.type != 'veterinaria') {
     return res.status(404).send({ mensaje: 'Solo las veterianarias pueden realizar esta accion' })
 }
 
-  dateModel.findById(idUser,(err,dateFound)=>{
+  dateModel.find({veterinaria:idUser},(err,dateFound)=>{
     if (err) return res.status(500).send({ mensaje: 'Error en la peticion' });
     if (!dateFound) return res.status(500).send({ mensaje: 'Erro al obtener la citas' });
     return res.status(200).send(dateFound)
-  })
+  }).populate('service veterinaria')
 }
 
 function editarDate(req,res){

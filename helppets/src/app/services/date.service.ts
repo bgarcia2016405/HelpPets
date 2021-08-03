@@ -53,7 +53,7 @@ editarDate(id: String, date: Date):Observable<any>{
   let params = JSON.stringify(date);
   let token = this.headers.set('Authorization', this.getToken())
 
-  return this.http.put(this.url + '/getDatesOrg/' + id, params,{headers: token})
+  return this.http.put(this.url + '/editarDate/' + id, params,{headers: token})
 }
 
 buscarIdDate(id: String):Observable<any>{

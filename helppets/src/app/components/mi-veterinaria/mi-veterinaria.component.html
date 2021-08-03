@@ -192,13 +192,20 @@
                               </tr>
                             </thead>
                             <tbody>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>La vendición</td>
-                                <td>Vacunación</td>
-                                <td>35/05/2501</td>
-                                <td>Reservado<br>
-                                <button type="button" class="btn btn-danger">Cancelar</button>
+                              <tr *ngFor="let dates of dates; let i = index">
+                                <th scope="row">{{i+1}}</th>
+                                <td>{{dates.veterinaria.nameOrg}}</td>
+                                <td>{{dates.service.service}}</td>
+                                <td>
+                                  <mat-form-field>
+                                    <input matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" value="{{dates.date}}" disabled>
+                                    <mat-datepicker-toggle matSuffix [for]="picker" disabled></mat-datepicker-toggle>
+                                    <mat-datepicker #picker disabled ></mat-datepicker>
+                                  </mat-form-field>
+                                </td>
+                                <td>{{dates.state}}<br>
+                                <button *ngIf="dates.state == 'reservado'" type="button" class="btn btn-success" (click)="seguridadTerminar(dates._id)">Terminado</button>
+                                <button *ngIf="dates.state == 'reservado'" type="button" class="btn btn-danger" (click)="seguridadCancelar(dates._id)">Cancelar</button>
                                 </td>
                               </tr>
                             </tbody>
