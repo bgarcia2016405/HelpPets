@@ -14,19 +14,19 @@ export class NavbarComponent implements OnInit {
   public userModel: User;
   public token;
   public identidad;
-  public editarUsuarioModel;
+  public editarUsuariod;
   public eliminarUsuarioModel
 
   constructor(public userService:UserService,
               private router:Router) {
         this.identidad = this.userService.getIdentidad();
         this.userModel = new User("","","","","","","","","","","","","","",0,"","","","","");
-        this.editarUsuarioModel = new User("","","","","","","","","","","","","","",0,"","","","","");
+        this.editarUsuariod = new User("","","","","","","","","","","","","","",0,"","","","","");
         this.eliminarUsuarioModel = new User("","","","","","","","","","","","","","",0,"","","","","");
       }
 
   ngOnInit(): void {
-    this.editarUsuarioModel = this.identidad
+    this.editarUsuariod = this.identidad
   }
 
   login(){
@@ -72,7 +72,7 @@ export class NavbarComponent implements OnInit {
   }
 
   editarUsuario(idUser){
-    this.userService.editarUsuario(idUser,this.editarUsuarioModel).subscribe(
+    this.userService.editarUsuario(idUser,this.editarUsuariod).subscribe(
 
       response=>{
         console.log(response)
